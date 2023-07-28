@@ -107,7 +107,8 @@ class Text extends Fieldtype implements Wireable
     {
         return [
             'name' => $this->getName(),
-            'type' => $this->getType()
+            'type' => $this->getType(),
+            'label' => $this->getLabel(),
         ];
     }
 
@@ -115,7 +116,8 @@ class Text extends Fieldtype implements Wireable
     {
         $name = $data['name'];
         $type = $data['type'];
+        $label = $data['label'];
 
-        return (new static($name))->type($type);
+        return (new static($name))->type($type)->label($label);
     }
 }

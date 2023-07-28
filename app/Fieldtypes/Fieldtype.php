@@ -4,10 +4,12 @@ namespace App\Fieldtypes;
 
 use App\Traits\EvaluatesClosures;
 use App\Traits\Fieldtypes\HasName;
+use App\Traits\Fieldtypes\HasLabel;
 
 class Fieldtype
 {
     use HasName;
+    use HasLabel;
     use EvaluatesClosures;
 
     protected string $view = 'field';

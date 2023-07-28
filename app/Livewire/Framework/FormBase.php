@@ -4,7 +4,7 @@ namespace App\Livewire\Framework;
 
 use Livewire\Component;
 use Livewire\Attributes\On;
-use App\Interfaces\FormInterface;
+use App\Events\OnFormSubmitted;
 
 class FormBase extends Component
 {
@@ -14,6 +14,10 @@ class FormBase extends Component
     public function updateResults($name, $value)
     {
         $this->result[$name] = $value;
+    }
+
+    public function saveForm() : void {
+        OnFormSubmitted::dispatch($this->result);
     }
 
     public function render()

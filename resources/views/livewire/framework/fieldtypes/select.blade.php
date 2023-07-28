@@ -1,6 +1,7 @@
-<div>
-    <select wire:model.live="value" @if($input->isMultiple()) multiple @endif>
-        {{-- <option disabled>Select a option...</option> --}}
+<div class="form-group">
+    <label for="{{$input->getName()}}">{{ $input->getLabel() }}</label>
+
+    <select id="{{$input->getName()}}" class="form-select" wire:model.live="value" @if($input->isMultiple()) multiple @endif>
 
         @foreach($input->getOptions() as $key => $value)
             <option value="{{ $key }}">{{ $value }}</option>

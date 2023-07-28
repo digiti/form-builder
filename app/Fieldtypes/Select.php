@@ -32,7 +32,8 @@ class Select extends Fieldtype implements Wireable
         return [
             'name' => $this->getName(),
             'options' => $this->getOptions(),
-            'isMultiple' => $this->isMultiple()
+            'isMultiple' => $this->isMultiple(),
+            'label' => $this->getLabel(),
         ];
     }
 
@@ -41,9 +42,11 @@ class Select extends Fieldtype implements Wireable
         $name = $data['name'];
         $options = $data['options'];
         $isMultiple = $data['isMultiple'];
+        $label = $data['label'];
 
         return (new static($name))
             ->options($options)
-            ->multiple($isMultiple);
+            ->multiple($isMultiple)
+            ->label($label);
     }
 }

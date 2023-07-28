@@ -21,16 +21,18 @@ trait HasName
         return $this->name;
     }
 
-    public function getLabel(): string | Htmlable | null
+    public function getLabelFromName(): string | Htmlable | null
     {
-        $label = parent::getLabel() ?? (string) Str::of($this->getName())
+        $label = (string) Str::of($this->getName())
             ->afterLast('.')
             ->kebab()
             ->replace(['-', '_'], ' ')
             ->ucfirst();
 
-        return (is_string($label) && $this->shouldTranslateLabel) ?
-            __($label) :
-            $label;
+        return $label;
+
+        // return (is_string($label) && $this->shouldTranslateLabel) ?
+        //     __($label) :
+        //     $label;
     }
 }
