@@ -14,7 +14,8 @@ class FormExample extends FormBase implements FormInterface
     {
         return [
             Text::make('name')
-                ->type('text'),
+                ->type('text')
+                ->required(),
             Text::make('email')
                 ->email()
                 ->label('LABEL 2'),
@@ -26,6 +27,7 @@ class FormExample extends FormBase implements FormInterface
                     "option-3" => "Option three"
                 ])
                 ->multiple()
+                ->required()
         ];
     }
 }

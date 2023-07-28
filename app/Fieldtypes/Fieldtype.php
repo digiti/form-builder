@@ -5,11 +5,13 @@ namespace App\Fieldtypes;
 use App\Traits\EvaluatesClosures;
 use App\Traits\Fieldtypes\HasName;
 use App\Traits\Fieldtypes\HasLabel;
+use App\Traits\Fieldtypes\HasRequiredOption;
 
 class Fieldtype
 {
     use HasName;
     use HasLabel;
+    use HasRequiredOption;
     use EvaluatesClosures;
 
     protected string $view = 'field';

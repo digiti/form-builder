@@ -34,6 +34,10 @@ They can be nested in 'Chapters' but more on that later.
 
 > **Note:** The **make($string)** method is required to construct a fieldtype object
 
+Fieldtype options:
+* ->label(): Label for the input. If not provide we will create a label with the name of the field.
+* ->required(): Makes field required.
+
 ## Text
 
 First of all you have the Text fieldtype. 

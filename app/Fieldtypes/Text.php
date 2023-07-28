@@ -109,6 +109,7 @@ class Text extends Fieldtype implements Wireable
             'name' => $this->getName(),
             'type' => $this->getType(),
             'label' => $this->getLabel(),
+            'isRequired' => $this->isRequired(),
         ];
     }
 
@@ -117,7 +118,8 @@ class Text extends Fieldtype implements Wireable
         $name = $data['name'];
         $type = $data['type'];
         $label = $data['label'];
+        $isRequired = $data['isRequired'];
 
-        return (new static($name))->type($type)->label($label);
+        return (new static($name))->type($type)->label($label)->required($isRequired);
     }
 }

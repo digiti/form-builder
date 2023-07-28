@@ -34,6 +34,7 @@ class Select extends Fieldtype implements Wireable
             'options' => $this->getOptions(),
             'isMultiple' => $this->isMultiple(),
             'label' => $this->getLabel(),
+            'isRequired' => $this->isRequired(),
         ];
     }
 
@@ -43,10 +44,12 @@ class Select extends Fieldtype implements Wireable
         $options = $data['options'];
         $isMultiple = $data['isMultiple'];
         $label = $data['label'];
+        $isRequired = $data['isRequired'];
 
         return (new static($name))
             ->options($options)
             ->multiple($isMultiple)
-            ->label($label);
+            ->label($label)
+            ->required($isRequired);
     }
 }
