@@ -9,7 +9,7 @@
 </head>
 <body>
 
-
+    <livewire-form-example/>
 
     <script src="{{ mix('/js/site.js') }}" defer></script>
 </body>
