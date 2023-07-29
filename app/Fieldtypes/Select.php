@@ -5,10 +5,12 @@ namespace App\Fieldtypes;
 use Closure;
 use Livewire\Wireable;
 use App\Traits\Fieldtypes\HasOptions;
+use App\Traits\Fieldtypes\HasWireables;
 
 class Select extends Fieldtype implements Wireable
 {
     use HasOptions;
+    use HasWireables;
 
     protected string $view = 'framework.fieldtypes.select';
 
@@ -24,32 +26,5 @@ class Select extends Fieldtype implements Wireable
     public function isMultiple(): bool
     {
         return $this->evaluate($this->isMultiple);
-    }
-
-    // TODO: Put in Trait or Parent class
-    public function toLivewire()
-    {
-        return [
-            'name' => $this->getName(),
-            'options' => $this->getOptions(),
-            'isMultiple' => $this->isMultiple(),
-            'label' => $this->getLabel(),
-            'isRequired' => $this->isRequired(),
-        ];
-    }
-
-    public static function fromLivewire($data)
-    {
-        $name = $data['name'];
-        $options = $data['options'];
-        $isMultiple = $data['isMultiple'];
-        $label = $data['label'];
-        $isRequired = $data['isRequired'];
-
-        return (new static($name))
-            ->options($options)
-            ->multiple($isMultiple)
-            ->label($label)
-            ->required($isRequired);
     }
 }

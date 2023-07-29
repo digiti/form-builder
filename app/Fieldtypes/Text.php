@@ -2,11 +2,14 @@
 
 namespace App\Fieldtypes;
 
+use App\Traits\Fieldtypes\HasWireables;
 use Closure;
 use Livewire\Wireable;
 
 class Text extends Fieldtype implements Wireable
 {
+    use HasWireables;
+
     protected string $view = 'framework.fieldtypes.text';
 
     protected string | Closure | null $type = null;
@@ -100,26 +103,5 @@ class Text extends Fieldtype implements Wireable
         }
 
         return 'text';
-    }
-
-    // TODO: Put in Trait or Parent class
-    public function toLivewire()
-    {
-        return [
-            'name' => $this->getName(),
-            'type' => $this->getType(),
-            'label' => $this->getLabel(),
-            'isRequired' => $this->isRequired(),
-        ];
-    }
-
-    public static function fromLivewire($data)
-    {
-        $name = $data['name'];
-        $type = $data['type'];
-        $label = $data['label'];
-        $isRequired = $data['isRequired'];
-
-        return (new static($name))->type($type)->label($label)->required($isRequired);
     }
 }
