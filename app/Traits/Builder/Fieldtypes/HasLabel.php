@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Traits\Fieldtypes;
+namespace App\Traits\Builder\Fieldtypes;
 
-use App\Traits\Fieldtypes\HasName;
+use App\Traits\Builder\HasName;
 
 trait HasLabel
 {

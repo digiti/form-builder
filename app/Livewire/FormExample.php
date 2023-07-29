@@ -2,8 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Fieldtypes\Text;
-use App\Fieldtypes\Select;
+use App\Builder\Fieldtypes\Text;
+use App\Builder\Fieldtypes\Select;
 use App\Interfaces\FormInterface;
 use App\Livewire\Framework\FormBase;
 use Closure;

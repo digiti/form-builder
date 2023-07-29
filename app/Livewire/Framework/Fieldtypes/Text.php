@@ -3,7 +3,7 @@
 namespace App\Livewire\Framework\Fieldtypes;
 
 use Livewire\Component;
-use App\Fieldtypes\Text as Input;
+use App\Builder\Fieldtypes\Text as Input;
 use App\Traits\Livewire\HasValue;
 
 class Text extends Component

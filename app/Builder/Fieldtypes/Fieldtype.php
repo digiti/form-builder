@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Fieldtypes;
+namespace App\Builder\Fieldtypes;
 
 use App\Traits\EvaluatesClosures;
-use App\Traits\Fieldtypes\HasName;
-use App\Traits\Fieldtypes\HasLabel;
-use App\Traits\Fieldtypes\HasRequiredOption;
+use App\Traits\Builder\HasName;
+use App\Traits\Builder\Fieldtypes\HasLabel;
+use App\Traits\Builder\Fieldtypes\HasRequiredOption;
 
 class Fieldtype
 {

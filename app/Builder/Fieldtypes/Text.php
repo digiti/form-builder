@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Fieldtypes;
+namespace App\Builder\Fieldtypes;
 
-use App\Traits\Fieldtypes\HasWireables;
+use App\Traits\Builder\Fieldtypes\HasWireables;
 use Closure;
 use Livewire\Wireable;
 

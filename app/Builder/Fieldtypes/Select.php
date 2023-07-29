@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Fieldtypes;
+namespace App\Builder\Fieldtypes;
 
 use Closure;
 use Livewire\Wireable;
-use App\Traits\Fieldtypes\HasOptions;
-use App\Traits\Fieldtypes\HasWireables;
+use App\Traits\Builder\Fieldtypes\HasOptions;
+use App\Traits\Builder\Fieldtypes\HasWireables;
 
 class Select extends Fieldtype implements Wireable
 {

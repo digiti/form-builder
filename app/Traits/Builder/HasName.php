@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits\Fieldtypes;
+namespace App\Traits\Builder;
 
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Str;

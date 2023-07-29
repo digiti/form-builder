@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits\Fieldtypes;
+namespace App\Traits\Builder\Fieldtypes;
 
 trait HasRequiredOption
 {
