@@ -20,4 +20,9 @@ trait HasDescription
     {
         return $this->description;
     }
+
+    public function hasDescription(): bool
+    {
+        return !empty($this->description);
+    }
 }

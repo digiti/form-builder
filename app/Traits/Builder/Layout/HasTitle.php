@@ -20,4 +20,9 @@ trait HasTitle
     {
         return $this->title;
     }
+
+    public function hasTitle(): bool
+    {
+        return !empty($this->title);
+    }
 }

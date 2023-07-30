@@ -2,8 +2,13 @@
     Parent data: {{ print_r($this->parent) }}
     Current Step: {{ $this->getCurrentStep() }}
 
-    <h3>{!! $this->object->getTitle() !!}</h3>
-    <p>{!! $this->object->getDescription() !!}</p>
+    @if($this->object->hasTitle())
+        <h3>{!! $this->object->getTitle() !!}</h3>
+    @endif
+
+    @if($this->object->hasDescription())
+        <p>{!! $this->object->getDescription() !!}</p>
+    @endif
 
     @foreach ($this->object->getSchema() as $object)
         <livewire:is :component="$object->getView()" :$object :key="md5($loop->index)" />
