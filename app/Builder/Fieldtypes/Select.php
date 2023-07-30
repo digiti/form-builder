@@ -7,10 +7,9 @@ use Livewire\Wireable;
 use App\Traits\Builder\Fieldtypes\HasOptions;
 use App\Traits\Builder\Fieldtypes\HasWireables;
 
-class Select extends Fieldtype implements Wireable
+class Select extends Fieldtype
 {
     use HasOptions;
-    use HasWireables;
 
     protected string $view = 'framework.fieldtypes.select';
 

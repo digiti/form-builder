@@ -6,10 +6,8 @@ use App\Traits\Builder\Fieldtypes\HasWireables;
 use Closure;
 use Livewire\Wireable;
 
-class Text extends Fieldtype implements Wireable
+class Text extends Fieldtype
 {
-    use HasWireables;
-
     protected string $view = 'framework.fieldtypes.text';
 
     protected string | Closure | null $type = null;

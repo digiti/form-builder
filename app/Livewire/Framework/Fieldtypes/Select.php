@@ -10,10 +10,10 @@ class Select extends Component
 {
     use HasValue;
 
-    public Input $input;
+    public Input $object;
 
     public function render()
     {
-        return view('livewire.'.$this->input->getField());
+        return view('livewire.'.$this->object->getView());
     }
 }

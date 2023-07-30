@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Traits\Builder\Layout;
+
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\Str;
+
+trait HasTitle
+{
+    protected string $title;
+
+    public function title(string $title): static
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+}

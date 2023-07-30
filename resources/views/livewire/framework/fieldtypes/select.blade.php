@@ -1,10 +1,10 @@
 <div class="form-group">
-    <label for="{{ $input->getName() }}">{{ $input->getLabel() }}</label>
+    <label for="{{ $object->getName() }}">{{ $object->getLabel() }}</label>
 
-    <select id="{{ $input->getName() }}" class="form-select" wire:model.live="value"
-        @if ($input->isMultiple()) multiple @endif @if ($input->isRequired()) required @endif>
+    <select id="{{ $object->getName() }}" class="form-select" wire:model.live="value"
+        @if ($object->isMultiple()) multiple @endif @if ($object->isRequired()) required @endif>
 
-        @foreach ($input->getOptions() as $key => $value)
+        @foreach ($object->getOptions() as $key => $value)
             <option value="{{ $key }}">{{ $value }}</option>
         @endforeach
     </select>

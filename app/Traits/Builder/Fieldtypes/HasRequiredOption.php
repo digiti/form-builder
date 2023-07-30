@@ -4,7 +4,6 @@ namespace App\Traits\Builder\Fieldtypes;
 
 trait HasRequiredOption
 {
-
     protected bool $required;
 
     public function required(bool $required = true): static

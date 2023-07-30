@@ -10,7 +10,7 @@ trait HasValue
     {
         $this->dispatch(
             'input-updated',
-            name: $this->input->getName(),
+            name: $this->object->getName(),
             value: $this->value
         );
     }
