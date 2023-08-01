@@ -14,7 +14,7 @@
     @else
         <input class="form-check-input" type="checkbox" wire:model.live="value" id="{{ $object->getName() }}">
         <label class="form-check-label" for="{{ $object->getName() }}">
-            {{ $object->getName() }}
+            {{ $object->getLabel() }}
         </label>
     @endif
 </div>
