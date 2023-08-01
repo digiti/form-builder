@@ -1,6 +1,6 @@
 <div class="select-fieldtype fieldtype">
     <div class="form-group">
-        <label for="{{ $object->getName() }}">{{ $object->getLabel() }}</label>
+        <label class=" @if ($object->isRequired()) required @endif>" for="{{ $object->getName() }}">{{ $object->getLabel() }}</label>
 
         <select id="{{ $object->getName() }}" class="form-select" wire:model.live="value"
             @if ($object->isMultiple()) multiple @endif @if ($object->isRequired()) required @endif>

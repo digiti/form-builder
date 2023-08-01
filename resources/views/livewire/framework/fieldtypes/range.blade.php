@@ -1,6 +1,6 @@
-<div class="range-fieldtype fieldtype debug">
+<div class="range-fieldtype fieldtype">
     <div class="form-group">
-        <label for="{{ $object->getName() }}" class="form-label">{{ $object->getLabel() }}</label>
+        <label for="{{ $object->getName() }}" class="form-label  @if ($object->isRequired()) required @endif>">{{ $object->getLabel() }}</label>
 
         <div class="d-flex">
             <p class="range-min">{{ $object->getMin() }}</p>

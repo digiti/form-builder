@@ -22,6 +22,11 @@ class Step extends Component
         return $this->parent['step']['count'];
     }
 
+    public function getHasConclusion()
+    {
+        return $this->parent['step']['hasConclusion'];
+    }
+
     public function nextStep()
     {
         //TODO: first validate values before dispatching

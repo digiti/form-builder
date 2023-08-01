@@ -1,6 +1,6 @@
 <div class="radio-fieldtype fieldtype">
     <div class="form-group">
-        <p class="label">{{ $object->getLabel() }}</p>
+        <p class="label  @if ($object->isRequired()) required @endif>">{{ $object->getLabel() }}</p>
 
         @foreach ($object->getOptions() as $key => $value)
             <div class="form-check">

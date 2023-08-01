@@ -14,6 +14,7 @@ class FormBase extends Component
     #[Reactive]
     public int $currentStep;
     public array $meta;
+    public bool $hasConclusion = false;
 
     public function mount()
     {
@@ -25,7 +26,8 @@ class FormBase extends Component
         return [
             'step' => [
                 'current' => $this->currentStep,
-                'count' => $this->countSteps()
+                'count' => $this->countSteps(),
+                'hasConclusion' => $this->hasConclusion
             ]
         ];
     }

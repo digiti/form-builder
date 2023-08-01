@@ -13,58 +13,49 @@ use App\Livewire\Framework\FormBase;
 
 class FormExample extends FormBase implements FormInterface
 {
+    public bool $hasConclusion = true;
+
     public function schema()
     {
         return [
             Step::make([
-                Range::make('amount')
-                ->min(20)
-                ->step(10)
-                ->max(200),
-                Check::make('Consent'),
-                Check::make('Options')
-                ->label('Select multiple options')
-                ->options([
-                    "option-1" => "Option one",
-                    "option-2" => "Option two",
-                    "option-3" => "Option three"
-                ])
-            ])
-            ->title('Step 1')
-            ->description('This is step 1'),
-            Step::make([
-                Radio::make('radio')
-                ->label('Select one option')
-                ->options([
-                    "yes" => "Yes please",
-                    "no" => "God no!",
-                ])
-            ])
-            ->title('Step 1')
-            ->description('This is step 1'),
-            Step::make([
-                Text::make('name')
+                Text::make('first-name')
                     ->type('text')
+                    ->label('First name')
+                    ->required(),
+                Text::make('last-name')
+                    ->type('text')
+                    ->label('Last name')
                     ->required(),
                 Text::make('email')
-                    ->email()
-                    ->label('LABEL 2'),
+                    ->type('email')
+                    ->required(),
+                Text::make('company')
+                    ->type('text')
+                    ->required(),
             ])
-            ->title('Step 2')
-            ->description('This is step 2'),
+                ->title('Please provide us with your contact details'),
             Step::make([
-                Select::make('role')
+                Radio::make('service')
+                    ->label('Select one of our services')
+                    ->options([
+                        "app" => "App",
+                        "website" => "Website",
+                        "webshop" => "Webshop",
+                    ]),
+            ])
+                ->title('What can we help you with?'),
+            Step::make([
+                Check::make('objectives')
+                    ->multiple()
                     ->label('Select all options you wish to select')
                     ->options([
-                        "option-1" => "Option one",
-                        "option-2" => "Option two",
-                        "option-3" => "Option three"
-                    ])
-                    ->multiple()
-                    ->required()
+                        "boost" => "Boost business growth and increase sales",
+                        "digitize" => "Digitize my business to enhance efficiency and productivity",
+                        "scale" => "Scale and expand my offering",
+                    ]),
             ])
-            ->title('Step 3')
-            ->description('This is step 3. This is only visible when you completed step 2')
+                ->title('What do you want to achieve?'),
         ];
     }
 }
