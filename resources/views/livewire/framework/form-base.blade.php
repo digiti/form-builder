@@ -15,7 +15,7 @@
                     <x-conclusion :result="$result" :parent="$this->getMeta()"/>
                 @else
                     @php($object = $this->schema()[$this->currentStep])
-                    <livewire:is :component="$object->getView()" :$object :parent="$this->getMeta()" :key="md5($this->currentStep)" />
+                    <livewire:is :component="$object->getView()" :$object :result="$result" :parent="$this->getMeta()" :key="md5($this->currentStep)" />
                 @endif
             @else
                 @foreach ($this->schema() as $object)

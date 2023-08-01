@@ -1,6 +1,7 @@
 <div class="step">
     <div class="bg-light p-3 rounded mb-3 debug">
         <p>Parent data: {{ print_r($this->parent) }}</p>
+        <p>RESULT data: {{ print_r($this->result) }}</p>
         <p>Current Step: {{ $this->getCurrentStep() }}</p>
     </div>
     <p>{{ $this->getCurrentStep() }}/{{ $this->getCountSteps() }}</p>
@@ -14,7 +15,7 @@
     @endif
 
     @foreach ($this->object->getSchema() as $object)
-        <livewire:is :component="$object->getView()" :$object :key="md5($loop->index)" />
+        <livewire:is :component="$object->getView()" :$object :result="$result" :key="md5($loop->index)" />
     @endforeach
 
     @if ($this->getCurrentStep() > 1)

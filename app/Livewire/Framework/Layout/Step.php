@@ -12,6 +12,9 @@ class Step extends Component
 
     public Layout $object;
 
+    // RESULT HERE?!
+    public $result;
+
     public function getCurrentStep()
     {
         return $this->parent['step']['current'] + 1;
