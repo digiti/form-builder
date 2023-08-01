@@ -5,7 +5,7 @@ namespace App\Builder\Fieldtypes;
 use App\Traits\EvaluatesClosures;
 use App\Traits\Builder\HasName;
 use App\Traits\Builder\Fieldtypes\HasLabel;
-use App\Traits\Builder\Fieldtypes\HasRequiredOption;
+use App\Traits\Builder\Fieldtypes\HasRequired;
 use App\Traits\Builder\HasWireables;
 use Livewire\Wireable;
 
@@ -14,7 +14,7 @@ class Fieldtype implements Wireable
     use HasName;
     use HasLabel;
     use HasWireables;
-    use HasRequiredOption;
+    use HasRequired;
     use EvaluatesClosures;
 
     protected string $view = 'field';

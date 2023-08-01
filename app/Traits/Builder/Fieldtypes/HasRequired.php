@@ -2,7 +2,7 @@
 
 namespace App\Traits\Builder\Fieldtypes;
 
-trait HasRequiredOption
+trait HasRequired
 {
     protected bool $required;
 

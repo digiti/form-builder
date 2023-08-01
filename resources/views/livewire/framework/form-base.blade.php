@@ -1,5 +1,5 @@
-<div>
-    <div class="mb-3">
+<div class="form-base">
+    <div class="mb-3 bg-light p-3 rounded mt-5">
         This is the base form<br>
 
         Result: {{ print_r($result) }} <br>

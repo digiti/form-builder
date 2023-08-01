@@ -1,0 +1,7 @@
+.fieldtype {
+    &.debug {
+        background-color: rgba($warning, .3) !important;
+        padding: .5rem;
+        border-radius: $border-radius;
+    }
+}
