@@ -6,6 +6,7 @@ use App\Builder\Fieldtypes\Text;
 use App\Builder\Fieldtypes\Select;
 use App\Builder\Fieldtypes\Radio;
 use App\Builder\Fieldtypes\Check;
+use App\Builder\Fieldtypes\Range;
 use App\Builder\Layout\Step;
 use App\Interfaces\FormInterface;
 use App\Livewire\Framework\FormBase;
@@ -16,6 +17,10 @@ class FormExample extends FormBase implements FormInterface
     {
         return [
             Step::make([
+                Range::make('amount')
+                ->min(20)
+                ->step(10)
+                ->max(200),
                 Check::make('Consent'),
                 Check::make('Options')
                 ->label('Select multiple options')

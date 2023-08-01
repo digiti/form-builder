@@ -169,6 +169,40 @@ Constructs the options of your select input. The key will be the value that is b
         ])
 ```
 
+## Range slider
+A example:
+```
+	use App\Fieldtypes\Range;
+	
+    Range::make('amount')
+        ->min(10)
+        ->max(200)
+        ->step(50)
+```
+### Methods
+**label**
+Will overwrite the name with the given label
+```
+    Range::make('amount')->label('Slide for the correct amount')
+```
+
+**min**
+Set minimum value of slider
+```
+    Range::make('amount')->min(10)
+```
+
+**max**
+Set maximum value of slider
+```
+    Range::make('amount')->max(200)
+```
+
+**step**
+Set the step of slider
+```
+    Range::make('amount')->step(50)
+```
 
 ## Select
 
