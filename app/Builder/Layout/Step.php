@@ -3,8 +3,6 @@
 namespace App\Builder\Layout;
 
 use Livewire\Wireable;
-use App\Traits\EvaluatesClosures;
-use App\Traits\Builder\HasName;
 use App\Traits\Builder\Layout\HasSchema;
 use App\Traits\Builder\Layout\HasDescription;
 use App\Traits\Builder\HasWireables;

@@ -1,11 +1,12 @@
 <div class="form-base">
-    {{-- <div class="mb-3 bg-light p-3 rounded mt-5">
+    <div class="mb-3 bg-light p-3 rounded mt-5">
         This is the base form<br>
 
         Result: {{ print_r($result) }} <br>
         Current Step: {{ $this->currentStep }}<br>
         Step count: {{ $this->countSteps() }}<br>
-    </div> --}}
+
+    </div>
 
     <div class="form-wrapper">
         <form class="form" wire:submit="saveForm">

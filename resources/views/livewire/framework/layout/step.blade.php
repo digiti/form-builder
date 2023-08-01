@@ -1,8 +1,8 @@
 <div class="step">
-    {{-- <div class="bg-light p-3 rounded mb-3 debug">
+    <div class="bg-light p-3 rounded mb-3 debug">
         <p>Parent data: {{ print_r($this->parent) }}</p>
         <p>Current Step: {{ $this->getCurrentStep() }}</p>
-    </div> --}}
+    </div>
     <p>{{ $this->getCurrentStep() }}/{{ $this->getCountSteps() }}</p>
 
     @if ($this->object->hasTitle())
