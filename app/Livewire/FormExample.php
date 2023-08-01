@@ -56,6 +56,18 @@ class FormExample extends FormBase implements FormInterface
                     ]),
             ])
                 ->title('What do you want to achieve?'),
+            Step::make([
+                Range::make('budget')
+                    ->label('What is your budget?')
+                    ->min(0)
+                    ->max(100000)
+                    ->step(1000),
+                Range::make('time')
+                    ->label('What is your investment timeline? (in months)')
+                    ->min(0)
+                    ->max(36)
+            ])
+                ->title('Time for some numbers'),
         ];
     }
 }
