@@ -4,7 +4,7 @@ namespace App\Traits\Livewire;
 
 trait HasValue
 {
-    public $value;
+    public mixed $value;
 
     public function updatedValue()
     {

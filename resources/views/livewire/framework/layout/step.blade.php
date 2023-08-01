@@ -15,10 +15,10 @@
     @endforeach
 
     @if($this->getCurrentStep() > 1)
-        <button class="btn btn-primary" wire:click="previousStep">Previous step</button>
+        <button class="btn btn-primary" wire:click="previousStep" type="button" >Previous step</button>
     @endif
 
     @if($this->getCountSteps() !== $this->getCurrentStep())
-        <button class="btn btn-primary" wire:click="nextStep">Next step</button>
+        <button class="btn btn-primary" wire:click="nextStep" type="button" >Next step</button>
     @endif
 </div>
