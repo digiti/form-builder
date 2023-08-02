@@ -87,7 +87,7 @@ class FormExample extends FormBase implements FormInterface
             Step::make([
                 Range::make('budget')
                     ->label('What is your budget?')
-                    ->min(0)
+                    ->min(1000)
                     ->max(100000)
                     ->step(1000),
                 Range::make('time')
