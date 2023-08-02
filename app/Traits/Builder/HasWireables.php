@@ -2,6 +2,8 @@
 
 namespace App\Traits\Builder;
 
+use Closure;
+
 trait HasWireables
 {
     protected string $constructAttributeKey;
@@ -35,6 +37,10 @@ trait HasWireables
     protected function setObjectAttributes($array)
     {
         foreach($array as $key => $value){
+            if($value instanceof Closure){
+                $value = $this->evaluate($value);
+            }
+
             $this->{$key} = $value;
         }
         return $this;

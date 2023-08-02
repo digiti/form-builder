@@ -9,6 +9,7 @@ use Livewire\Wireable;
 class Text extends Fieldtype
 {
     protected string $view = 'framework.fieldtypes.text';
+    protected string $classes = 'text-fieldtype';
 
     protected string | Closure | null $type = null;
     protected bool | Closure $isEmail = false;

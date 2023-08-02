@@ -15,13 +15,7 @@
     @endif
 
     @foreach ($this->object->getSchema() as $object)
-        {{-- {{var_dump($object)}} --}}
-
-        @if($object->getReactive())
-            <h1>TRUE</h1>
-        @endif
-
-        <livewire:is :component="$object->getView()" :$object :result="$result" :key="md5($loop->index)" />
+        <x-fieldtype :key="md5($loop->index)" :$object :$result />
     @endforeach
 
     @if ($this->getCurrentStep() > 1)

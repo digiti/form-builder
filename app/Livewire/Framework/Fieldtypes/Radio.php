@@ -12,6 +12,11 @@ class Radio extends Component
 
     public Input $object;
 
+    public function mount()
+    {
+        $this->value = $this->defaultValue[$this->object->getName()] ?? [];
+    }
+
     public function render()
     {
         return view('livewire.' . $this->object->getView());

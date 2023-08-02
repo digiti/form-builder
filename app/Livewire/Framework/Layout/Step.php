@@ -11,6 +11,8 @@ class Step extends Component
     use HasParent;
 
     public Layout $object;
+
+    #[Reactive]
     public $result;
 
     public function getCurrentStep()
@@ -38,6 +40,12 @@ class Step extends Component
     {
         //TODO: first validate values before dispatching
         $this->dispatch('previous-step');
+    }
+
+    #[On('input-updated')]
+    public function updateResults($name, $value)
+    {
+        $this->result[$name] = $value;
     }
 
     public function render()

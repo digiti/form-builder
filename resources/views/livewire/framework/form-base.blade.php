@@ -12,14 +12,14 @@
         <form class="form" wire:submit="saveForm">
             @if ($this->hasSteps())
                 @if ($this->hasConclusion && $this->currentStep == $this->countSteps())
-                    <x-conclusion :result="$result" :parent="$this->getMeta()"/>
+                    <x-conclusion :$result :parent="$this->getMeta()"/>
                 @else
                     @php($object = $this->schema()[$this->currentStep])
-                    <livewire:is :component="$object->getView()" :$object :result="$result" :parent="$this->getMeta()" :key="md5($this->currentStep)" />
+                    <livewire:is :component="$object->getView()" :$object :$result :parent="$this->getMeta()" :key="md5($this->currentStep)" />
                 @endif
             @else
                 @foreach ($this->schema() as $object)
-                    <livewire:is :component="$object->getView()" :$object :key="md5($loop->index)" />
+                    <x-fieldtype :key="md5($loop->index)" :$object :$result />
                 @endforeach
 
                 <button class="btn btn-primary" type="submit">{!! __('actions.submit') !!}</button>

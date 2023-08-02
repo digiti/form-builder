@@ -9,6 +9,7 @@ use App\Events\OnFormSubmitted;
 
 class FormBase extends Component
 {
+    #[Reactive]
     public $result;
 
     #[Reactive]

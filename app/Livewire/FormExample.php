@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Closure;
 use App\Builder\Fieldtypes\Text;
 use App\Builder\Fieldtypes\Select;
 use App\Builder\Fieldtypes\Radio;
@@ -25,7 +26,7 @@ class FormExample extends FormBase implements FormInterface
                     ->required()->reactive(function(){
                         // return $this->result['company'] == 'react' ? true : false;
                         return true;
-                       }),
+                    }),
                 Text::make('last-name')
                     ->type('text')
                     ->label('Last name')
@@ -34,8 +35,8 @@ class FormExample extends FormBase implements FormInterface
                     ->type('email')
                     ->required()
                     ->reactive(function(){
-                        return $this->result['company'] == 'react' ? true : false;
-                       }),
+                        return isset($this->result['company']) && $this->result['company'] == 'react' ? true : false;
+                    }),
                 Text::make('company')
                     ->type('text')
                     ->required(),
@@ -59,8 +60,8 @@ class FormExample extends FormBase implements FormInterface
                         ],
                     ])
                     ->reactive(function(){
-                        return $this->result['company'] == 'react' ? true : false;
-                       }),
+                        return isset($this->result['company']) && $this->result['company'] == 'react' ? true : false;
+                    }),
             ])
                 ->title('What can we help you with?'),
             Step::make([
