@@ -6,13 +6,12 @@ use Livewire\Component;
 use Livewire\Attributes\On;
 use App\Builder\Layout\Step;
 use App\Events\OnFormSubmitted;
+use Livewire\Attributes\Reactive;
 
 class FormBase extends Component
 {
-    #[Reactive]
     public $result;
 
-    #[Reactive]
     public int $currentStep;
     public array $meta;
     public bool $hasConclusion = false;
@@ -68,6 +67,7 @@ class FormBase extends Component
         $this->currentStep--;
     }
 
+    //Duplicate code in Step.php
     #[On('input-updated')]
     public function updateResults($name, $value)
     {

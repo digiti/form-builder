@@ -5,15 +5,16 @@ namespace App\Livewire\Framework\Layout;
 use Livewire\Component;
 use App\Builder\Layout\Step as Layout;
 use App\Traits\Livewire\HasParent;
+use Livewire\Attributes\Reactive;
 
 class Step extends Component
 {
     use HasParent;
 
-    public Layout $object;
+    public $result;
 
     #[Reactive]
-    public $result;
+    public Layout $object;
 
     public function getCurrentStep()
     {
@@ -42,6 +43,7 @@ class Step extends Component
         $this->dispatch('previous-step');
     }
 
+    //Duplicate code in FormBase.php
     #[On('input-updated')]
     public function updateResults($name, $value)
     {
