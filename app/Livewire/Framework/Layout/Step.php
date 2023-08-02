@@ -11,8 +11,6 @@ class Step extends Component
     use HasParent;
 
     public Layout $object;
-
-    // RESULT HERE?!
     public $result;
 
     public function getCurrentStep()

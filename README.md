@@ -116,15 +116,27 @@ Will overwrite the name with the given label
 ```
 
 **options(array())** 
-Constructs the options of your select input. The key will be the value that is being stored. The value will be used as a label.
+Constructs the options of your select input. The key will be the value that is being stored.
+
+When you only provide a label, radiobuttons will be shown.
+If you add an asset, this will hide the radiobutton and only show the assets
 
 ```
 	Radio::make('radio')
         ->options([
-            "option-1" => "Option one",
-            "option-2" => "Option two",
-            "option-3" => "Option three"
-        ])
+            "app" => [
+                "label" => "App",
+                "asset" => "https://media.giphy.com/media/9ohlKnRDAmotG/giphy.gif"
+            ],
+            "website" => [
+                "label" => "Website",
+                "asset" => "https://media.giphy.com/media/rGuYfsb6WlKyk/giphy.gif"
+            ],
+            "webshop" => [
+                "label" => "Webshop",
+                "asset" => "https://media.giphy.com/media/Lq0h93752f6J9tijrh/giphy.gif"
+            ],
+        ]),
 ```
 
 ## Checkboxes
@@ -158,15 +170,27 @@ Will overwrite the name with the given label
 ```
 
 **options(array())** 
-Constructs the options of your select input. The key will be the value that is being stored. The value will be used as a label.
+Constructs the options of your select input. The key will be the value that is being stored.
+
+When you only provide a label, radiobuttons will be shown.
+If you add an asset, this will hide the radiobutton and only show the assets
 
 ```
-	Check::make('options')
+	Check::make('platform')
         ->options([
-            "option-1" => "Option one",
-            "option-2" => "Option two",
-            "option-3" => "Option three"
-        ])
+            "app" => [
+                "label" => "App",
+                "asset" => "https://media.giphy.com/media/9ohlKnRDAmotG/giphy.gif"
+            ],
+            "website" => [
+                "label" => "Website",
+                "asset" => "https://media.giphy.com/media/rGuYfsb6WlKyk/giphy.gif"
+            ],
+            "webshop" => [
+                "label" => "Webshop",
+                "asset" => "https://media.giphy.com/media/Lq0h93752f6J9tijrh/giphy.gif"
+            ],
+        ]),
 ```
 
 ## Range slider
@@ -221,15 +245,27 @@ A example:
 ### Methods
 
 **options(array())** 
-Constructs the options of your select input. The key will be the value that is being stored. The value will be used as a label.
+Constructs the options of your select input. The key will be the value that is being stored.
+
+When you only provide a label, radiobuttons will be shown.
+If you add an asset, this will hide the radiobutton and only show the assets
 
 ```
-	Select::make('role')
+	Select::make('platform')
         ->options([
-            "option-1" => "Option one",
-            "option-2" => "Option two",
-            "option-3" => "Option three"
-        ])
+            "app" => [
+                "label" => "App",
+                "asset" => "https://media.giphy.com/media/9ohlKnRDAmotG/giphy.gif"
+            ],
+            "website" => [
+                "label" => "Website",
+                "asset" => "https://media.giphy.com/media/rGuYfsb6WlKyk/giphy.gif"
+            ],
+            "webshop" => [
+                "label" => "Webshop",
+                "asset" => "https://media.giphy.com/media/Lq0h93752f6J9tijrh/giphy.gif"
+            ],
+        ]),
 ```
 
 **multiple()** 

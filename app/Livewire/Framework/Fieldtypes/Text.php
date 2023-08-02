@@ -12,14 +12,6 @@ class Text extends Component
 
     public Input $object;
 
-    // Result here?!
-    public $result;
-
-    // Result here?!
-    public function mount() {
-        $this->value = $this->result[$this->object->getName()] ?? null;
-    }
-
     public function render()
     {
         return view('livewire.'.$this->object->getView());

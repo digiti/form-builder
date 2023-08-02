@@ -14,9 +14,7 @@ class Check extends Component
 
     public function mount()
     {
-        if (count($this->object->getOptions()) > 0) {
-            $this->value = [];
-        }
+        $this->value = $this->result[$this->object->getName()] ?? [];
     }
 
     public function render()

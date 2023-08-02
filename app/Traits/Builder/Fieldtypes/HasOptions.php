@@ -35,4 +35,16 @@ trait HasOptions
     {
         return $this->options instanceof Closure;
     }
+
+    public function hasAssets(): bool
+    {
+        foreach ($this->getOptions() as $option) {
+            if (isset($option['asset'])) {
+                return true;
+                break;
+            }
+        };
+
+        return false;
+    }
 }
