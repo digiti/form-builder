@@ -22,20 +22,14 @@ class FormExample extends FormBase implements FormInterface
                 Text::make('first-name')
                     ->type('text')
                     ->label('First name')
-                    ->required()->reactive(function(){
-                        // return $this->result['company'] == 'react' ? true : false;
-                        return true;
-                       }),
+                    ->required(),
                 Text::make('last-name')
                     ->type('text')
                     ->label('Last name')
                     ->required(),
                 Text::make('email')
                     ->type('email')
-                    ->required()
-                    ->reactive(function(){
-                        return $this->result['company'] == 'react' ? true : false;
-                       }),
+                    ->required(),
                 Text::make('company')
                     ->type('text')
                     ->required(),
@@ -57,10 +51,7 @@ class FormExample extends FormBase implements FormInterface
                             "label" => "Webshop",
                             "asset" => "https://media.giphy.com/media/Lq0h93752f6J9tijrh/giphy.gif"
                         ],
-                    ])
-                    ->reactive(function(){
-                        return $this->result['company'] == 'react' ? true : false;
-                       }),
+                    ]),
             ])
                 ->title('What can we help you with?'),
             Step::make([
@@ -86,7 +77,7 @@ class FormExample extends FormBase implements FormInterface
             Step::make([
                 Range::make('budget')
                     ->label('What is your budget?')
-                    ->min(0)
+                    ->min(1000)
                     ->max(100000)
                     ->step(1000),
                 Range::make('time')

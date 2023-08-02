@@ -16,14 +16,11 @@ trait EvaluatesClosures
 
     public function getReactive()
     {
-        dd($this->reactive);
-
         if ($this->reactive) {
             return $this->reactive;
         }
         return null;
     }
-
 
     public function evaluate($value)
     {

@@ -12,6 +12,11 @@ class Range extends Component
 
     public Input $object;
 
+    public function mount()
+    {
+            $this->value = $this->result[$this->object->getName()] ?? ($this->object->getMax() - $this->object->getMin())/2;
+    }
+
     public function render()
     {
         return view('livewire.' . $this->object->getView());
