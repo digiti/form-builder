@@ -6,13 +6,11 @@ use Livewire\Component;
 use Livewire\Attributes\On;
 use App\Builder\Layout\Step;
 use App\Events\OnFormSubmitted;
-use Livewire\Attributes\Reactive;
 
 class FormBase extends Component
 {
     public $result;
     public string $name;
-    // protected $listeners  = ['setResult'];
 
     public int $currentStep;
     public array $meta;
@@ -20,15 +18,9 @@ class FormBase extends Component
 
     public function mount()
     {
-        // $this->dispatch('js-get-localstorage', $this->name);
+        $this->dispatch('js-get-localstorage', $this->name);
         $this->currentStep = 0;
     }
-
-    // public function setResult($content)
-    // {
-    //     dd($content);
-    //     $this->result = $content;
-    // }
 
     public function getMeta()
     {
@@ -78,11 +70,10 @@ class FormBase extends Component
         $this->currentStep--;
     }
 
-    //Duplicate code in Step.php
-    #[On('input-updated')]
-    public function updateResults($name, $value)
+    #[On('get-localstorage')]
+    public function updateResultsFromLocalStorage($content)
     {
-        $this->result[$name] = $value;
+        $this->result = $content;
     }
 
     public function saveForm() : void {
