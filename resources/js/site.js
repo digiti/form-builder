@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener('livewire:init', () => {
     Livewire.on('js-set-localstorage', (data) => writeDataToStorage(data));
     Livewire.on('js-get-localstorage', ([data]) => readDataFromStorage(data));
+
+    Livewire.on('log', (data) => console.log(data));
+    // $this->dispatch('log', 'mount hasValue');
 });
 
 const writeDataToStorage = function (data) {
@@ -20,7 +23,10 @@ const writeDataToStorage = function (data) {
 const readDataFromStorage = function (name) {
     const storedData = JSON.parse(ls.get(name, { decrypt: true }));
 
-    if(storedData) {
-        Livewire.dispatch('get-localstorage', [storedData]);
+    if (storedData) {
+        setTimeout(() => {
+            Livewire.dispatch('get-localstorage', [storedData]);
+        });
+
     }
 }

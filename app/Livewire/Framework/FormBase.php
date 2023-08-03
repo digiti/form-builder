@@ -76,6 +76,12 @@ class FormBase extends Component
         $this->result = $content;
     }
 
+    #[On('input-updated')]
+    public function updateResults($name, $value)
+    {
+        $this->result[$name] = $value;
+    }
+
     public function saveForm() : void {
         OnFormSubmitted::dispatch($this->result);
     }
