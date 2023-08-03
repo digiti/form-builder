@@ -20,7 +20,7 @@ class FormBase extends Component
 
     public function mount()
     {
-        $this->dispatch('js-get-localstorage', $this->name);
+        // $this->dispatch('js-get-localstorage', $this->name);
         $this->currentStep = 0;
     }
 

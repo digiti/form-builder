@@ -2,15 +2,18 @@
 
 namespace App\Traits\Livewire;
 
+use Livewire\Attributes\Reactive;
+
 trait HasValue
 {
     public mixed $value;
-    public mixed $defaultValue;
-    public array | null $result;
+
+    #[Reactive]
+    public mixed $defaultValue = null;
 
     public function mount()
     {
-        $this->value = $this->result[$this->object->getName()] ?? null;
+        $this->value = $this->defaultValue[$this->object->getName()] ?? null;
     }
 
     public function updatedValue()

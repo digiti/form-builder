@@ -24,20 +24,14 @@ class FormExample extends FormBase implements FormInterface
                 Text::make('first-name')
                     ->type('text')
                     ->label('First name')
-                    ->required()->reactive(function(){
-                        // return $this->result['company'] == 'react' ? true : false;
-                        return true;
-                    }),
+                    ->required(),
                 Text::make('last-name')
                     ->type('text')
                     ->label('Last name')
                     ->required(),
                 Text::make('email')
                     ->type('email')
-                    ->required()
-                    ->reactive(function(){
-                        return isset($this->result['company']) && $this->result['company'] == 'react' ? true : false;
-                    }),
+                    ->required(),
                 Text::make('company')
                     ->type('text')
                     ->required(),

@@ -11,9 +11,8 @@ class Step extends Component
 {
     use HasParent;
 
-    public $result;
-
     #[Reactive]
+    public $result;
     public Layout $object;
 
     public function getCurrentStep()
@@ -43,12 +42,6 @@ class Step extends Component
         $this->dispatch('previous-step');
     }
 
-    //Duplicate code in FormBase.php
-    #[On('input-updated')]
-    public function updateResults($name, $value)
-    {
-        $this->result[$name] = $value;
-    }
 
     public function render()
     {

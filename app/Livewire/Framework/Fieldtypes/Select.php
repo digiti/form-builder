@@ -14,11 +14,6 @@ class Select extends Component
     #[Reactive]
     public Input $object;
 
-    public function mount()
-    {
-        $this->value = $this->defaultValue[$this->object->getName()] ?? null;
-    }
-
     public function render()
     {
         return view('livewire.'.$this->object->getView());
