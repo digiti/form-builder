@@ -6,22 +6,6 @@ use Closure;
 
 trait EvaluatesClosures
 {
-    protected Closure | null $reactive = null;
-
-    public function reactive(Closure $closure)
-    {
-        $this->reactive = $closure;
-        return $this;
-    }
-
-    public function getReactive()
-    {
-        if ($this->reactive) {
-            return $this->reactive;
-        }
-        return null;
-    }
-
     public function evaluate($value)
     {
         if ($value instanceof Closure) {

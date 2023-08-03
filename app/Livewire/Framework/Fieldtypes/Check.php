@@ -5,16 +5,18 @@ namespace App\Livewire\Framework\Fieldtypes;
 use Livewire\Component;
 use App\Builder\Fieldtypes\Check as Input;
 use App\Traits\Livewire\HasValue;
+use Livewire\Attributes\Reactive;
 
 class Check extends Component
 {
     use HasValue;
 
+    #[Reactive]
     public Input $object;
 
     public function mount()
     {
-        $this->value = $this->result[$this->object->getName()] ?? [];
+        $this->value = $this->defaultValue[$this->object->getName()] ?? [];
     }
 
     public function render()

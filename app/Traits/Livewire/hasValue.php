@@ -5,6 +5,7 @@ namespace App\Traits\Livewire;
 trait HasValue
 {
     public mixed $value;
+    public mixed $defaultValue;
     public array | null $result;
 
     public function mount()

@@ -11,4 +11,5 @@ class Select extends Fieldtype
     use HasMultiple;
 
     protected string $view = 'framework.fieldtypes.select';
+    protected string $classes = 'select-fieldtype';
 }

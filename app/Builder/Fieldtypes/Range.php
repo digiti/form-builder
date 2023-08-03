@@ -2,13 +2,10 @@
 
 namespace App\Builder\Fieldtypes;
 
-use App\Traits\Builder\HasWireables;
-
 class Range extends Fieldtype
 {
-    use HasWireables;
-
     protected string $view = 'framework.fieldtypes.range';
+    protected string $classes = 'range-fieldtype';
     protected int | null $min = 0;
     protected int | null $max = 100;
     protected int | null $step = null;
