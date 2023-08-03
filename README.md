@@ -5,7 +5,14 @@ TODO: write intro for the package
 
 # Forms
 
-TODO: write documentation for forms
+This is where you create the whole schema for your new conversion tool. 
+A form needs a name. This name will be used to link the results to the form. So it has to be unique.
+By default all results will be stored in the localStorage(encrypted). 
+
+`public string $name = 'FormExample';`
+
+A form can show an overview/conclusion of all data related to the form.
+To activate this you can set `$hasConclusion` to true in the formBase.
 
 ### Methods
 ****
@@ -275,6 +282,98 @@ This method enables you to select multiple options
 	Select::make('Multi select')->options([...])->multiple(),
 ```
 
-# Chapters
+# Steps
+You can think of steps like screens. A step can have multiple fieldtypes and will show them step per step.
 
-TODO: write documentation for chapters and their use
+A example:
+```
+    Step::make([
+        Text::make('first-name')
+            ->type('text')
+            ->label('First name')
+            ->required(),
+        Text::make('last-name')
+            ->type('text')
+            ->label('Last name')
+            ->required(),
+        Text::make('email')
+            ->type('email')
+            ->required(),
+        Text::make('company')
+            ->type('text')
+            ->required(),
+    ])
+```
+
+### Methods
+**title**
+Adds a title to the step
+```
+    Step::make([])->title('Please provide us with your contact details')
+```
+
+**description**
+Adds a description to step
+```
+    Step::make([])->desccription('Please provide us with your contact details')
+```
+
+**reactive**
+Makes a step conditional. The function should return a boolean. This wil result in hiding/showing of the step based on input
+
+In the example you see this step will only be shown when the 'company' field exists and is 'Digiti'
+```
+    Step::make([])->reactive(function () {
+                return isset($this->result['company']) && $this->result['company'] == 'Digiti' ? true : false;
+            })
+```
+
+# Chapters
+Chapter have multiple steps and can be reactive
+
+A example:
+```
+    Chapter::make([
+        Step::make([
+            Text::make('first-name')
+                ->type('text')
+                ->label('First name')
+                ->required(),
+        ]),
+        Step::make([
+            Text::make('last-name')
+                ->type('text')
+                ->label('Last name')
+                ->required(),
+        ])
+    ])
+    
+```
+
+### Methods
+**title**
+Adds a title to the step
+```
+    Chapter::make([])->title('Please provide us with your contact details')
+```
+
+**description**
+Adds a description to step
+```
+    Chapter::make([])->desccription('Please provide us with your contact details')
+```
+
+**reactive**
+Makes a step conditional. The function should return a boolean. This wil result in hiding/showing of the step based on input
+
+In the example you see this step will only be shown when the 'company' field exists and is 'Digiti'
+```
+    Chapter::make([])->reactive(function () {
+                return isset($this->result['company']) && $this->result['company'] == 'Digiti' ? true : false;
+            })
+```
+
+**conclusion**
+A chapter can show an overview of all data related to the chapter.
+
+Documentation coming soon about this.
