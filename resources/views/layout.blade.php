@@ -11,5 +11,7 @@
     <div class="container">
         <livewire-form-example/>
     </div>
+
+    @livewireScriptConfig
 </body>
 </html>

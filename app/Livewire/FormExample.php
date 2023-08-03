@@ -14,6 +14,7 @@ use App\Livewire\Framework\FormBase;
 class FormExample extends FormBase implements FormInterface
 {
     public bool $hasConclusion = true;
+    public string $name = 'FormExample';
 
     public function schema()
     {

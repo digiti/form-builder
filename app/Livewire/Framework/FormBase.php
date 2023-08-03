@@ -10,6 +10,8 @@ use App\Events\OnFormSubmitted;
 class FormBase extends Component
 {
     public $result;
+    public string $name;
+    // protected $listeners  = ['setResult'];
 
     #[Reactive]
     public int $currentStep;
@@ -18,8 +20,15 @@ class FormBase extends Component
 
     public function mount()
     {
+        $this->dispatch('js-get-localstorage', $this->name);
         $this->currentStep = 0;
     }
+
+    // public function setResult($content)
+    // {
+    //     dd($content);
+    //     $this->result = $content;
+    // }
 
     public function getMeta()
     {
@@ -58,12 +67,14 @@ class FormBase extends Component
     #[On('next-step')]
     public function nextStep()
     {
+        $this->dispatch('js-set-localstorage', $this->name, $this->result);
         $this->currentStep++;
     }
 
     #[On('previous-step')]
     public function previousStep()
     {
+        $this->dispatch('js-set-localstorage', $this->name, $this->result);
         $this->currentStep--;
     }
 
