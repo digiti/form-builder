@@ -1,8 +1,6 @@
 <div>
     @if ($object->getOptions())
         {{-- Multiple checkboxes --}}
-        <p class="label  @if ($object->isRequired()) required @endif>">{{ $object->getLabel() }}</p>
-
         <div class="options @if ($object->hasAssets()) has-assets @endif">
             @foreach ($object->getOptions() as $key => $value)
                 <div class="form-check">

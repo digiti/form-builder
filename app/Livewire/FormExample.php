@@ -54,10 +54,9 @@ class FormExample extends FormBase implements FormInterface
                             "asset" => "https://media.giphy.com/media/Lq0h93752f6J9tijrh/giphy.gif"
                         ],
                     ])
-                    ->reactive(function(){
-                        return isset($this->result['company']) && $this->result['company'] == 'react' ? true : false;
-                    }),
-            ])
+            ])->reactive(function () {
+                return isset($this->result['company']) && $this->result['company'] == 'react' ? true : false;
+            })
                 ->title('What can we help you with?'),
             Step::make([
                 Check::make('objectives')

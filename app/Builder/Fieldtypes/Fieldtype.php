@@ -6,7 +6,7 @@ use App\Traits\EvaluatesClosures;
 use App\Traits\Builder\HasName;
 use App\Traits\Builder\Fieldtypes\HasLabel;
 use App\Traits\Builder\Fieldtypes\HasRequired;
-use App\Traits\Builder\Fieldtypes\IsReactive;
+use App\Traits\Builder\IsReactive;
 use App\Traits\Builder\HasWireables;
 use Livewire\Wireable;
 

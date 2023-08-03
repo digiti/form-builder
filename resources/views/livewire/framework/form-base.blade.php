@@ -12,9 +12,10 @@
         <form class="form" wire:submit="saveForm">
             @if ($this->hasSteps())
                 @if ($this->hasConclusion && $this->currentStep == $this->countSteps())
-                    <x-conclusion :$result :parent="$this->getMeta()"/>
+                    <x-conclusion :$result :parent="$this->getMeta()" />
                 @else
-                    @php($object = $this->schema()[$this->currentStep])
+                    @php($object = $this->filteredSchema()[$this->currentStep])
+
                     <livewire:is :component="$object->getView()" :$object :$result :parent="$this->getMeta()" :key="md5($this->currentStep)" />
                 @endif
             @else

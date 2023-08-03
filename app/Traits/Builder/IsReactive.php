@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits\Builder\Fieldtypes;
+namespace App\Traits\Builder;
 
 use Closure;
 

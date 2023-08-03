@@ -35,8 +35,8 @@ class FormBase extends Component
 
     public function hasSteps()
     {
-        foreach($this->schema() as $obj){
-            if($obj instanceof Step){
+        foreach ($this->schema() as $obj) {
+            if ($obj instanceof Step) {
                 return true;
             }
         }
@@ -47,13 +47,24 @@ class FormBase extends Component
     {
         $i = 0;
 
-        foreach($this->schema() as $obj){
-            if($obj instanceof Step){
+        foreach ($this->schema() as $obj) {
+            if ($obj instanceof Step) {
                 $i++;
             }
         }
 
         return $i;
+    }
+
+    public function filteredSchema(): array
+    {
+        return array_values(array_filter($this->schema(), function ($object) {
+            if ($object instanceof Step) {
+                if ($object->getReactive() || !$object->isReactive()) {
+                    return $object instanceof Step;
+                }
+            }
+        }));
     }
 
     #[On('next-step')]
@@ -82,7 +93,8 @@ class FormBase extends Component
         $this->result[$name] = $value;
     }
 
-    public function saveForm() : void {
+    public function saveForm(): void
+    {
         OnFormSubmitted::dispatch($this->result);
     }
 
