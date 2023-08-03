@@ -25,9 +25,14 @@ class Step extends Component
         return $this->parent['step']['count'];
     }
 
-    public function getHasConclusion()
+    public function hasConclusion(): bool
     {
         return $this->parent['step']['hasConclusion'];
+    }
+
+    public function hasReactiveSteps(): bool
+    {
+        return $this->parent['step']['hasReactiveSteps'];
     }
 
     public function nextStep()

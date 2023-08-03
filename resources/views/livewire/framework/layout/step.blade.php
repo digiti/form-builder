@@ -4,7 +4,10 @@
         <p>RESULT data: {{ print_r($this->result) }}</p>
         <p>Current Step: {{ $this->getCurrentStep() }}</p>
     </div>
-    <p>{{ $this->getCurrentStep() }}/{{ $this->getCountSteps() }}</p>
+
+    @if(!$this->hasReactiveSteps())
+        <p>{{ $this->getCurrentStep() }}/{{ $this->getCountSteps() }}</p>
+    @endif
 
     @if ($this->object->hasTitle())
         <h3 class="mb-4">{!! $this->object->getTitle() !!}</h3>
@@ -26,7 +29,7 @@
         <button class="btn btn-primary" wire:click="nextStep" type="button">{!! __('actions.next_step') !!}</button>
     @endif
 
-    @if ($this->getCountSteps() == $this->getCurrentStep() && $this->getHasConclusion())
+    @if ($this->getCountSteps() == $this->getCurrentStep() && $this->hasConclusion())
         <button class="btn btn-primary" wire:click="nextStep" type="button">{!! __('actions.finish') !!}</button>
     @endif
 </div>

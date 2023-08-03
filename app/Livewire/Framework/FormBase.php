@@ -28,18 +28,32 @@ class FormBase extends Component
             'step' => [
                 'current' => $this->currentStep,
                 'count' => $this->countSteps(),
-                'hasConclusion' => $this->hasConclusion
+                'hasConclusion' => $this->hasConclusion,
+                'hasReactiveSteps' => $this->hasReactiveSteps(),
             ]
         ];
     }
 
-    public function hasSteps()
+    public function hasSteps(): bool
     {
         foreach ($this->schema() as $obj) {
             if ($obj instanceof Step) {
                 return true;
             }
         }
+        return false;
+    }
+
+    public function hasReactiveSteps(): bool
+    {
+        foreach ($this->schema() as $obj) {
+            if ($obj instanceof Step) {
+                if ($obj->isReactive()) {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 
@@ -58,10 +72,10 @@ class FormBase extends Component
 
     public function filteredSchema(): array
     {
-        return array_values(array_filter($this->schema(), function ($object) {
-            if ($object instanceof Step) {
-                if ($object->getReactive() || !$object->isReactive()) {
-                    return $object instanceof Step;
+        return array_values(array_filter($this->schema(), function ($obj) {
+            if ($obj instanceof Step) {
+                if ($obj->getReactive() || !$obj->isReactive()) {
+                    return $obj instanceof Step;
                 }
             }
         }));
