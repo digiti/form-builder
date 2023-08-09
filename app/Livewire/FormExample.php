@@ -23,6 +23,7 @@ class FormExample extends FormBase implements FormInterface
     {
         return [
             $this->personalDataChapter()[0],
+            $this->personalDataStep()[0],
             $this->servicesStep()[0],
             $this->objectivesStep()[0],
             $this->pricingStep()[0],
@@ -42,6 +43,7 @@ class FormExample extends FormBase implements FormInterface
             Chapter::make([
                 $this->personalDataStep()[0]->title('Step 1'),
                 $this->servicesStep()[0]->title('Step 2'),
+                $this->objectivesStep()[0]->title('Step 3'),
             ])
             ->title('Chapter title')
             ->description('Chapter description')
@@ -104,6 +106,9 @@ class FormExample extends FormBase implements FormInterface
                     ])
             ])
                 ->title('What can we help you with?')
+                // ->reactive(function () {
+                //     return isset($this->result['company']) && $this->result['company'] == 'react' ? true : false;
+                // })
         ];
     }
 

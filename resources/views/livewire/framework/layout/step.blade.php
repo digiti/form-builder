@@ -15,11 +15,7 @@
         <button class="btn btn-primary" wire:click="previousStep" type="button">{!! __('actions.previous_step') !!}</button>
     @endif
 
-    @if ($this->getCountSteps() > $this->getCurrentStep() + 1)
+    @if ($this->getCountSteps() > $this->getCurrentStep())
         <button class="btn btn-primary" wire:click="nextStep" type="button">{!! __('actions.next_step') !!}</button>
-    @endif
-
-    @if ($this->getCountSteps() == $this->getCurrentStep() + 1)
-        <button class="btn btn-primary" wire:click="finish" type="button">{!! __('actions.finish') !!}</button>
     @endif
 </div>

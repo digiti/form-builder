@@ -34,10 +34,15 @@ class Step extends Component
     {
         //TODO: first validate values before dispatching
 
-        if ($this->parent['step']['isStepInChapter'] ?? false) {
-            $this->dispatch('next-step-in-chapter');
+        if ($this->getCurrentStep() + 1 < $this->getCountSteps()) {
+            if ($this->parent['step']['isStepInChapter'] ?? false) {
+                $this->dispatch('next-step-in-chapter');
+            } else {
+                $this->dispatch('log', 'finish');
+                $this->dispatch('next-step');
+            }
         } else {
-            $this->dispatch('next-step');
+            $this->finish();
         }
     }
 
