@@ -1,5 +1,6 @@
 <div class="form-base">
     <div class="mb-3 bg-light p-3 rounded mt-5">
+        <p>Result: {{ var_dump($result) }}</p>
         <p>Current schema item: {{ $this->currentSchemaItem }}</p>
         <p>schema item count: {{ $this->countSchemaItems() }}</p>
     </div>

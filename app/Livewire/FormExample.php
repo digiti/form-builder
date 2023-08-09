@@ -106,9 +106,10 @@ class FormExample extends FormBase implements FormInterface
                     ])
             ])
                 ->title('What can we help you with?')
-                // ->reactive(function () {
-                //     return isset($this->result['company']) && $this->result['company'] == 'react' ? true : false;
-                // })
+                ->reactive(function () {
+                    return isset($this->result['company']) && $this->result['company'] == 'react' ? true : false;
+                    // return true;
+                })
         ];
     }
 

@@ -24,11 +24,31 @@ class Chapter extends Component
         $this->currentStepInChapter = 0;
     }
 
+    public function filteredSchema(): array
+    {
+        $schema = array_values(array_filter($this->object->getSchema(), function ($obj) {
+            if ($obj instanceof Step) {
+                $this->dispatch('log', 'PROCES');
+                $this->dispatch('log', $obj->getReactive());
+                if ($obj->getReactive() || !$obj->isReactive()) {
+                    return $obj;
+                }
+            }
+        }));
+
+        $this->dispatch('log', 'NEW');
+        $this->dispatch('log', count($schema));
+        $this->dispatch('log', 'OLD');
+        $this->dispatch('log', count($this->object->getSchema()));
+        $this->dispatch('log', '----------------------------------------');
+        return $schema;
+    }
+
     public function getCountStepsInChapter(): int
     {
         $i = 0;
 
-        foreach ($this->object->getSchema() as $obj) {
+        foreach ($this->filteredSchema() as $obj) {
             if ($obj instanceof Step) {
                 $i++;
             }
@@ -37,27 +57,12 @@ class Chapter extends Component
         return $i;
     }
 
-    // public function hasReactiveSteps(): bool
-    // {
-    //     foreach ($this->object->getSchema() as $obj) {
-    //         if ($obj instanceof Step) {
-    //             if ($obj->isReactive()) {
-    //                 return true;
-    //             }
-    //         }
-    //     }
-
-    //     return false;
-    // }
-
-
     public function getMeta()
     {
         return [
             'step' => [
                 'current' => $this->currentStepInChapter,
                 'count' => $this->getCountStepsInChapter(),
-                // 'hasReactiveSteps' => $this->hasReactiveSteps(),
                 'isStepInChapter' => true
             ],
         ];
