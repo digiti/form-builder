@@ -15,6 +15,8 @@ use App\Livewire\Framework\FormBase;
 class FormExample extends FormBase implements FormInterface
 {
     public bool $hasConclusion = true;
+    public bool $hasStepCounters = true;
+
     public string $name = 'FormExample';
 
     public function schema()
@@ -40,7 +42,9 @@ class FormExample extends FormBase implements FormInterface
             Chapter::make([
                 $this->personalDataStep()[0]->title('Step 1'),
                 $this->servicesStep()[0]->title('Step 2'),
-            ])->title('Chapter')
+            ])
+            ->title('Chapter title')
+            ->description('Chapter description')
             // ->hasConclusion()
         ];
     }
@@ -99,9 +103,6 @@ class FormExample extends FormBase implements FormInterface
                         ],
                     ])
             ])
-                // ->reactive(function () {
-                //     return isset($this->result['company']) && $this->result['company'] == 'react' ? true : false;
-                // })
                 ->title('What can we help you with?')
         ];
     }

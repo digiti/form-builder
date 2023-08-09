@@ -24,16 +24,6 @@ class Chapter extends Component
         $this->currentStepInChapter = 0;
     }
 
-    public function getCurrentChapter()
-    {
-        return $this->parent['chapter']['current'] + 1;
-    }
-
-    public function getCountChapters()
-    {
-        return $this->parent['chapter']['count'];
-    }
-
     public function getCountStepsInChapter(): int
     {
         $i = 0;
@@ -47,18 +37,18 @@ class Chapter extends Component
         return $i;
     }
 
-    public function hasReactiveSteps(): bool
-    {
-        foreach ($this->object->getSchema() as $obj) {
-            if ($obj instanceof Step) {
-                if ($obj->isReactive()) {
-                    return true;
-                }
-            }
-        }
+    // public function hasReactiveSteps(): bool
+    // {
+    //     foreach ($this->object->getSchema() as $obj) {
+    //         if ($obj instanceof Step) {
+    //             if ($obj->isReactive()) {
+    //                 return true;
+    //             }
+    //         }
+    //     }
 
-        return false;
-    }
+    //     return false;
+    // }
 
 
     public function getMeta()
@@ -67,21 +57,10 @@ class Chapter extends Component
             'step' => [
                 'current' => $this->currentStepInChapter,
                 'count' => $this->getCountStepsInChapter(),
-                'hasConclusion' => $this->hasConclusion(),
-                'hasReactiveSteps' => $this->hasReactiveSteps(),
+                // 'hasReactiveSteps' => $this->hasReactiveSteps(),
                 'isStepInChapter' => true
             ],
         ];
-    }
-
-    public function hasConclusion(): bool
-    {
-        return $this->parent['chapter']['hasConclusion'];
-    }
-
-    public function hasReactiveChapters(): bool
-    {
-        return $this->parent['chapter']['hasReactiveSteps'];
     }
 
     #[On('next-step-in-chapter')]
@@ -96,11 +75,6 @@ class Chapter extends Component
     {
         $this->dispatch('set-localstorage');
         $this->currentStepInChapter--;
-    }
-
-    public function completeChapter()
-    {
-        $this->dispatch('chapter-complete');
     }
 
     public function render()

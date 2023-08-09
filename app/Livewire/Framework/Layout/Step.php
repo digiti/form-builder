@@ -17,7 +17,7 @@ class Step extends Component
 
     public function getCurrentStep()
     {
-        return $this->parent['step']['current'] + 1;
+        return $this->parent['step']['current'];
     }
 
     public function getCountSteps()
@@ -28,11 +28,6 @@ class Step extends Component
     public function hasConclusion(): bool
     {
         return $this->parent['step']['hasConclusion'];
-    }
-
-    public function hasReactiveSteps(): bool
-    {
-        return $this->parent['step']['hasReactiveSteps'];
     }
 
     public function nextStep()
@@ -50,13 +45,21 @@ class Step extends Component
     {
         //TODO: first validate values before dispatching
 
-        if ($this->parent['step']['isStepInChapter']) {
+        if ($this->parent['step']['isStepInChapter'] ?? false) {
             $this->dispatch('previous-step-in-chapter');
         } else {
             $this->dispatch('previous-step');
         }
     }
 
+    public function finish()
+    {
+        if ($this->parent['step']['isStepInChapter'] ?? false) {
+            $this->dispatch('chapter-complete');
+        } else {
+            $this->dispatch('form-complete');
+        }
+    }
 
     public function render()
     {
