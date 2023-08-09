@@ -2,12 +2,12 @@
 
 namespace App\Livewire;
 
-use Closure;
 use App\Builder\Fieldtypes\Text;
 use App\Builder\Fieldtypes\Select;
 use App\Builder\Fieldtypes\Radio;
 use App\Builder\Fieldtypes\Check;
 use App\Builder\Fieldtypes\Range;
+use App\Builder\Layout\Chapter;
 use App\Builder\Layout\Step;
 use App\Interfaces\FormInterface;
 use App\Livewire\Framework\FormBase;
@@ -18,6 +18,41 @@ class FormExample extends FormBase implements FormInterface
     public string $name = 'FormExample';
 
     public function schema()
+    {
+        return [
+            $this->personalDataChapter()[0],
+            $this->servicesStep()[0],
+            $this->objectivesStep()[0],
+            $this->pricingStep()[0],
+        ];
+    }
+
+    //
+    // Chapters
+    //
+
+    /**
+     * @return Chapter[]
+     */
+    protected function personalDataChapter()
+    {
+        return [
+            Chapter::make([
+                $this->personalDataStep()[0]->title('Step 1'),
+                $this->servicesStep()[0]->title('Step 2'),
+            ])->title('Chapter')
+            // ->hasConclusion()
+        ];
+    }
+
+    //
+    // Steps
+    //
+
+    /**
+     * @return Step[]
+     */
+    protected function personalDataStep()
     {
         return [
             Step::make([
@@ -37,27 +72,46 @@ class FormExample extends FormBase implements FormInterface
                     ->required(),
             ])
                 ->title('Please provide us with your contact details'),
+        ];
+    }
+
+    /**
+     * @return Step[]
+     */
+    protected function servicesStep()
+    {
+        return [
             Step::make([
                 Radio::make('service')
                     ->label('Select one of our services')
                     ->options([
                         "app" => [
                             "label" => "App",
-                            "asset" => "https://media.giphy.com/media/9ohlKnRDAmotG/giphy.gif"
+                            // "asset" => "https://media.giphy.com/media/9ohlKnRDAmotG/giphy.gif"
                         ],
                         "website" => [
                             "label" => "Website",
-                            "asset" => "https://media.giphy.com/media/rGuYfsb6WlKyk/giphy.gif"
+                            // "asset" => "https://media.giphy.com/media/rGuYfsb6WlKyk/giphy.gif"
                         ],
                         "webshop" => [
                             "label" => "Webshop",
-                            "asset" => "https://media.giphy.com/media/Lq0h93752f6J9tijrh/giphy.gif"
+                            // "asset" => "https://media.giphy.com/media/Lq0h93752f6J9tijrh/giphy.gif"
                         ],
                     ])
-            ])->reactive(function () {
-                return isset($this->result['company']) && $this->result['company'] == 'react' ? true : false;
-            })
-                ->title('What can we help you with?'),
+            ])
+                // ->reactive(function () {
+                //     return isset($this->result['company']) && $this->result['company'] == 'react' ? true : false;
+                // })
+                ->title('What can we help you with?')
+        ];
+    }
+
+    /**
+     * @return Step[]
+     */
+    protected function objectivesStep()
+    {
+        return [
             Step::make([
                 Check::make('objectives')
                     ->multiple()
@@ -77,7 +131,16 @@ class FormExample extends FormBase implements FormInterface
                         ],
                     ]),
             ])
-                ->title('What do you want to achieve?'),
+                ->title('What do you want to achieve?')
+        ];
+    }
+
+    /**
+     * @return Step[]
+     */
+    protected function pricingStep()
+    {
+        return [
             Step::make([
                 Range::make('budget')
                     ->label('What is your budget?')
@@ -89,7 +152,7 @@ class FormExample extends FormBase implements FormInterface
                     ->min(0)
                     ->max(36)
             ])
-                ->title('Time for some numbers'),
+                ->title('Time for some numbers')
         ];
     }
 }

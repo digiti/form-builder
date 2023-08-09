@@ -38,13 +38,23 @@ class Step extends Component
     public function nextStep()
     {
         //TODO: first validate values before dispatching
-        $this->dispatch('next-step');
+
+        if ($this->parent['step']['isStepInChapter'] ?? false) {
+            $this->dispatch('next-step-in-chapter');
+        } else {
+            $this->dispatch('next-step');
+        }
     }
 
     public function previousStep()
     {
         //TODO: first validate values before dispatching
-        $this->dispatch('previous-step');
+
+        if ($this->parent['step']['isStepInChapter']) {
+            $this->dispatch('previous-step-in-chapter');
+        } else {
+            $this->dispatch('previous-step');
+        }
     }
 
 

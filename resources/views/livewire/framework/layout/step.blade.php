@@ -1,9 +1,9 @@
-<div class="step">
-    <div class="bg-light p-3 rounded mb-3 debug">
+<div class="step debug">
+    {{-- <div class="bg-light p-3 rounded mb-3 debug">
         <p>Parent data: {{ print_r($this->parent) }}</p>
         <p>RESULT data: {{ print_r($this->result) }}</p>
         <p>Current Step: {{ $this->getCurrentStep() }}</p>
-    </div>
+    </div> --}}
 
     @if(!$this->hasReactiveSteps())
         <p>{{ $this->getCurrentStep() }}/{{ $this->getCountSteps() }}</p>

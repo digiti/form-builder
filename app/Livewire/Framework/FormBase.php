@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Framework;
 
+use App\Builder\Layout\Chapter;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use App\Builder\Layout\Step;
@@ -13,6 +14,9 @@ class FormBase extends Component
     public string $name;
 
     public int $currentStep;
+    public int $currentChapter;
+    public int $currentSchemaItem;
+
     public array $meta;
     public bool $hasConclusion = false;
 
@@ -20,6 +24,47 @@ class FormBase extends Component
     {
         $this->dispatch('js-get-localstorage', $this->name);
         $this->currentStep = 0;
+        $this->currentChapter = 0;
+        $this->currentSchemaItem = 0;
+    }
+
+    public function filteredSchema(): array
+    {
+        return array_values(array_filter($this->schema(), function ($obj) {
+            if ($obj instanceof Step || $obj instanceof Chapter) {
+                if ($obj->getReactive() || !$obj->isReactive()) {
+                    return $obj;
+                }
+            }
+        }));
+    }
+
+    #[On('get-localstorage')]
+    public function updateResultsFromLocalStorage($content)
+    {
+        $this->result = $content;
+    }
+
+    #[On('set-localstorage')]
+    public function writeResultsToLocalstorage()
+    {
+        $this->dispatch('js-set-localstorage', $this->name, $this->result);
+    }
+
+    #[On('input-updated')]
+    public function updateResults($name, $value)
+    {
+        $this->result[$name] = $value;
+    }
+
+    public function saveForm(): void
+    {
+        OnFormSubmitted::dispatch($this->result);
+    }
+
+    public function render()
+    {
+        return view('livewire.framework.form-base');
     }
 
     public function getMeta()
@@ -30,10 +75,19 @@ class FormBase extends Component
                 'count' => $this->countSteps(),
                 'hasConclusion' => $this->hasConclusion,
                 'hasReactiveSteps' => $this->hasReactiveSteps(),
-            ]
+            ],
+            'chapter' => [
+                'current' => $this->currentChapter ?? 0,
+                'count' => $this->countChapters(),
+                'hasConclusion' => $this->hasConclusion,
+                'hasReactiveSteps' => $this->hasReactiveChapters(),
+            ],
         ];
     }
 
+    //
+    // Step functions
+    //
     public function hasSteps(): bool
     {
         foreach ($this->schema() as $obj) {
@@ -57,7 +111,7 @@ class FormBase extends Component
         return false;
     }
 
-    public function countSteps()
+    public function countSteps(): int
     {
         $i = 0;
 
@@ -70,50 +124,89 @@ class FormBase extends Component
         return $i;
     }
 
-    public function filteredSchema(): array
-    {
-        return array_values(array_filter($this->schema(), function ($obj) {
-            if ($obj instanceof Step) {
-                if ($obj->getReactive() || !$obj->isReactive()) {
-                    return $obj instanceof Step;
-                }
-            }
-        }));
-    }
-
     #[On('next-step')]
     public function nextStep()
     {
-        $this->dispatch('js-set-localstorage', $this->name, $this->result);
-        $this->currentStep++;
+        $this->dispatch('set-localstorage');
+        $this->currentSchemaItem++;
     }
 
     #[On('previous-step')]
     public function previousStep()
     {
+        $this->dispatch('set-localstorage');
+        $this->currentSchemaItem--;
+    }
+
+
+
+    //
+    // Chapter functions
+    //
+    public function hasChapters(): bool
+    {
+        foreach ($this->schema() as $obj) {
+            if ($obj instanceof Chapter) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function hasReactiveChapters(): bool
+    {
+        foreach ($this->schema() as $obj) {
+            if ($obj instanceof Chapter) {
+                if ($obj->isReactive()) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public function countChapters(): int
+    {
+        $i = 0;
+
+        foreach ($this->schema() as $obj) {
+            if ($obj instanceof Chapter) {
+                $i++;
+            }
+        }
+
+        return $i;
+    }
+
+    #[On('chapter-complete')]
+    public function nextChapter()
+    {
         $this->dispatch('js-set-localstorage', $this->name, $this->result);
-        $this->currentStep--;
+        $this->currentSchemaItem++;
     }
 
-    #[On('get-localstorage')]
-    public function updateResultsFromLocalStorage($content)
+    #[On('previous-chapter')]
+    public function previousChapter()
     {
-        $this->result = $content;
+        $this->dispatch('js-set-localstorage', $this->name, $this->result);
+        $this->currentSchemaItem--;
     }
 
-    #[On('input-updated')]
-    public function updateResults($name, $value)
-    {
-        $this->result[$name] = $value;
-    }
 
-    public function saveForm(): void
+    //
+    // Schema item functions
+    //
+    public function countSchemaItems(): int
     {
-        OnFormSubmitted::dispatch($this->result);
-    }
+        $i = 0;
 
-    public function render()
-    {
-        return view('livewire.framework.form-base');
+        foreach ($this->schema() as $obj) {
+            if ($obj instanceof Step || $obj instanceof Chapter) {
+                $i++;
+            }
+        }
+
+        return $i;
     }
 }
