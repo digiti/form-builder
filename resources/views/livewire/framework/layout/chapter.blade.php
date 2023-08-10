@@ -14,7 +14,7 @@
             <h3 class="mb-4">{!! $this->object->getTitle() !!}</h3>
         @endif
 
-        @if ($this->parent['form']['hasStepCounters'])
+        @if ($this->parent['form']['hasStepCounters'] && !($object->hasConclusion() && $this->currentStepInChapter == $this->getCountStepsInChapter()))
             <p class="counter">{{ $this->currentStepInChapter + 1 }}/{{ $this->getCountStepsInChapter() }}</p>
         @endif
     </div>
