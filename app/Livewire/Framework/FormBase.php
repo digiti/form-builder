@@ -17,7 +17,6 @@ class FormBase extends Component
     public int $currentChapter;
     public int $currentSchemaItem;
 
-    public array $meta;
     public bool $hasConclusion = false;
     public bool $hasStepCounters = false;
 
@@ -55,12 +54,14 @@ class FormBase extends Component
         return [
             'form' => [
                 'hasConclusion' => $this->hasConclusion,
-                'hasStepCounters' => $this->hasStepCounters
+                'hasStepCounters' => $this->hasStepCounters,
+                'currentSchemaItem' => $this->currentSchemaItem,
+                'countSchemaItems' => $this->countSchemaItems()
             ],
             'step' => [
                 'current' => $this->currentSchemaItem,
                 'count' => $this->countSchemaItems(),
-                // 'hasReactiveSteps' => $this->hasReactiveSteps(),
+                'isStepInChapter' => false
             ]
         ];
     }

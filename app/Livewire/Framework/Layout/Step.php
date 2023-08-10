@@ -15,12 +15,12 @@ class Step extends Component
     public $result;
     public Layout $object;
 
-    public function getCurrentStep()
+    public function getCurrentStep(): int
     {
         return $this->parent['step']['current'];
     }
 
-    public function getCountSteps()
+    public function getCountSteps(): int
     {
         return $this->parent['step']['count'];
     }
@@ -28,6 +28,16 @@ class Step extends Component
     public function hasConclusion(): bool
     {
         return $this->parent['step']['hasConclusion'];
+    }
+
+    public function getCurrentSchemaItem(): int
+    {
+        return $this->parent['form']['currentSchemaItem'];
+    }
+
+    public function getCountSchemaItems(): int
+    {
+        return $this->parent['form']['countSchemaItems'];
     }
 
     public function nextStep()
@@ -51,7 +61,11 @@ class Step extends Component
         //TODO: first validate values before dispatching
 
         if ($this->parent['step']['isStepInChapter'] ?? false) {
-            $this->dispatch('previous-step-in-chapter');
+            if ($this->getCurrentStep() == 0) {
+                $this->dispatch('previous-step');
+            } else {
+                $this->dispatch('previous-step-in-chapter');
+            }
         } else {
             $this->dispatch('previous-step');
         }

@@ -11,7 +11,7 @@
         <x-fieldtype :key="md5($loop->index)" :$object :$result />
     @endforeach
 
-    @if ($this->getCurrentStep() > 0)
+    @if ($this->getCurrentStep() > 0 || $this->getCurrentSchemaItem() > 0)
         <button class="btn btn-primary" wire:click="previousStep" type="button">{!! __('actions.previous_step') !!}</button>
     @endif
 

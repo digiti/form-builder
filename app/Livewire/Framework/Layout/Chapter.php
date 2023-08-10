@@ -60,6 +60,7 @@ class Chapter extends Component
     public function getMeta()
     {
         return [
+            'form' => $this->parent['form'],
             'step' => [
                 'current' => $this->currentStepInChapter,
                 'count' => $this->getCountStepsInChapter(),
