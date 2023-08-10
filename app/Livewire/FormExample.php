@@ -14,7 +14,7 @@ use App\Livewire\Framework\FormBase;
 
 class FormExample extends FormBase implements FormInterface
 {
-    public bool $hasConclusion = true;
+    public bool $hasConclusion = false;
     public bool $hasStepCounters = true;
 
     public string $name = 'FormExample';
@@ -24,6 +24,7 @@ class FormExample extends FormBase implements FormInterface
         return [
             $this->personalDataChapter()[0],
             $this->personalDataStep()[0],
+            $this->personalDataChapter()[0]->showConclusion(),
             $this->servicesStep()[0],
             $this->objectivesStep()[0],
             $this->pricingStep()[0],
@@ -47,7 +48,6 @@ class FormExample extends FormBase implements FormInterface
             ])
             ->title('Chapter title')
             ->description('Chapter description')
-            // ->hasConclusion()
         ];
     }
 

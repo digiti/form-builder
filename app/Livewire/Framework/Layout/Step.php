@@ -48,9 +48,10 @@ class Step extends Component
             if ($this->parent['step']['isStepInChapter'] ?? false) {
                 $this->dispatch('next-step-in-chapter');
             } else {
-                $this->dispatch('log', 'finish');
                 $this->dispatch('next-step');
             }
+        } else if ($this->parent['chapter']['hasConclusion'] && $this->getCurrentStep() + 1 == $this->getCountSteps()) {
+            $this->dispatch('next-step-in-chapter');
         } else {
             $this->finish();
         }

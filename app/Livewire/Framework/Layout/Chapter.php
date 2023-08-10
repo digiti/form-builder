@@ -61,6 +61,9 @@ class Chapter extends Component
     {
         return [
             'form' => $this->parent['form'],
+            'chapter' => [
+                'hasConclusion' => $this->object->hasConclusion(),
+            ],
             'step' => [
                 'current' => $this->currentStepInChapter,
                 'count' => $this->getCountStepsInChapter(),

@@ -1,4 +1,16 @@
 <div class="step debug">
+
+    <div class="bg-light p-3 rounded mb-3 debug">
+        <p>Parent data: {{ print_r($this->parent) }}</p>
+        <p>RESULT data: {{ print_r($this->result) }}</p>
+
+        {{-- <p>Current Step in schema: {{ $this->getCurrentSchemaItem() }}</p>
+        <p>Count Step in schema: {{ $this->getCountSchemaItems() }}</p> --}}
+
+        {{-- <p>Current Step: {{ $this->getCurrentStep() }}</p>
+        <p>Count Step: {{ $this->getCountSteps() }}</p> --}}
+    </div>
+
     @if ($this->object->hasTitle())
         <h3 class="mb-4">{!! $this->object->getTitle() !!}</h3>
     @endif
