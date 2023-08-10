@@ -7,7 +7,7 @@
 
     <div class="form-wrapper">
         <form class="form" wire:submit="saveForm">
-            @if ($this->hasConclusion && $this->currentSchemaItem == $this->countSchemaItems())
+            @if ($this->hasConclusion && $this->currentSchemaItem + 1 == $this->countSchemaItems())
                 <x-conclusion :$result :parent="$this->getMeta()" />
             @else
                 @if ($this->hasStepCounters)

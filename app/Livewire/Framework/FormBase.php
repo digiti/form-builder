@@ -18,7 +18,7 @@ class FormBase extends Component
     public int $currentChapter;
     public int $currentSchemaItem;
 
-    public bool $hasConclusion = false;
+    public bool $hasConclusion = true;
     public bool $hasStepCounters = false;
 
     public function mount()
