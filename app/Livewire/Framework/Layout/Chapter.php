@@ -17,6 +17,8 @@ class Chapter extends Component
 
     #[Reactive]
     public $result;
+
+    #[Reactive]
     public Layout $object;
 
     public function mount()
@@ -28,19 +30,12 @@ class Chapter extends Component
     {
         $schema = array_values(array_filter($this->object->getSchema(), function ($obj) {
             if ($obj instanceof Step) {
-                $this->dispatch('log', 'PROCES');
-                $this->dispatch('log', $obj->getReactive());
                 if ($obj->getReactive() || !$obj->isReactive()) {
                     return $obj;
                 }
             }
         }));
 
-        $this->dispatch('log', 'NEW');
-        $this->dispatch('log', count($schema));
-        $this->dispatch('log', 'OLD');
-        $this->dispatch('log', count($this->object->getSchema()));
-        $this->dispatch('log', '----------------------------------------');
         return $schema;
     }
 

@@ -13,6 +13,8 @@ class Step extends Component
 
     #[Reactive]
     public $result;
+
+    #[Reactive]
     public Layout $object;
 
     public function getCurrentStep(): int
