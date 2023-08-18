@@ -2,6 +2,7 @@
 
 namespace App\Builder\Layout;
 
+use App\Traits\Builder\HasDebug;
 use Livewire\Wireable;
 use App\Traits\Builder\Layout\HasSchema;
 use App\Traits\Builder\Layout\HasDescription;
@@ -13,6 +14,7 @@ use App\Traits\EvaluatesClosures;
 class Step implements Wireable
 {
     use HasTitle;
+    use HasDebug;
     use HasSchema;
     use HasWireables;
     use HasDescription;

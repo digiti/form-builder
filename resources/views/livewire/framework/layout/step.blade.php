@@ -1,26 +1,31 @@
-<div class="step debug">
+<div @class([
+    'step',
+    'debug' => $object->hasDebug()
+])>
 
-    <div class="bg-light p-3 rounded mb-3 debug">
-        <p>Parent data: {{ print_r($this->parent) }}</p>
-        <p>RESULT data: {{ print_r($this->result) }}</p>
+    @if($object->hasDebug())
+        <div class="bg-light p-3 rounded mb-3 debug">
+            <p>Parent data: {{ var_dump($parent) }}</p>
+            <p>RESULT data: {{ var_dump($result) }}</p>
 
-        {{-- <p>Current Step in schema: {{ $this->getCurrentSchemaItem() }}</p>
-        <p>Count Step in schema: {{ $this->getCountSchemaItems() }}</p> --}}
+            <p>Current Step in schema: {{ $this->getCurrentSchemaItem() }}</p>
+            <p>Count Step in schema: {{ $this->getCountSchemaItems() }}</p>
 
-        {{-- <p>Current Step: {{ $this->getCurrentStep() }}</p>
-        <p>Count Step: {{ $this->getCountSteps() }}</p> --}}
-    </div>
-
-    @if ($this->object->hasTitle())
-        <h3 class="mb-4">{!! $this->object->getTitle() !!}</h3>
+            <p>Current Step: {{ $this->getCurrentStep() }}</p>
+            <p>Count Step: {{ $this->getCountSteps() }}</p>
+        </div>
     @endif
 
-    @if ($this->object->hasDescription())
-        <p>{!! $this->object->getDescription() !!}</p>
+    @if ($object->hasTitle())
+        <h3 class="mb-4">{!! $object->getTitle() !!}</h3>
     @endif
 
-    @foreach ($this->object->getSchema() as $object)
-        <x-fieldtype :key="md5($loop->index)" :$object :$result />
+    @if ($object->hasDescription())
+        <p>{!! $object->getDescription() !!}</p>
+    @endif
+
+    @foreach ($object->getSchema() as $object)
+        <livewire:is component="framework.layout.fieldtype" :key="md5($loop->index)" :$object :$result />
     @endforeach
 
     @if ($this->getCurrentStep() > 0 || $this->getCurrentSchemaItem() > 0)

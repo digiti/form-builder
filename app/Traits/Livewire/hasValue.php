@@ -2,25 +2,35 @@
 
 namespace App\Traits\Livewire;
 
+use Illuminate\Support\Facades\Validator;
 use Livewire\Attributes\On;
 
 trait HasValue
 {
     public mixed $value;
-
     public mixed $defaultValue;
 
     public function mount()
     {
-        $this->value = $this->defaultValue[$this->object->getName()] ?? null;
+        $this->value = $this->defaultValue[$this->object->name] ?? null;
     }
 
     public function updatedValue()
     {
         $this->dispatch(
             'input-updated',
-            name: $this->object->getName(),
+            name: $this->object->name,
             value: $this->value
+        );
+
+        $errors = Validator::make(['value' => $this->value], ['value' => $this->object->getRules()])->errors();
+        $errors = count($errors->messages()) > 0 ? $errors->messages() : null ;
+
+        $this->dispatch(
+            'input-errors.'.$this->object->name,
+            name: $this->object->name,
+            value: $this->value,
+            errors: $errors
         );
     }
 

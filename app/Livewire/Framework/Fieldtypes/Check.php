@@ -16,7 +16,7 @@ class Check extends Component
 
     public function mount()
     {
-        $this->value = $this->defaultValue[$this->object->getName()] ?? [];
+        $this->value = $this->defaultValue[$this->object->name] ?? [];
     }
 
     public function render()

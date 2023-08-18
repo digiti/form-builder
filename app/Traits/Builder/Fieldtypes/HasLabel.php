@@ -10,7 +10,7 @@ trait HasLabel
 
     protected string $label;
 
-    public function Label(string $label): static
+    public function label(string $label): static
     {
         $this->label = $label;
 

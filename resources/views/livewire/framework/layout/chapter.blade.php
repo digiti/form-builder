@@ -1,29 +1,36 @@
-<div class="chapter debug">
-    <div class="bg-light p-3 rounded mb-3 debug">
-        <p>Result: {{ var_dump($this->result) }}</p>
-        {{-- <p>{{dump(isset($this->result['company']) && $this->result['company'] == 'react' ? true : false)}}</p> --}}
-        <p>Current step in chapter: {{ $this->currentStepInChapter }}</p>
-        <p>Count steps in chapter: {{ $this->getCountStepsInChapter() }}</p>
-    </div>
+<div
+    @class([
+        'chapter',
+        'debug' => $object->hasDebug()
+    ])
+>
+
+    @if($object->hasDebug())
+        <div class="bg-light p-3 rounded mb-3 debug">
+            <p>Result: {{ var_dump($result) }}</p>
+            <p>Current step in chapter: {{ $currentStepInChapter }}</p>
+            <p>Count steps in chapter: {{ $this->getCountStepsInChapter() }}</p>
+        </div>
+    @endif
 
     <div class="
-    @if ($this->parent['form']['hasStepCounters'] && $this->object->hasTitle()) d-flex justify-content-between
+    @if ($this->parent['form']['hasStepCounters'] && $object->hasTitle()) d-flex justify-content-between
     @else d-block @endif
     ">
         @if ($this->object->hasTitle())
-            <h3 class="mb-4">{!! $this->object->getTitle() !!}</h3>
+            <h3 class="mb-4">{!! $object->getTitle() !!}</h3>
         @endif
 
         @if ($this->parent['form']['hasStepCounters'])
-            <p class="counter">{{ $this->currentStepInChapter + 1 }}/{{ $this->getCountStepsInChapter() }}</p>
+            <p class="counter">{{ $currentStepInChapter + 1 }}/{{ $this->getCountStepsInChapter() }}</p>
         @endif
     </div>
 
-    @if ($this->object->hasDescription())
+    @if ($object->hasDescription())
         <p>{!! $this->object->getDescription() !!}</p>
     @endif
 
-    @if ($object->hasConclusion() && $this->currentStepInChapter == $this->getCountStepsInChapter())
+    @if ($object->hasConclusion() && $currentStepInChapter == $this->getCountStepsInChapter())
         <x-conclusion :$result :parent="$this->getMeta()" />
 
         <button class="btn btn-primary" wire:click="previousStepInChapter" type="button">
@@ -33,7 +40,7 @@
             {!! __('actions.next_step') !!}
         </button>
     @else
-        @php($object = $this->filteredSchema()[$this->currentStepInChapter])
-        <livewire:is :component="$object->getView()" :$object :$result :parent="$this->getMeta()" :key="md5($this->currentStepInChapter)" />
+        @php($object = $this->filteredSchema()[$currentStepInChapter])
+        <livewire:is :component="$object->getView()" :$object :$result :parent="$this->getMeta()" :key="md5($currentStepInChapter)" />
     @endif
 </div>

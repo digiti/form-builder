@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Livewire;
-
 use App\Builder\Fieldtypes\Text;
 use App\Builder\Fieldtypes\Select;
 use App\Builder\Fieldtypes\Radio;
@@ -48,6 +47,7 @@ class FormExample extends FormBase implements FormInterface
             ])
             ->title('Chapter title')
             ->description('Chapter description')
+            ->debug()
         ];
     }
 
@@ -71,13 +71,17 @@ class FormExample extends FormBase implements FormInterface
                     ->label('Last name')
                     ->required(),
                 Text::make('email')
-                    ->type('email')
+                    ->email()
                     ->required(),
                 Text::make('company')
                     ->type('text')
                     ->required(),
+                Text::make('company')
+                    ->integer()
+                    ->required(),
             ])
-                ->title('Please provide us with your contact details'),
+                ->title('Please provide us with your contact details')
+                ->debug(),
         ];
     }
 
@@ -110,6 +114,7 @@ class FormExample extends FormBase implements FormInterface
                     return isset($this->result['company']) && $this->result['company'] == 'react' ? true : false;
                     // return true;
                 })
+                ->debug()
         ];
     }
 
@@ -139,6 +144,7 @@ class FormExample extends FormBase implements FormInterface
                     ]),
             ])
                 ->title('What do you want to achieve?')
+                ->debug()
         ];
     }
 
@@ -160,6 +166,7 @@ class FormExample extends FormBase implements FormInterface
                     ->max(36)
             ])
                 ->title('Time for some numbers')
+                ->debug()
         ];
     }
 }

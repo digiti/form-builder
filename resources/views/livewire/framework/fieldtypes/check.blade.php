@@ -21,8 +21,8 @@
         </div>
     @else
         {{-- Single checkbox --}}
-        <input class="form-check-input" type="checkbox" wire:model.live="value" id="{{ $object->getName() }}">
-        <label class="form-check-label" for="{{ $object->getName() }}">
+        <input class="form-check-input" type="checkbox" wire:model.live="value" id="{{ $object->name }}">
+        <label class="form-check-label" for="{{ $object->name }}">
             {{ $object->getLabel() }}
         </label>
     @endif

@@ -1,4 +1,4 @@
 <div>
-    <input id="{{ $object->getName() }}" class="form-control" type="{{ $object->getType() }}" wire:model.live="value"
+    <input id="{{ $object->name }}" class="form-control" type="{{ $object->getType() }}" wire:model.live.debounce.250ms="value"
         @if ($object->isRequired()) required @endif>
 </div>

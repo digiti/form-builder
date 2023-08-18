@@ -4,7 +4,7 @@
 
         <div class="w-100">
             <p class="range-value text-center font-weiht-bold">{{ $value }}</p>
-            <input type="range" class="form-range" id="{{ $object->getName() }}" wire:model.live="value"
+            <input type="range" class="form-range" id="{{ $object->name }}" wire:model.live="value"
                     min="{{ $object->getMin() }}" max="{{ $object->getMax() }}" step="{{ $object->getStep() }}"
                     @if ($object->isRequired()) required @endif>
 

@@ -7,7 +7,8 @@ use Illuminate\Support\Str;
 
 trait HasName
 {
-    protected string $name;
+    //This value needs to be public to make validation
+    public string $name;
 
     public function name(string $name): static
     {
@@ -16,14 +17,9 @@ trait HasName
         return $this;
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
     public function getLabelFromName(): string | Htmlable | null
     {
-        $label = (string) Str::of($this->getName())
+        $label = (string) Str::of($this->name)
             ->afterLast('.')
             ->kebab()
             ->replace(['-', '_'], ' ')

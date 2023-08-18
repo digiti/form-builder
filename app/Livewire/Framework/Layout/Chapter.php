@@ -17,6 +17,7 @@ class Chapter extends Component
 
     #[Reactive]
     public $result;
+    #[Reactive]
     public Layout $object;
 
     public function mount()

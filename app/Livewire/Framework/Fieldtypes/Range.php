@@ -16,7 +16,7 @@ class Range extends Component
 
     public function mount()
     {
-        $this->value = $this->defaultValue[$this->object->getName()] ?? ($this->object->getMax() - $this->object->getMin())/2;
+        $this->value = $this->defaultValue[$this->object->name] ?? ($this->object->getMax() - $this->object->getMin())/2;
     }
 
     public function render()
