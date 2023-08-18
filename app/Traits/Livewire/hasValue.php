@@ -38,7 +38,7 @@ trait HasValue
     // Wasn't able to do this with #[Reactive]
     // The data stopped at fieldtype.blade.php because fieldtypes weren't refreshed.
     // This is a workaround.
-    #[On('get-localstorage')]
+    #[On('get-values-localstorage')]
     public function updateResultsFromLocalStorage($content)
     {
         $this->defaultValue = $content;

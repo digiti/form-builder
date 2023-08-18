@@ -13,7 +13,7 @@ use App\Livewire\Framework\FormBase;
 
 class FormExample extends FormBase implements FormInterface
 {
-    public bool $hasConclusion = false;
+    public bool $hasConclusion = true;
     public bool $hasStepCounters = true;
 
     public string $name = 'FormExample';

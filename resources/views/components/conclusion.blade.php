@@ -5,8 +5,13 @@
     @if ($result)
         <div class="results">
             @foreach ($result as $key => $value)
+                @php($label = (string) Str::of($key)->afterLast('.')->kebab()->replace(['-', '_'], ' ')->ucfirst())
+
                 <div class="item">
-                    <p>{{ ucfirst($key) }}: {{ is_array($value) ? implode(', ', $value) : $value }}</p>
+                    <p>
+                        <span class="label">{{ $label }}:</span>
+                        <span class="value">{{ is_array($value) ? implode(', ', $value) : $value }}</span>
+                    </p>
                 </div>
             @endforeach
         </div>
@@ -14,5 +19,4 @@
         <p>{!! __('conclusion.no_input') !!}</p>
     @endif
 
-    {{-- <button class="btn btn-primary" wire:click="previousStep" type="button">{!! __('actions.previous_step') !!}</button> --}}
 </div>

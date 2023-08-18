@@ -12,20 +12,43 @@ class FormBase extends Component
 {
     public $result;
     public string $name;
+    public array $formKeys = [];
 
     public int $currentStep;
     public int $currentChapter;
     public int $currentSchemaItem;
 
-    public bool $hasConclusion = false;
+    public bool $hasConclusion = true;
     public bool $hasStepCounters = false;
 
     public function mount()
     {
-        $this->dispatch('js-get-localstorage', $this->name);
+        $this->getDataFromStorage();
+
         $this->currentStep = 0;
         $this->currentChapter = 0;
         $this->currentSchemaItem = 0;
+    }
+
+    public function getDataFromStorage(): void
+    {
+        $this->mapKeys($this->schema());
+        $this->dispatch('js-get-values-localstorage', $this->formKeys);
+    }
+
+    public function mapKeys($schema): void
+    {
+        foreach ($schema as $obj) {
+            if (!$obj instanceof Step && !$obj instanceof Chapter) {
+                if (!in_array($obj->getName(), $this->formKeys)) {
+                    array_push($this->formKeys, $obj->getName());
+                }
+            }
+
+            if ($obj instanceof Step || $obj instanceof Chapter) {
+                $this->mapKeys($obj->getSchema());
+            }
+        }
     }
 
     public function filteredSchema(): array
@@ -100,7 +123,7 @@ class FormBase extends Component
         $this->currentSchemaItem++;
     }
 
-    #[On('get-localstorage')]
+    #[On('get-values-localstorage')]
     public function updateResultsFromLocalStorage($content)
     {
         $this->result = $content;
@@ -109,12 +132,13 @@ class FormBase extends Component
     #[On('set-localstorage')]
     public function writeResultsToLocalstorage()
     {
-        $this->dispatch('js-set-localstorage', $this->name, $this->result);
+        $this->dispatch('js-set-result-localstorage', $this->name, $this->result);
     }
 
     #[On('input-updated')]
     public function updateResults($name, $value)
     {
         $this->result[$name] = $value;
+        $this->dispatch('js-set-values-localstorage', $name, $value);
     }
 }
