@@ -16,7 +16,7 @@ class Fieldtype extends Component
 {
     use HasParent;
 
-    #[Reactive]
+    //#[Reactive]
     public $object;
     public $result;
 

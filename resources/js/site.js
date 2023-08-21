@@ -39,7 +39,7 @@ const readDataFromStorage = function (keys) {
     if (data) {
         setTimeout(() => {
             // TODO: Currently not sending data to PHP because it is breaking stuff
-            //Livewire.dispatch('get-values-localstorage', [data]);
+            Livewire.dispatch('get-values-localstorage', [data]);
         });
 
     }

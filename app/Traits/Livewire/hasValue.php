@@ -33,4 +33,15 @@ trait HasValue
         //     errors: $errors
         // );
     }
+
+    // Hacking in defaultValues from localStorage
+    // Wasn't able to do this with #[Reactive]
+    // The data stopped at fieldtype.blade.php because fieldtypes weren't refreshed.
+    // This is a workaround.
+    #[On('get-values-localstorage')]
+    public function updateResultsFromLocalStorage($content)
+    {
+        $this->defaultValue = $content;
+        $this->mount();
+    }
 }
