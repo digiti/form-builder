@@ -42,11 +42,7 @@
             {!! __('actions.next_step') !!}
         </button>
     @else
-        @foreach ($object->getSchema() as $object)
-            <livewire:is :component="$object->getView()" :$object :$result :parent="$this->getMeta()" :key="md5($currentStepInChapter)" />
-        @endforeach
-
-        {{-- @php($object = $this->filteredSchema()[$currentStepInChapter])
-        <livewire:is :component="$object->getView()" :$object :$result :parent="$this->getMeta()" :key="md5($currentStepInChapter)" /> --}}
+        @php($object = $this->filteredSchema()[$currentStepInChapter])
+        <livewire:is :component="$object->getView()" :$object :$result :parent="$this->getMeta()" :key="md5($currentStepInChapter)" />
     @endif
 </div>
