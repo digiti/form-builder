@@ -4,7 +4,7 @@
         <p>Current schema item: {{ $currentSchemaItem }}</p>
         <p>schema item count: {{ $this->countSchemaItems() }}</p>
     </div>
-
+    {{ time() }}
     <div class="form-wrapper">
         <form class="form" wire:submit="saveForm">
             @if ($hasConclusion && $currentSchemaItem + 1 == $this->countSchemaItems())

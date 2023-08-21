@@ -22,6 +22,7 @@ const writeDataToStorage = function (data) {
     const result = data[1];
 
     ls.set(name, result, { encrypt: true });
+    //setCookie(name, result); //unsecured cookie
 }
 
 const readDataFromStorage = function (keys) {
@@ -37,7 +38,8 @@ const readDataFromStorage = function (keys) {
 
     if (data) {
         setTimeout(() => {
-            Livewire.dispatch('get-values-localstorage', [data]);
+            // TODO: Currently not sending data to PHP because it is breaking stuff
+            //Livewire.dispatch('get-values-localstorage', [data]);
         });
 
     }
@@ -51,6 +53,7 @@ const writeResultToStorage = function (data) {
     const result = data[1];
 
     ls.set(name, JSON.stringify(result), { encrypt: true });
+    //setCookie(name, result); //unsecured cookie
 }
 
 const readResultFromStorage = function (name) {
@@ -63,3 +66,17 @@ const readResultFromStorage = function (name) {
 
     }
 }
+
+//
+// Store Cookie
+//
+
+const setCookie = function (name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+ }

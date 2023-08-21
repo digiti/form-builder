@@ -13,6 +13,8 @@
         </div>
     @endif
 
+    {{ time() }}
+
     <div class="
     @if ($this->parent['form']['hasStepCounters'] && $object->hasTitle()) d-flex justify-content-between
     @else d-block @endif
@@ -40,7 +42,11 @@
             {!! __('actions.next_step') !!}
         </button>
     @else
-        @php($object = $this->filteredSchema()[$currentStepInChapter])
-        <livewire:is :component="$object->getView()" :$object :$result :parent="$this->getMeta()" :key="md5($currentStepInChapter)" />
+        @foreach ($object->getSchema() as $object)
+            <livewire:is :component="$object->getView()" :$object :$result :parent="$this->getMeta()" :key="md5($currentStepInChapter)" />
+        @endforeach
+
+        {{-- @php($object = $this->filteredSchema()[$currentStepInChapter])
+        <livewire:is :component="$object->getView()" :$object :$result :parent="$this->getMeta()" :key="md5($currentStepInChapter)" /> --}}
     @endif
 </div>

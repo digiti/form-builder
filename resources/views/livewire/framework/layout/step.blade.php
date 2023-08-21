@@ -16,6 +16,8 @@
         </div>
     @endif
 
+    {{ time() }}
+
     @if ($object->hasTitle())
         <h3 class="mb-4">{!! $object->getTitle() !!}</h3>
     @endif
@@ -25,7 +27,7 @@
     @endif
 
     @foreach ($object->getSchema() as $object)
-        <livewire:is component="framework.layout.fieldtype" :key="md5($loop->index)" :$object :$result />
+        <livewire:framework.layout.fieldtype :key="md5($loop->index)" :$object :$result />
     @endforeach
 
     @if ($this->getCurrentStep() > 0 || $this->getCurrentSchemaItem() > 0)

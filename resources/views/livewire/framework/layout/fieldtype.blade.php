@@ -5,15 +5,18 @@
             @if($object->hasDebug())
                 <div class="bg-light p-3 rounded mb-3 debug">
                     Input name: {{ $object->name }}<br>
-                    Input rules: {{ $object->getRules() }}
+                    Input rules: {{ $object->getRules() }}<br>
+                    Results: {{ var_dump($defaultValue) }}
                 </div>
             @endif
+
+            {{ time() }}
 
             <div class="form-group">
                 <label for="{{ $object->name }}"
                     class="form-label  @if ($object->isRequired()) required @endif>">{{ $object->getLabel() }}</label>
-
-                <livewire:is :component="$object->getView()" :$key :$object :defaultValue="$result" />
+                    {{-- :defaultValue="$result" --}}
+                <livewire:is :component="$object->getView()" :$key :$object  wire:model="value"/>
 
                 <livewire:framework.layout.fieldtype-error :$object />
             </div>

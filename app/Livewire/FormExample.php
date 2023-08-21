@@ -76,9 +76,10 @@ class FormExample extends FormBase implements FormInterface
                 Text::make('company')
                     ->type('text')
                     ->required(),
-                Text::make('company')
-                    ->integer()
-                    ->required(),
+                Text::make('react-company')
+                    ->reactive(function () {
+                        return isset($this->result['company']) && $this->result['company'] == 'react' ? true : false;
+                    }),
             ])
                 ->title('Please provide us with your contact details')
                 ->debug(),
@@ -114,7 +115,6 @@ class FormExample extends FormBase implements FormInterface
                     return isset($this->result['company']) && $this->result['company'] == 'react' ? true : false;
                     // return true;
                 })
-                ->debug()
         ];
     }
 
@@ -144,7 +144,6 @@ class FormExample extends FormBase implements FormInterface
                     ]),
             ])
                 ->title('What do you want to achieve?')
-                ->debug()
         ];
     }
 
@@ -166,7 +165,6 @@ class FormExample extends FormBase implements FormInterface
                     ->max(36)
             ])
                 ->title('Time for some numbers')
-                ->debug()
         ];
     }
 }

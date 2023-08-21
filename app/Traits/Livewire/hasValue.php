@@ -23,25 +23,14 @@ trait HasValue
             value: $this->value
         );
 
-        $errors = Validator::make(['value' => $this->value], ['value' => $this->object->getRules()])->errors();
-        $errors = count($errors->messages()) > 0 ? $errors->messages() : null ;
+        // $validation = Validator::make(['value' => $this->value], ['value' => $this->object->getRules()])->errors();
+        // $errors = count($validation->messages()) > 0 ? $validation->messages() : null ;
 
-        $this->dispatch(
-            'input-errors.'.$this->object->name,
-            name: $this->object->name,
-            value: $this->value,
-            errors: $errors
-        );
-    }
-
-    // Hacking in defaultValues from localStorage
-    // Wasn't able to do this with #[Reactive]
-    // The data stopped at fieldtype.blade.php because fieldtypes weren't refreshed.
-    // This is a workaround.
-    #[On('get-values-localstorage')]
-    public function updateResultsFromLocalStorage($content)
-    {
-        $this->defaultValue = $content;
-        $this->mount();
+        // $this->dispatch(
+        //     'input-errors.'.$this->object->name,
+        //     name: $this->object->name,
+        //     value: $this->value,
+        //     errors: $errors
+        // );
     }
 }
