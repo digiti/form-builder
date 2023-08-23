@@ -24,6 +24,8 @@ class FormBase extends Component
     public bool $hasConclusion = true;
     public bool $hasStepCounters = false;
 
+    public array $hasErrors = [];
+
     public function mount()
     {
         //$this->getDataFromCookieStorage();
@@ -104,7 +106,7 @@ class FormBase extends Component
                 'hasConclusion' => $this->hasConclusion,
                 'hasStepCounters' => $this->hasStepCounters,
                 'currentSchemaItem' => $this->currentSchemaItem,
-                'countSchemaItems' => $this->countSchemaItems()
+                'countSchemaItems' => $this->countSchemaItems(),
             ],
             'step' => [
                 'current' => $this->currentSchemaItem,
@@ -130,8 +132,10 @@ class FormBase extends Component
     #[On('next-step')]
     public function nextItem()
     {
-        $this->dispatch('set-localstorage');
-        $this->currentSchemaItem++;
+        if(empty($this->hasErrors)){
+            $this->dispatch('set-localstorage');
+            $this->currentSchemaItem++;
+        }
     }
 
     #[On('previous-step')]
@@ -170,5 +174,14 @@ class FormBase extends Component
 
         //TODO: if local storage is still required rework so it only writes to local storage and dont send any information back to PHP
         $this->dispatch('js-set-values-localstorage', $name, $value);
+    }
+
+    #[On('input-errors')]
+    public function errorHandling($name, $value, $errors){
+        if(isset($errors['value'])){
+            $this->hasErrors[$name] = true;
+        }else{
+            unset($this->hasErrors[$name]);
+        }
     }
 }

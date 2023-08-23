@@ -13,8 +13,6 @@
         </div>
     @endif
 
-    {{ time() }}
-
     <div class="
     @if ($this->parent['form']['hasStepCounters'] && $object->hasTitle()) d-flex justify-content-between
     @else d-block @endif

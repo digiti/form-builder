@@ -16,8 +16,6 @@
         </div>
     @endif
 
-    {{ time() }}
-
     @if ($object->hasTitle())
         <h3 class="mb-4">{!! $object->getTitle() !!}</h3>
     @endif

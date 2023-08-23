@@ -23,15 +23,24 @@ trait HasValue
             value: $this->value
         );
 
-        // $validation = Validator::make(['value' => $this->value], ['value' => $this->object->getRules()])->errors();
-        // $errors = count($validation->messages()) > 0 ? $validation->messages() : null ;
+        $validation = Validator::make(['value' => $this->value], ['value' => $this->object->getRules()])->errors();
+        $errors = count($validation->messages()) > 0 ? $validation->messages() : null ;
 
-        // $this->dispatch(
-        //     'input-errors.'.$this->object->name,
-        //     name: $this->object->name,
-        //     value: $this->value,
-        //     errors: $errors
-        // );
+        // Dispatches event to update error label
+        $this->dispatch(
+            'input-errors.'.$this->object->name,
+            name: $this->object->name,
+            value: $this->value,
+            errors: $errors
+        );
+
+        // Dispatches event to update formbase
+        $this->dispatch(
+            'input-errors',
+            name: $this->object->name,
+            value: $this->value,
+            errors: $errors
+        );
     }
 
     // Hacking in defaultValues from localStorage

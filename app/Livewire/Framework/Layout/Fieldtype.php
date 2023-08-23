@@ -24,10 +24,10 @@ class Fieldtype extends Component
     public bool $hasErrors = false;
 
     // TODO: bug, When uncommenting the value is getting removed on update
-    #[On('input-errors.{object.name}')]
-    public function errorHandling($name, $value, $errors){
-        $this->hasErrors = isset($errors['value']) ? true : false;
-    }
+    // #[On('input-errors.{object.name}')]
+    // public function errorHandling($name, $value, $errors){
+    //     $this->hasErrors = isset($errors['value']) ? true : false;
+    // }
 
     public function render()
     {
