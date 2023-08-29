@@ -25,7 +25,8 @@
     @endif
 
     @foreach ($object->getSchema() as $object)
-        <livewire:framework.layout.fieldtype :key="md5($loop->index)" :$object :$result />
+        {{-- <livewire:framework.layout.fieldtype :key="md5($loop->index)" :$object :$result /> --}}
+        <x-fieldtype :key="md5($loop->index)" :$object :$result />
     @endforeach
 
     @if ($this->getCurrentStep() > 0 || $this->getCurrentSchemaItem() > 0)

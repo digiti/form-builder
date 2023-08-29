@@ -28,8 +28,7 @@ class FormBase extends Component
 
     public function mount()
     {
-        //$this->getDataFromCookieStorage();
-        $this->getDataFromLocalStorage();
+        $this->getDataFromCookieStorage();
 
         $this->currentStep = 0;
         $this->currentChapter = 0;
@@ -43,16 +42,6 @@ class FormBase extends Component
         foreach($keys as $key){
             $this->result[$key] = $this->getCookie($key);
         }
-    }
-
-    /**
-     * Currently local storage is breaking defaultValues and updating values
-     * TODO: if local storage is still required rework so it only writes to local storage and dont send any information back to PHP
-     */
-    public function getDataFromLocalStorage(): void
-    {
-        $keys = $this->mapKeys($this->schema());
-        $this->dispatch('js-get-values-localstorage', $keys);
     }
 
     /**
@@ -152,28 +141,11 @@ class FormBase extends Component
         $this->currentSchemaItem++;
     }
 
-    //TODO: if local storage is still required rework so it only writes to local storage and dont send any information back to PHP
-    #[On('get-values-localstorage')]
-    public function updateResultsFromLocalStorage($content)
-    {
-        $this->result = $content;
-    }
-
-    //TODO: if local storage is still required rework so it only writes to local storage and dont send any information back to PHP
-    #[On('set-localstorage')]
-    public function writeResultsToLocalstorage()
-    {
-        $this->dispatch('js-set-result-localstorage', $this->name, $this->result);
-    }
-
     #[On('input-updated')]
     public function updateResults($name, $value)
     {
         $this->result[$name] = $value;
-        //$this->storeCookie($name, $value);
-
-        //TODO: if local storage is still required rework so it only writes to local storage and dont send any information back to PHP
-        $this->dispatch('js-set-values-localstorage', $name, $value);
+        $this->storeCookie($name, $value);
     }
 
     #[On('input-errors')]

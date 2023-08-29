@@ -13,8 +13,8 @@
             <div class="form-group">
                 <label for="{{ $object->name }}"
                     class="form-label  @if ($object->isRequired()) required @endif>">{{ $object->getLabel() }}</label>
-                    {{-- :defaultValue="$result" --}}
-                <livewire:is :component="$object->getView()" :$key :$object  wire:model="value"/>
+
+                <livewire:is :component="$object->getView()" :$key :$object :defaultValue="$result"/>
 
                 <livewire:framework.layout.fieldtype-error :$object />
             </div>
