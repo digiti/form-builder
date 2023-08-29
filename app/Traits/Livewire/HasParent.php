@@ -2,11 +2,11 @@
 
 namespace App\Traits\Livewire;
 
-use Illuminate\Contracts\Support\Htmlable;
-use Illuminate\Support\Str;
+use Livewire\Attributes\Reactive;
 
 trait HasParent
 {
+    #[Reactive]
     public array $parent;
 
     public function getParent(): array

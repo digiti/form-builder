@@ -93,6 +93,7 @@ class FormBase extends Component
         return [
             'form' => [
                 'hasConclusion' => $this->hasConclusion,
+                'hasErrors' => $this->hasErrors,
                 'hasStepCounters' => $this->hasStepCounters,
                 'currentSchemaItem' => $this->currentSchemaItem,
                 'countSchemaItems' => $this->countSchemaItems(),
@@ -122,7 +123,6 @@ class FormBase extends Component
     public function nextItem()
     {
         if(empty($this->hasErrors)){
-            $this->dispatch('set-localstorage');
             $this->currentSchemaItem++;
         }
     }
@@ -130,14 +130,12 @@ class FormBase extends Component
     #[On('previous-step')]
     public function previousItem()
     {
-        $this->dispatch('set-localstorage');
         $this->currentSchemaItem--;
     }
 
     #[On('chapter-complete')]
     public function nextChapter()
     {
-        $this->dispatch('set-localstorage');
         $this->currentSchemaItem++;
     }
 

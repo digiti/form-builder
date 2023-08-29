@@ -34,6 +34,6 @@
     @endif
 
     @if ($this->getCountSteps() > $this->getCurrentStep())
-        <button class="btn btn-primary" wire:click="nextStep" type="button">{!! __('actions.next_step') !!}</button>
+        <button class="btn btn-primary" wire:click="nextStep" type="button" @if(!empty($parent['form']['hasErrors'])) disabled @endif>{!! __('actions.next_step') !!}</button>
     @endif
 </div>

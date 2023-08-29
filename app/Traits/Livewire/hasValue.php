@@ -3,7 +3,6 @@
 namespace App\Traits\Livewire;
 
 use Illuminate\Support\Facades\Validator;
-use Livewire\Attributes\On;
 
 trait HasValue
 {
@@ -13,7 +12,7 @@ trait HasValue
     public function mount()
     {
         $this->value = $this->defaultValue[$this->object->name] ?? null;
-        //$this->validateValue();
+        //$this->validateValue(); // Does not work on initiation
     }
 
     public function updatedValue()
