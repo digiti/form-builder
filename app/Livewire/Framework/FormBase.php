@@ -136,7 +136,9 @@ class FormBase extends Component
     #[On('chapter-complete')]
     public function nextChapter()
     {
-        $this->currentSchemaItem++;
+        if(empty($this->hasErrors)){
+            $this->currentSchemaItem++;
+        }
     }
 
     #[On('input-updated')]

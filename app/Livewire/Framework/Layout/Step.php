@@ -44,25 +44,23 @@ class Step extends Component
 
     public function nextStep()
     {
-        //TODO: first validate values before dispatching
-
-        if ($this->getCurrentStep() + 1 < $this->getCountSteps()) {
-            if ($this->parent['step']['isStepInChapter'] ?? false) {
+        if(empty($this->parent['form']['hasErrors'])){
+            if ($this->getCurrentStep() + 1 < $this->getCountSteps()) {
+                if ($this->parent['step']['isStepInChapter'] ?? false) {
+                    $this->dispatch('next-step-in-chapter');
+                } else {
+                    $this->dispatch('next-step');
+                }
+            } else if ($this->parent['chapter']['hasConclusion'] && $this->getCurrentStep() + 1 == $this->getCountSteps()) {
                 $this->dispatch('next-step-in-chapter');
             } else {
-                $this->dispatch('next-step');
+                $this->finish();
             }
-        } else if ($this->parent['chapter']['hasConclusion'] && $this->getCurrentStep() + 1 == $this->getCountSteps()) {
-            $this->dispatch('next-step-in-chapter');
-        } else {
-            $this->finish();
         }
     }
 
     public function previousStep()
     {
-        //TODO: first validate values before dispatching
-
         if ($this->parent['step']['isStepInChapter'] ?? false) {
             if ($this->getCurrentStep() == 0) {
                 $this->dispatch('previous-step');
