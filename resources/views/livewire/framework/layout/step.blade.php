@@ -1,9 +1,6 @@
-<div @class([
-    'step',
-    'debug' => $object->hasDebug()
-])>
+<div @class(['step', 'debug' => $object->hasDebug()])>
 
-    @if($object->hasDebug())
+    @if ($object->hasDebug())
         <div class="bg-light p-3 rounded mb-3 debug">
             <p>Parent data: {{ var_dump($parent) }}</p>
             <p>RESULT data: {{ var_dump($result) }}</p>
@@ -25,7 +22,7 @@
     @endif
 
     @foreach ($object->getSchema() as $object)
-        <livewire:framework.layout.fieldtype :key="md5($loop->index)" :$object :$result />
+        <livewire:is :component="$object->getView()" ::key="md5($loop - > index)" :$object :$result />
     @endforeach
 
     @if ($this->getCurrentStep() > 0 || $this->getCurrentSchemaItem() > 0)

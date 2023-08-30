@@ -2,10 +2,18 @@
 
 namespace App\Livewire\Framework;
 
-use App\Builder\Layout\Chapter;
 use Livewire\Component;
 use Livewire\Attributes\On;
+
+use App\Builder\Layout\Chapter;
 use App\Builder\Layout\Step;
+
+use App\Builder\Fieldtypes\Check;
+use App\Builder\Fieldtypes\Radio;
+use App\Builder\Fieldtypes\Range;
+use App\Builder\Fieldtypes\Select;
+use App\Builder\Fieldtypes\Text;
+
 use App\Events\OnFormSubmitted;
 use App\Traits\Livewire\HasCookieStorage;
 
@@ -40,7 +48,7 @@ class FormBase extends Component
     {
         $keys = $this->mapKeys($this->schema());
 
-        foreach($keys as $key){
+        foreach ($keys as $key) {
             $this->result[$key] = $this->getCookie($key);
         }
     }
@@ -62,7 +70,7 @@ class FormBase extends Component
     public function mapKeys($schema): array
     {
         foreach ($schema as $obj) {
-            if (!$obj instanceof Step && !$obj instanceof Chapter) {
+            if ($obj instanceof Check || $obj instanceof Radio || $obj instanceof Range || $obj instanceof Select || $obj instanceof Text) {
                 if (!in_array($obj->name, $this->formKeys)) {
                     array_push($this->formKeys, $obj->name);
                 }
@@ -132,7 +140,7 @@ class FormBase extends Component
     #[On('next-step')]
     public function nextItem()
     {
-        if(empty($this->hasErrors)){
+        if (empty($this->hasErrors)) {
             $this->dispatch('set-localstorage');
             $this->currentSchemaItem++;
         }
@@ -177,10 +185,11 @@ class FormBase extends Component
     }
 
     #[On('input-errors')]
-    public function errorHandling($name, $value, $errors){
-        if(isset($errors['value'])){
+    public function errorHandling($name, $value, $errors)
+    {
+        if (isset($errors['value'])) {
             $this->hasErrors[$name] = true;
-        }else{
+        } else {
             unset($this->hasErrors[$name]);
         }
     }
