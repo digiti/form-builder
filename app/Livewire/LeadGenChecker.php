@@ -13,6 +13,7 @@ use App\Builder\Layout\Step;
 
 use App\Builder\Content\Column;
 use App\Builder\Content\Row;
+use App\Builder\Content\Image;
 
 use App\Interfaces\FormInterface;
 use App\Livewire\Framework\FormBase;
@@ -53,7 +54,7 @@ class LeadGenChecker extends FormBase implements FormInterface
                             ->min(1000)
                             ->max(100000)
                             ->step(1000),
-                        // Image::make(''),
+                        Image::make('/assets/color-icon-automation-dark.svg'),
                         // Icon::make(''),
                         // Paragraph::make(''),
                         // Heading::make(''),

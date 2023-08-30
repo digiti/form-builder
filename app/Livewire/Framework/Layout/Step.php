@@ -4,10 +4,12 @@ namespace App\Livewire\Framework\Layout;
 
 use Livewire\Component;
 use App\Builder\Layout\Step as Layout;
-use App\Builder\Content\Row;
-use App\Builder\Content\Column;
 use App\Traits\Livewire\HasParent;
 use Livewire\Attributes\Reactive;
+
+use App\Builder\Content\Row;
+use App\Builder\Content\Column;
+use App\Builder\Content\Image;
 
 class Step extends Component
 {
@@ -93,6 +95,11 @@ class Step extends Component
     public function isColumn($obj)
     {
         return $obj instanceof Column;
+    }
+
+    public function isImage($obj)
+    {
+        return $obj instanceof Image;
     }
 
     public function render()

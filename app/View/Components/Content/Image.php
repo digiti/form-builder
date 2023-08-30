@@ -5,11 +5,10 @@ namespace App\View\Components\Content;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use App\Builder\Content\Row as Input;
 
-use App\Builder\Content\Column;
+use App\Builder\Content\Image as Input;
 
-class Row extends Component
+class Image extends Component
 {
     /**
      * Create a new component instance.
@@ -24,6 +23,6 @@ class Row extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.content.row');
+        return view('components.content.image');
     }
 }
