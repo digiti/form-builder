@@ -1,3 +1,3 @@
 <div class="{{ $object->getClasses() }}">
-    {{ print_r($object->name) }}
+    {!! $object->name !!}
 </div>

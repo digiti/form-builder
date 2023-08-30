@@ -63,8 +63,6 @@ class LeadGenChecker extends FormBase implements FormInterface
                         Heading::make('Im a header')->level(3),
                         Html::make('<div class="bg-primary"><h1>Test title</h1></div>'),
                         Anchor::make('http://www.google.com')->label('Google it')->classes('btn btn-primary'),
-
-
                     ])->classes('col'),
                     Column::make([
                         Range::make('RIGHT')
