@@ -25,7 +25,6 @@
         @if ($this->isRow($object))
             <x-content.row :$object />
         @else
-
             <livewire:is :component="$object->getView()" ::key="md5($loop - > index)" :$object :$result />
         @endif
     @endforeach
