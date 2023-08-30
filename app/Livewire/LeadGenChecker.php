@@ -14,6 +14,10 @@ use App\Builder\Layout\Step;
 use App\Builder\Content\Column;
 use App\Builder\Content\Row;
 use App\Builder\Content\Image;
+use App\Builder\Content\Paragraph;
+use App\Builder\Content\Heading;
+use App\Builder\Content\Html;
+use App\Builder\Content\Anchor;
 
 use App\Interfaces\FormInterface;
 use App\Livewire\Framework\FormBase;
@@ -55,12 +59,11 @@ class LeadGenChecker extends FormBase implements FormInterface
                             ->max(100000)
                             ->step(1000),
                         Image::make('/assets/color-icon-automation-dark.svg'),
-                        // Icon::make(''),
-                        // Paragraph::make(''),
-                        // Heading::make(''),
-                        // Html::make(''),
-                        // Button::make(''),
-                        // Ul::make('')
+                        Paragraph::make('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec semper quam. Maecenas ut orci dapibus, sodales quam quis, tincidunt nunc. Sed ultricies dui turpis, id finibus eros tincidunt ac. Nunc ullamcorper nisi velit, id aliquam mi feugiat at. Suspendisse et bibendum purus, nec feugiat lectus. Nulla posuere, orci eu fringilla maximus, nibh massa volutpat diam, ut tempor risus diam nec erat. Quisque sed convallis ex, a tempor augue. Vivamus ut massa ac leo gravida pharetra a ac lorem. Morbi vitae quam ex. Nam venenatis ultricies mauris vitae porta. Praesent sollicitudin quam purus, vitae consequat arcu semper non. Integer aliquet mattis pellentesque. Nam quis finibus est, vel tempor lectus. Curabitur viverra est vel imperdiet fringilla. Curabitur eu sodales tellus.'),
+                        Heading::make('Im a header')->level(3),
+                        Html::make('<div class="bg-primary"><h1>Test title</h1></div>'),
+                        Anchor::make('http://www.google.com')->label('Google it')->classes('btn btn-primary'),
+
 
                     ])->classes('col'),
                     Column::make([
@@ -69,7 +72,7 @@ class LeadGenChecker extends FormBase implements FormInterface
                             ->min(1000)
                             ->max(100000)
                             ->step(1000),
-                    ])->classes('col-10')
+                    ])->classes('col-6')
                 ]),
 
             ])

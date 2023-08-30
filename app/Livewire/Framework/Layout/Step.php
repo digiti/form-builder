@@ -10,6 +10,10 @@ use Livewire\Attributes\Reactive;
 use App\Builder\Content\Row;
 use App\Builder\Content\Column;
 use App\Builder\Content\Image;
+use App\Builder\Content\Paragraph;
+use App\Builder\Content\Heading;
+use App\Builder\Content\Html;
+use App\Builder\Content\Anchor;
 
 class Step extends Component
 {
@@ -100,6 +104,26 @@ class Step extends Component
     public function isImage($obj)
     {
         return $obj instanceof Image;
+    }
+
+    public function isParagraph($obj)
+    {
+        return $obj instanceof Paragraph;
+    }
+
+    public function isHeading($obj)
+    {
+        return $obj instanceof Heading;
+    }
+
+    public function isHtml($obj)
+    {
+        return $obj instanceof Html;
+    }
+
+    public function isAnchor($obj)
+    {
+        return $obj instanceof Anchor;
     }
 
     public function render()
