@@ -20,11 +20,11 @@ class Column implements Wireable
     use IsReactive;
     use EvaluatesClosures;
 
-    protected string $view = 'framework.content.column';
+    protected string $view = 'components.content.column';
 
     public function __construct(array $schema)
     {
-        $this->classes = 'content-col';
+        $this->classes = 'content-col col';
         $this->schema($schema);
         $this->setConstructAttributeKey('schema');
     }

@@ -20,11 +20,11 @@ class Row implements Wireable
     use IsReactive;
     use EvaluatesClosures;
 
-    protected string $view = 'framework.content.row';
+    protected string $view = 'components.content.row';
 
     public function __construct(array $schema)
     {
-        $this->classes = 'content-row';
+        $this->classes = 'content-row row';
         $this->schema($schema);
         $this->setConstructAttributeKey('schema');
     }

@@ -4,6 +4,8 @@ namespace App\Livewire\Framework\Layout;
 
 use Livewire\Component;
 use App\Builder\Layout\Step as Layout;
+use App\Builder\Content\Row;
+use App\Builder\Content\Column;
 use App\Traits\Livewire\HasParent;
 use Livewire\Attributes\Reactive;
 
@@ -81,6 +83,16 @@ class Step extends Component
         } else {
             $this->dispatch('form-complete');
         }
+    }
+
+    public function isRow($obj)
+    {
+        return $obj instanceof Row;
+    }
+
+    public function isColumn($obj)
+    {
+        return $obj instanceof Column;
     }
 
     public function render()
