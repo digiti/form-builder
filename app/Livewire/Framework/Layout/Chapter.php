@@ -70,14 +70,14 @@ class Chapter extends Component
     #[On('next-step-in-chapter')]
     public function nextStepInChapter()
     {
-        $this->dispatch('set-localstorage');
-        $this->currentStepInChapter++;
+        if(empty($this->parent['form']['hasErrors'])){
+            $this->currentStepInChapter++;
+        }
     }
 
     #[On('previous-step-in-chapter')]
     public function previousStepInChapter()
     {
-        $this->dispatch('set-localstorage');
         $this->currentStepInChapter--;
     }
 

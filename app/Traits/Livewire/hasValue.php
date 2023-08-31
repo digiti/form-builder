@@ -3,7 +3,6 @@
 namespace App\Traits\Livewire;
 
 use Illuminate\Support\Facades\Validator;
-use Livewire\Attributes\On;
 
 trait HasValue
 {
@@ -13,6 +12,7 @@ trait HasValue
     public function mount()
     {
         $this->value = $this->defaultValue[$this->object->name] ?? null;
+        //$this->validateValue(); // Does not work on initiation
     }
 
     public function updatedValue()
@@ -23,6 +23,11 @@ trait HasValue
             value: $this->value
         );
 
+        $this->validateValue();
+    }
+
+    protected function validateValue()
+    {
         $validation = Validator::make(['value' => $this->value], ['value' => $this->object->getRules()])->errors();
         $errors = count($validation->messages()) > 0 ? $validation->messages() : null ;
 
@@ -41,16 +46,5 @@ trait HasValue
             value: $this->value,
             errors: $errors
         );
-    }
-
-    // Hacking in defaultValues from localStorage
-    // Wasn't able to do this with #[Reactive]
-    // The data stopped at fieldtype.blade.php because fieldtypes weren't refreshed.
-    // This is a workaround.
-    #[On('get-values-localstorage')]
-    public function updateResultsFromLocalStorage($content)
-    {
-        $this->defaultValue = $content;
-        $this->mount();
     }
 }

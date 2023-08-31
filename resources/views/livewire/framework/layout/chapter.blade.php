@@ -36,7 +36,7 @@
         <button class="btn btn-primary" wire:click="previousStepInChapter" type="button">
             {!! __('actions.previous_step') !!}
         </button>
-        <button class="btn btn-primary" wire:click="$dispatch('chapter-complete')" type="button">
+        <button class="btn btn-primary" wire:click="$dispatch('chapter-complete')" type="button" @if(!empty($parent['form']['hasErrors'])) disabled @endif>
             {!! __('actions.next_step') !!}
         </button>
     @else

@@ -558,6 +558,141 @@ Select::make('Multi select')->options([...])->multiple(),
 ```
 
   
+## Row
+
+A row is used to wrap Columns. The behaviour is the same as in Bootstrap. 
+Row is not dynamic is html only. You can overwrite default classes to overwrite default styling
+
+
+```
+Row::make([
+    Column::make([
+        // Coulmn stuff
+    ])
+    
+    Column::make([
+        // other Coulmn stuff
+    ])
+])
+```
+
+**classes()**
+This methods lets you overwrite classes. 
+
+```
+Row::make([])->classes('custom-class')
+```
+
+
+## Column 
+
+A Column needs a Row as parent. The behaviour is the same as in Bootstrap. 
+
+
+```
+Row::make([
+    Column::make([
+        // Coulmn stuff
+    ])
+    
+    Column::make([
+        // other Coulmn stuff
+    ])
+])
+```
+
+**classes()**
+This methods lets you overwrite classes. 
+
+```
+Column::make([])->classes('custom-class')
+```
+
+## Heading
+
+Let's you create a html heading. 
+Use the level function to select the heading type
+
+```
+Heading::make('This is a title')->level(1)
+
+// This example will result in:
+// <h1>This is a title</h1>  
+```
+
+**classes()**
+This methods lets you overwrite classes. 
+
+```
+Heading::make('Heading')->classes('custom-class')
+```
+
+## Paragraph
+
+```
+Paragraph::make('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec semper quam. Maecenas ut orci dapibus, sodales quam quis, tincidunt nunc. Sed ultricies dui turpis, id finibus eros tincidunt ac.')
+
+// This example will result in:
+// <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec semper quam. Maecenas ut orci dapibus, sodales quam quis, tincidunt nunc. Sed ultricies dui turpis, id finibus eros tincidunt ac.</p>  
+```
+
+**classes()**
+This methods lets you overwrite classes. 
+
+```
+Paragraph::make('paragraph')->classes('custom-class')
+```
+
+
+## Anchor
+
+```
+Anchor::make('http://www.google.com')->label('Google it')
+
+// This example will result in:
+// <a href="http://www.google.com">Google it</a>
+```
+
+**classes()**
+This methods lets you overwrite classes. 
+
+```
+Anchor::make('http://www.google.com')->classes('custom-class')
+```
+
+**target()** 
+This methods let's you set the target of a link. 
+
+```
+Anchor::make('http://www.google.com')->target('_blank')
+```
+
+**rel()**
+This methods let's you set the relationship between a linked resource and the current document.
+
+```
+Anchor::make('http://www.google.com')->target('_blank')->rel('noopener noreferrer')
+```
+
+## Html
+
+```
+Html::make('<div class="bg-primary"><h1>Test title</h1></div>')
+```
+
+## Image
+
+```
+Image::make('/assets/color-icon-automation-dark.svg')
+```
+
+**classes()**
+This methods lets you overwrite classes. 
+
+```
+Image::make('/assets/color-icon-automation-dark.svg')->classes('custom-class')
+```
+
 
 ## Validation
 
@@ -674,8 +809,6 @@ return isset($this->result['company']) && $this->result['company'] == 'Digiti' ?
 
 ```
 
-  
-
 # Chapters
 
 Chapter have multiple steps and can be reactive
@@ -770,4 +903,4 @@ A chapter can show an overview of all data related to the chapter.
 
   
 
-Documentation coming soon about this.
+

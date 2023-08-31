@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('layout');
 });
+
+Route::get('info', function () {
+    return view('info-layout');
+});
+
+Route::get('quote', function () {
+    return view('quote-layout');
+});

@@ -11,7 +11,7 @@ class Text extends Component
 {
     use HasValue;
 
-    //#[Reactive]
+    #[Reactive]
     public Input $object;
 
     public function render()
