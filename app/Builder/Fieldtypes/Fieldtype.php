@@ -23,7 +23,8 @@ class Fieldtype implements Wireable
     use HasValidation;
     use EvaluatesClosures;
 
-    protected string $view = 'field';
+    protected string $parentView = 'fieldtype';
+    protected string $view = '';
     protected string $classes = 'field';
 
     public function __construct(string $name)
@@ -39,9 +40,14 @@ class Fieldtype implements Wireable
         return $form;
     }
 
-    public function getView(): string
+    public function getParentView(): string
     {
-        return $this->view;
+        return $this->parentView;
+    }
+
+    public function getView($input = false): string
+    {
+        return $input ? $this->view : $this->parentView;
     }
 
     public function getClasses(): string

@@ -20,7 +20,7 @@ class Column implements Wireable
     use IsReactive;
     use EvaluatesClosures;
 
-    protected string $view = 'components.content.column';
+    protected string $view = 'content.column';
 
     public function __construct(array $schema)
     {

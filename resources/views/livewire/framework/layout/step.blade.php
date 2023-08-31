@@ -22,22 +22,7 @@
     @endif
 
     @foreach ($object->getSchema() as $object)
-        @if ($this->isRow($object))
-            <x-content.row :$object :$result />
-        @elseif ($this->isImage($object))
-            <x-content.image :$object />
-        @elseif ($this->isParagraph($object))
-            <x-content.paragraph :$object />
-        @elseif ($this->isHeading($object))
-            <x-content.heading :$object />
-        @elseif ($this->isHtml($object))
-            <x-content.html :$object />
-        @elseif ($this->isAnchor($object))
-            <x-content.anchor :$object />
-        @else
-            <x-fieldtype :key="md5($loop->index)" :$object :$result />
-        @endif
-
+        <x-dynamic-component :component="$object->getView()" :key="md5($loop->index)" :$object :$result />
     @endforeach
 
     @if ($this->getCurrentStep() > 0 || $this->getCurrentSchemaItem() > 0)

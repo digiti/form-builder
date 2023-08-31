@@ -14,7 +14,7 @@ class Html implements Wireable
     use HasName;
     use HasWireables;
 
-    protected string $view = 'components.content.html';
+    protected string $view = 'content.html';
 
     public function __construct(string $name)
     {
@@ -28,5 +28,10 @@ class Html implements Wireable
         $form = new static($name);
 
         return $form;
+    }
+
+    public function getView(): string
+    {
+        return $this->view;
     }
 }

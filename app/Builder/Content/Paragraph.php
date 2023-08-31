@@ -14,7 +14,7 @@ class Paragraph implements Wireable
     use HasName;
     use HasWireables;
 
-    protected string $view = 'components.content.paragraph';
+    protected string $view = 'content.paragraph';
 
     public function __construct(string $name)
     {
@@ -28,5 +28,10 @@ class Paragraph implements Wireable
         $form = new static($name);
 
         return $form;
+    }
+
+    public function getView(): string
+    {
+        return $this->view;
     }
 }

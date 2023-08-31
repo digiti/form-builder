@@ -14,7 +14,7 @@ class Heading implements Wireable
     use HasName;
     use HasWireables;
 
-    protected string $view = 'components.content.heading';
+    protected string $view = 'content.heading';
     protected int $level = 2;
 
     public function level(int $level): static
@@ -42,5 +42,10 @@ class Heading implements Wireable
         $form = new static($name);
 
         return $form;
+    }
+
+    public function getView(): string
+    {
+        return $this->view;
     }
 }
