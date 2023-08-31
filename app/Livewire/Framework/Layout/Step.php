@@ -7,6 +7,14 @@ use App\Builder\Layout\Step as Layout;
 use App\Traits\Livewire\HasParent;
 use Livewire\Attributes\Reactive;
 
+use App\Builder\Content\Row;
+use App\Builder\Content\Column;
+use App\Builder\Content\Image;
+use App\Builder\Content\Paragraph;
+use App\Builder\Content\Heading;
+use App\Builder\Content\Html;
+use App\Builder\Content\Anchor;
+
 class Step extends Component
 {
     use HasParent;
@@ -79,6 +87,41 @@ class Step extends Component
         } else {
             $this->dispatch('form-complete');
         }
+    }
+
+    public function isRow($obj)
+    {
+        return $obj instanceof Row;
+    }
+
+    public function isColumn($obj)
+    {
+        return $obj instanceof Column;
+    }
+
+    public function isImage($obj)
+    {
+        return $obj instanceof Image;
+    }
+
+    public function isParagraph($obj)
+    {
+        return $obj instanceof Paragraph;
+    }
+
+    public function isHeading($obj)
+    {
+        return $obj instanceof Heading;
+    }
+
+    public function isHtml($obj)
+    {
+        return $obj instanceof Html;
+    }
+
+    public function isAnchor($obj)
+    {
+        return $obj instanceof Anchor;
     }
 
     public function render()

@@ -1,9 +1,6 @@
-<div @class([
-    'step',
-    'debug' => $object->hasDebug()
-])>
+<div @class(['step', 'debug' => $object->hasDebug()])>
 
-    @if($object->hasDebug())
+    @if ($object->hasDebug())
         <div class="bg-light p-3 rounded mb-3 debug">
             <p>Parent data: {{ var_dump($parent) }}</p>
             <p>RESULT data: {{ var_dump($result) }}</p>
@@ -25,8 +22,22 @@
     @endif
 
     @foreach ($object->getSchema() as $object)
-        {{-- <livewire:framework.layout.fieldtype :key="md5($loop->index)" :$object :$result /> --}}
-        <x-fieldtype :key="md5($loop->index)" :$object :$result />
+        @if ($this->isRow($object))
+            <x-content.row :$object />
+        @elseif ($this->isImage($object))
+            <x-content.image :$object />
+        @elseif ($this->isParagraph($object))
+            <x-content.paragraph :$object />
+        @elseif ($this->isHeading($object))
+            <x-content.heading :$object />
+        @elseif ($this->isHtml($object))
+            <x-content.html :$object />
+        @elseif ($this->isAnchor($object))
+            <x-content.anchor :$object />
+        @else
+            <x-fieldtype :key="md5($loop->index)" :$object :$result />
+        @endif
+
     @endforeach
 
     @if ($this->getCurrentStep() > 0 || $this->getCurrentSchemaItem() > 0)
