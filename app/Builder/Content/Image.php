@@ -13,7 +13,7 @@ class Image implements Wireable
     use HasName;
     use HasWireables;
 
-    protected string $view = 'components.content.column';
+    protected string $view = 'content.image';
     protected string $alt = '';
 
     public function alt(string $alt): static
@@ -40,5 +40,10 @@ class Image implements Wireable
         $form = new static($name);
 
         return $form;
+    }
+
+    public function getView(): string
+    {
+        return $this->view;
     }
 }

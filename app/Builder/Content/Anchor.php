@@ -14,7 +14,7 @@ class Anchor implements Wireable
     use HasName;
     use HasWireables;
 
-    protected string $view = 'components.content.anchor';
+    protected string $view = 'content.anchor';
     protected string $target;
     protected string $rel;
 
@@ -69,5 +69,10 @@ class Anchor implements Wireable
         $form = new static($name);
 
         return $form;
+    }
+
+    public function getView(): string
+    {
+        return $this->view;
     }
 }

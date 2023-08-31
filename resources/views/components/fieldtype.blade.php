@@ -12,7 +12,7 @@
             <label for="{{ $object->name }}"
                 class="form-label  @if ($object->isRequired()) required @endif>">{{ $object->getLabel() }}</label>
 
-            <livewire:is :component="$object->getView()" :$key :$object :defaultValue="$result"/>
+            <livewire:is :component="$object->getView(true)" :$key :$object :defaultValue="$result"/>
 
             <livewire:framework.layout.fieldtype-error :$object :key="md5($key)" />
         </div>
