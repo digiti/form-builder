@@ -53,7 +53,7 @@ class LeadGenChecker extends FormBase implements FormInterface
             Step::make([
                 Row::make([
                     Column::make([
-                        Range::make('LEFT')
+                        Range::make('left')
                             ->label('What is your budget?')
                             ->min(1000)
                             ->max(100000)
@@ -65,11 +65,12 @@ class LeadGenChecker extends FormBase implements FormInterface
                         Anchor::make('http://www.google.com'),
                     ])->classes('col'),
                     Column::make([
-                        Range::make('RIGHT')
+                        Range::make('right')
                             ->label('What is your budget?')
                             ->min(1000)
                             ->max(100000)
-                            ->step(1000),
+                            ->step(1000)
+                            ->rawRule("", true),
                     ])->classes('col-6')
                 ]),
 

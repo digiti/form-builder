@@ -8,7 +8,6 @@
                 Results: {{ var_dump($defaultValue) }}
             </div>
         @endif
-
         <div class="form-group">
             <label for="{{ $object->name }}"
                 class="form-label  @if ($object->isRequired()) required @endif>">{{ $object->getLabel() }}</label>

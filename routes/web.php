@@ -21,3 +21,7 @@ Route::get('/', function () {
 Route::get('info', function () {
     return view('info-layout');
 });
+
+Route::get('quote', function () {
+    return view('quote-layout');
+});

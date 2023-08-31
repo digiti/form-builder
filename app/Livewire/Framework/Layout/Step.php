@@ -59,7 +59,7 @@ class Step extends Component
                 } else {
                     $this->dispatch('next-step');
                 }
-            } else if ($this->parent['chapter']['hasConclusion'] && $this->getCurrentStep() + 1 == $this->getCountSteps()) {
+            } else if (isset($this->parent['chapter']) && $this->parent['chapter']['hasConclusion'] && $this->getCurrentStep() + 1 == $this->getCountSteps()) {
                 $this->dispatch('next-step-in-chapter');
             } else {
                 $this->finish();

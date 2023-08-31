@@ -11,7 +11,8 @@
         @elseif ($this->isAnchor($object))
             <x-content.anchor :$object />
         @else
-            <livewire:is :component="$object->getView()" ::key="md5($loop - > index)" :$object />
+            {{-- <livewire:is :component="$object->getView()" :key="md5($loop->index)" :$object /> --}}
+                <x-fieldtype :$object :$result />
         @endif
     @endforeach
 </div>

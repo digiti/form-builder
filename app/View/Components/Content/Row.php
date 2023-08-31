@@ -14,7 +14,7 @@ class Row extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public Input $object)
+    public function __construct(public Input $object, public array $result)
     {
         //
     }

@@ -23,7 +23,7 @@
 
     @foreach ($object->getSchema() as $object)
         @if ($this->isRow($object))
-            <x-content.row :$object />
+            <x-content.row :$object :$result />
         @elseif ($this->isImage($object))
             <x-content.image :$object />
         @elseif ($this->isParagraph($object))
