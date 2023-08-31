@@ -2,7 +2,6 @@
 
 namespace App\Builder\Content;
 
-use App\Traits\Builder\Fieldtypes\HasLabel;
 use App\Traits\Builder\HasClasses;
 use App\Traits\Builder\HasName;
 use App\Traits\Builder\HasWireables;
@@ -13,12 +12,26 @@ class Anchor implements Wireable
 {
     use HasClasses;
     use HasName;
-    use HasLabel;
     use HasWireables;
 
     protected string $view = 'components.content.anchor';
     protected string $target;
     protected string $rel;
+
+    protected string $label;
+
+    public function label(string $label): static
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    public function getLabel(): string {
+        return $this->label ?? $this->name;
+
+        // Get translated string
+    }
 
     public function target(string $target): static
     {

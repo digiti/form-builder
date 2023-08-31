@@ -62,7 +62,7 @@ class LeadGenChecker extends FormBase implements FormInterface
                         Paragraph::make('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec semper quam. Maecenas ut orci dapibus, sodales quam quis, tincidunt nunc. Sed ultricies dui turpis, id finibus eros tincidunt ac. Nunc ullamcorper nisi velit, id aliquam mi feugiat at. Suspendisse et bibendum purus, nec feugiat lectus. Nulla posuere, orci eu fringilla maximus, nibh massa volutpat diam, ut tempor risus diam nec erat. Quisque sed convallis ex, a tempor augue. Vivamus ut massa ac leo gravida pharetra a ac lorem. Morbi vitae quam ex. Nam venenatis ultricies mauris vitae porta. Praesent sollicitudin quam purus, vitae consequat arcu semper non. Integer aliquet mattis pellentesque. Nam quis finibus est, vel tempor lectus. Curabitur viverra est vel imperdiet fringilla. Curabitur eu sodales tellus.'),
                         Heading::make('Im a header')->level(3),
                         Html::make('<div class="bg-primary"><h1>Test title</h1></div>'),
-                        Anchor::make('http://www.google.com')->label('Google it')->classes('btn btn-primary'),
+                        Anchor::make('http://www.google.com'),
                     ])->classes('col'),
                     Column::make([
                         Range::make('RIGHT')
