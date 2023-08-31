@@ -1,15 +1,15 @@
 <?php
 
-namespace Digiti\FormBuilder\Builder\Layout;
+namespace App\Builder\Layout;
 
-use Digiti\FormBuilder\Traits\Builder\HasDebug;
+use App\Traits\Builder\HasDebug;
 use Livewire\Wireable;
-use Digiti\FormBuilder\Traits\Builder\Layout\HasSchema;
-use Digiti\FormBuilder\Traits\Builder\Layout\HasDescription;
-use Digiti\FormBuilder\Traits\Builder\HasWireables;
-use Digiti\FormBuilder\Traits\Builder\Layout\HasTitle;
-use Digiti\FormBuilder\Traits\Builder\IsReactive;
-use Digiti\FormBuilder\Traits\EvaluatesClosures;
+use App\Traits\Builder\Layout\HasSchema;
+use App\Traits\Builder\Layout\HasDescription;
+use App\Traits\Builder\HasWireables;
+use App\Traits\Builder\Layout\HasTitle;
+use App\Traits\Builder\IsReactive;
+use App\Traits\EvaluatesClosures;
 
 class Chapter implements Wireable
 {

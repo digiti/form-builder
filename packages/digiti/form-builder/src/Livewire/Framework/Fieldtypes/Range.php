@@ -1,10 +1,10 @@
 <?php
 
-namespace Digiti\FormBuilder\Livewire\Framework\Fieldtypes;
+namespace App\Livewire\Framework\Fieldtypes;
 
 use Livewire\Component;
-use Digiti\FormBuilder\Builder\Fieldtypes\Range as Input;
-use Digiti\FormBuilder\Traits\Livewire\HasValue;
+use App\Builder\Fieldtypes\Range as Input;
+use App\Traits\Livewire\HasValue;
 use Livewire\Attributes\Reactive;
 
 class Range extends Component

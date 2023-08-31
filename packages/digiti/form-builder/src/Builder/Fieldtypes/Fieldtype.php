@@ -1,15 +1,15 @@
 <?php
 
-namespace Digiti\FormBuilder\Builder\Fieldtypes;
+namespace App\Builder\Fieldtypes;
 
-use Digiti\FormBuilder\Traits\EvaluatesClosures;
-use Digiti\FormBuilder\Traits\Builder\HasName;
-use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasLabel;
-use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasRequired;
-use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasValidation;
-use Digiti\FormBuilder\Traits\Builder\HasDebug;
-use Digiti\FormBuilder\Traits\Builder\IsReactive;
-use Digiti\FormBuilder\Traits\Builder\HasWireables;
+use App\Traits\EvaluatesClosures;
+use App\Traits\Builder\HasName;
+use App\Traits\Builder\Fieldtypes\HasLabel;
+use App\Traits\Builder\Fieldtypes\HasRequired;
+use App\Traits\Builder\Fieldtypes\HasValidation;
+use App\Traits\Builder\HasDebug;
+use App\Traits\Builder\IsReactive;
+use App\Traits\Builder\HasWireables;
 use Livewire\Wireable;
 
 class Fieldtype implements Wireable

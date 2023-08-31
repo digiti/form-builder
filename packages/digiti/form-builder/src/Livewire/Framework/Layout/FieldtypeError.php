@@ -1,12 +1,12 @@
 <?php
 
-namespace Digiti\FormBuilder\Livewire\Framework\Layout;
+namespace App\Livewire\Framework\Layout;
 
 use Livewire\Component;
-use Digiti\FormBuilder\Builder\Layout\Chapter as Layout;
-use Digiti\FormBuilder\Traits\Livewire\HasParent;
+use App\Builder\Layout\Chapter as Layout;
+use App\Traits\Livewire\HasParent;
 use Livewire\Attributes\Reactive;
-use Digiti\FormBuilder\Builder\Layout\Step;
+use App\Builder\Layout\Step;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Attributes\On;
 

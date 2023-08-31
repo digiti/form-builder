@@ -1,15 +1,15 @@
 <?php
 
-namespace Digiti\FormBuilder\Livewire;
-use Digiti\FormBuilder\Builder\Fieldtypes\Text;
-use Digiti\FormBuilder\Builder\Fieldtypes\Select;
-use Digiti\FormBuilder\Builder\Fieldtypes\Radio;
-use Digiti\FormBuilder\Builder\Fieldtypes\Check;
-use Digiti\FormBuilder\Builder\Fieldtypes\Range;
-use Digiti\FormBuilder\Builder\Layout\Chapter;
-use Digiti\FormBuilder\Builder\Layout\Step;
-use Digiti\FormBuilder\Interfaces\FormInterface;
-use Digiti\FormBuilder\Livewire\Framework\FormBase;
+namespace App\Livewire;
+use App\Builder\Fieldtypes\Text;
+use App\Builder\Fieldtypes\Select;
+use App\Builder\Fieldtypes\Radio;
+use App\Builder\Fieldtypes\Check;
+use App\Builder\Fieldtypes\Range;
+use App\Builder\Layout\Chapter;
+use App\Builder\Layout\Step;
+use App\Interfaces\FormInterface;
+use App\Livewire\Framework\FormBase;
 
 class FormExample extends FormBase implements FormInterface
 {

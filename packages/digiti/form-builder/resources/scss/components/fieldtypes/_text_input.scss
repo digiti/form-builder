@@ -1,0 +1,14 @@
+.text-fieldtype {
+    input.form-control {
+        background-color:  transparent;
+        border-radius: 0;
+        border-color: transparent;
+        border-bottom: 1px solid $gray-400;
+
+        &:focus,
+        &:active {
+            border-bottom: 1px solid $body-color;
+            box-shadow: none;
+        }
+    }
+}

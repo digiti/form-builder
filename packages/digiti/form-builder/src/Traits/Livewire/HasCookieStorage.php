@@ -1,6 +1,6 @@
 <?php
 
-namespace Digiti\FormBuilder\Traits\Livewire;
+namespace App\Traits\Livewire;
 
 use Illuminate\Support\Facades\Cookie;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Digiti\FormBuilder\Traits;
+namespace App\Traits;
 
 use Closure;
 

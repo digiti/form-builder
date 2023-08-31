@@ -1,6 +1,6 @@
 <?php
 
-namespace Digiti\FormBuilder\Builder\Fieldtypes;
+namespace App\Builder\Fieldtypes;
 
 class Range extends Fieldtype
 {

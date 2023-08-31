@@ -1,0 +1,15 @@
+.chapter {
+    &.debug {
+        background-color: rgba($primary, .2) !important;
+        padding: .5rem;
+        border-radius: $border-radius;
+
+        position: relative;
+
+        &::before {
+            content: "chapter";
+            position: absolute;
+            right: 1rem;
+        }
+    }
+}

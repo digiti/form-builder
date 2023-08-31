@@ -1,8 +1,8 @@
 <?php
 
-namespace Digiti\FormBuilder\Builder\Fieldtypes;
+namespace App\Builder\Fieldtypes;
 
-use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasWireables;
+use App\Traits\Builder\Fieldtypes\HasWireables;
 use Closure;
 use Livewire\Wireable;
 

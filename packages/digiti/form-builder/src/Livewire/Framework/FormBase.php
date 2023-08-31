@@ -1,13 +1,21 @@
 <?php
 
-namespace Digiti\FormBuilder\Livewire\Framework;
+namespace App\Livewire\Framework;
 
-use Digiti\FormBuilder\Builder\Layout\Chapter;
 use Livewire\Component;
 use Livewire\Attributes\On;
-use Digiti\FormBuilder\Builder\Layout\Step;
-use Digiti\FormBuilder\Events\OnFormSubmitted;
-use Digiti\FormBuilder\Traits\Livewire\HasCookieStorage;
+
+use App\Builder\Layout\Chapter;
+use App\Builder\Layout\Step;
+
+use App\Builder\Fieldtypes\Check;
+use App\Builder\Fieldtypes\Radio;
+use App\Builder\Fieldtypes\Range;
+use App\Builder\Fieldtypes\Select;
+use App\Builder\Fieldtypes\Text;
+
+use App\Events\OnFormSubmitted;
+use App\Traits\Livewire\HasCookieStorage;
 
 class FormBase extends Component
 {
@@ -28,8 +36,7 @@ class FormBase extends Component
 
     public function mount()
     {
-        //$this->getDataFromCookieStorage();
-        $this->getDataFromLocalStorage();
+        $this->getDataFromCookieStorage();
 
         $this->currentStep = 0;
         $this->currentChapter = 0;
@@ -40,19 +47,9 @@ class FormBase extends Component
     {
         $keys = $this->mapKeys($this->schema());
 
-        foreach($keys as $key){
+        foreach ($keys as $key) {
             $this->result[$key] = $this->getCookie($key);
         }
-    }
-
-    /**
-     * Currently local storage is breaking defaultValues and updating values
-     * TODO: if local storage is still required rework so it only writes to local storage and dont send any information back to PHP
-     */
-    public function getDataFromLocalStorage(): void
-    {
-        $keys = $this->mapKeys($this->schema());
-        $this->dispatch('js-get-values-localstorage', $keys);
     }
 
     /**
@@ -62,7 +59,7 @@ class FormBase extends Component
     public function mapKeys($schema): array
     {
         foreach ($schema as $obj) {
-            if (!$obj instanceof Step && !$obj instanceof Chapter) {
+            if ($obj instanceof Check || $obj instanceof Radio || $obj instanceof Range || $obj instanceof Select || $obj instanceof Text) {
                 if (!in_array($obj->name, $this->formKeys)) {
                     array_push($this->formKeys, $obj->name);
                 }
@@ -104,6 +101,7 @@ class FormBase extends Component
         return [
             'form' => [
                 'hasConclusion' => $this->hasConclusion,
+                'hasErrors' => $this->hasErrors,
                 'hasStepCounters' => $this->hasStepCounters,
                 'currentSchemaItem' => $this->currentSchemaItem,
                 'countSchemaItems' => $this->countSchemaItems(),
@@ -133,7 +131,6 @@ class FormBase extends Component
     public function nextItem()
     {
         if(empty($this->hasErrors)){
-            $this->dispatch('set-localstorage');
             $this->currentSchemaItem++;
         }
     }
@@ -141,46 +138,30 @@ class FormBase extends Component
     #[On('previous-step')]
     public function previousItem()
     {
-        $this->dispatch('set-localstorage');
         $this->currentSchemaItem--;
     }
 
     #[On('chapter-complete')]
     public function nextChapter()
     {
-        $this->dispatch('set-localstorage');
-        $this->currentSchemaItem++;
-    }
-
-    //TODO: if local storage is still required rework so it only writes to local storage and dont send any information back to PHP
-    #[On('get-values-localstorage')]
-    public function updateResultsFromLocalStorage($content)
-    {
-        $this->result = $content;
-    }
-
-    //TODO: if local storage is still required rework so it only writes to local storage and dont send any information back to PHP
-    #[On('set-localstorage')]
-    public function writeResultsToLocalstorage()
-    {
-        $this->dispatch('js-set-result-localstorage', $this->name, $this->result);
+        if(empty($this->hasErrors)){
+            $this->currentSchemaItem++;
+        }
     }
 
     #[On('input-updated')]
     public function updateResults($name, $value)
     {
         $this->result[$name] = $value;
-        //$this->storeCookie($name, $value);
-
-        //TODO: if local storage is still required rework so it only writes to local storage and dont send any information back to PHP
-        $this->dispatch('js-set-values-localstorage', $name, $value);
+        $this->storeCookie($name, $value);
     }
 
     #[On('input-errors')]
-    public function errorHandling($name, $value, $errors){
-        if(isset($errors['value'])){
+    public function errorHandling($name, $value, $errors)
+    {
+        if (isset($errors['value'])) {
             $this->hasErrors[$name] = true;
-        }else{
+        } else {
             unset($this->hasErrors[$name]);
         }
     }

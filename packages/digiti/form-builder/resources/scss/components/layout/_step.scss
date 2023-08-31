@@ -1,0 +1,15 @@
+.step {
+    &.debug {
+        background-color: rgba($danger, .2) !important;
+        padding: .5rem;
+        border-radius: $border-radius;
+
+        position: relative;
+
+        &::before {
+            content: "step";
+            position: absolute;
+            right: 1rem;
+        }
+    }
+}

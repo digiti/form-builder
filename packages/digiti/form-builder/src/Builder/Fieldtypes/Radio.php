@@ -1,9 +1,9 @@
 <?php
 
-namespace Digiti\FormBuilder\Builder\Fieldtypes;
+namespace App\Builder\Fieldtypes;
 
-use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasMultiple;
-use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasOptions;
+use App\Traits\Builder\Fieldtypes\HasMultiple;
+use App\Traits\Builder\Fieldtypes\HasOptions;
 
 class Radio extends Fieldtype
 {

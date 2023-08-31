@@ -1,8 +1,8 @@
 <?php
 
-namespace Digiti\FormBuilder\Traits\Builder\Fieldtypes;
+namespace App\Traits\Builder\Fieldtypes;
 
-use Digiti\FormBuilder\Traits\Builder\HasName;
+use App\Traits\Builder\HasName;
 
 trait HasLabel
 {

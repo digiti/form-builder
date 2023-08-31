@@ -1,6 +1,6 @@
 <?php
 
-namespace Digiti\FormBuilder\Traits\Builder;
+namespace App\Traits\Builder;
 
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Str;

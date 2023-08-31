@@ -1,6 +1,6 @@
 <?php
 
-namespace Digiti\FormBuilder\Traits\Builder\Fieldtypes;
+namespace App\Traits\Builder\Fieldtypes;
 
 trait HasRequired
 {
