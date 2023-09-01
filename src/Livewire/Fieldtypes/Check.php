@@ -21,6 +21,6 @@ class Check extends Component
 
     public function render()
     {
-        return view('livewire.' . $this->object->getView(true));
+        return view($this->object->getView(true));
     }
 }

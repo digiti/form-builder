@@ -22,29 +22,14 @@
     @endif
 
     @foreach ($object->getSchema() as $object)
-        @if ($this->isRow($object))
-            <x-form-builder::content.row :$object :$result />
-        @elseif ($this->isImage($object))
-            <x-form-builder::content.image :$object />
-        @elseif ($this->isParagraph($object))
-            <x-form-builder::content.paragraph :$object />
-        @elseif ($this->isHeading($object))
-            <x-form-builder::content.heading :$object />
-        @elseif ($this->isHtml($object))
-            <x-form-builder::content.html :$object />
-        @elseif ($this->isAnchor($object))
-            <x-form-builder::content.anchor :$object />
-        @else
-            <x-form-builder::fieldtype :key="md5($loop->index)" :$object :$result />
-        @endif
-
+        <x-dynamic-component :component="$object->getView()" :key="md5($loop->index)" :$object :$result />
     @endforeach
 
     @if ($this->getCurrentStep() > 0 || $this->getCurrentSchemaItem() > 0)
-        <button class="btn btn-primary" wire:click="previousStep" type="button">{!! __('actions.previous_step') !!}</button>
+        <button class="btn btn-primary" wire:click="previousStep" type="button">{!! __('fb::actions.previous_step') !!}</button>
     @endif
 
     @if ($this->getCountSteps() > $this->getCurrentStep())
-        <button class="btn btn-primary" wire:click="nextStep" type="button" @if(!empty($parent['form']['hasErrors'])) disabled @endif>{!! __('actions.next_step') !!}</button>
+        <button class="btn btn-primary" wire:click="nextStep" type="button" @if(!empty($parent['form']['hasErrors'])) disabled @endif>{!! __('fb::actions.next_step') !!}</button>
     @endif
 </div>

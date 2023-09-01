@@ -14,7 +14,7 @@ class Heading implements Wireable
     use HasName;
     use HasWireables;
 
-    protected string $view = 'content.heading';
+    protected string $view = 'fb::content.heading';
     protected int $level = 2;
 
     public function level(int $level): static

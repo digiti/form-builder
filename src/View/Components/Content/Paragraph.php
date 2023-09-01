@@ -23,6 +23,6 @@ class Paragraph extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.content.paragraph');
+        return view('fb::components.content.paragraph');
     }
 }

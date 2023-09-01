@@ -83,6 +83,6 @@ class Chapter extends Component
 
     public function render()
     {
-        return view('livewire.layout.chapter');
+        return view('fb::livewire.layout.chapter');
     }
 }

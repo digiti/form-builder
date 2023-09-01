@@ -34,6 +34,6 @@ class Fieldtype extends Component
 
     // public function render()
     // {
-    //     return view('livewire.layout.fieldtype');
+    //     return view('fb::livewire.layout.fieldtype');
     // }
 }

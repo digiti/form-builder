@@ -20,7 +20,7 @@ class Row implements Wireable
     use IsReactive;
     use EvaluatesClosures;
 
-    protected string $view = 'content.row';
+    protected string $view = 'fb::content.row';
 
     public function __construct(array $schema)
     {

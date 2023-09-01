@@ -23,7 +23,7 @@ class Fieldtype implements Wireable
     use HasValidation;
     use EvaluatesClosures;
 
-    protected string $parentView = 'fieldtype';
+    protected string $parentView = 'fb::fieldtype';
     protected string $view = '';
     protected string $classes = 'field';
 

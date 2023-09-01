@@ -14,7 +14,7 @@ class Paragraph implements Wireable
     use HasName;
     use HasWireables;
 
-    protected string $view = 'content.paragraph';
+    protected string $view = 'fb::content.paragraph';
 
     public function __construct(string $name)
     {

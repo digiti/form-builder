@@ -21,7 +21,7 @@ class Chapter implements Wireable
     use IsReactive;
     use EvaluatesClosures;
 
-    protected string $view = 'framework.layout.chapter';
+    protected string $view = 'fb::livewire.layout.chapter';
     protected bool $showConclusion = false;
 
     public function showConclusion()

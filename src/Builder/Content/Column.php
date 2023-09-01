@@ -20,7 +20,7 @@ class Column implements Wireable
     use IsReactive;
     use EvaluatesClosures;
 
-    protected string $view = 'content.column';
+    protected string $view = 'fb::content.column';
 
     public function __construct(array $schema)
     {

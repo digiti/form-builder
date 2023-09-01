@@ -16,7 +16,7 @@
 
                 <livewire:is :component="$object->getView()" :$key :$object :defaultValue="$result"/>
 
-                <livewire:framework.layout.fieldtype-error :$object />
+                <livewire:layout.fieldtype-error :$object />
             </div>
         </div>
     @endif

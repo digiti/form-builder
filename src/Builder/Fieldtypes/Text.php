@@ -8,7 +8,8 @@ use Livewire\Wireable;
 
 class Text extends Fieldtype
 {
-    protected string $view = 'framework.fieldtypes.text';
+    //protected string $view = 'livewire.fieldtypes.text';
+    protected string $view = 'fb::livewire.fieldtypes.text';
     protected string $classes = 'text-fieldtype';
 
     protected string | Closure | null $type = null;

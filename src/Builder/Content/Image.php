@@ -13,7 +13,7 @@ class Image implements Wireable
     use HasName;
     use HasWireables;
 
-    protected string $view = 'content.image';
+    protected string $view = 'fb::content.image';
     protected string $alt = '';
 
     public function alt(string $alt): static

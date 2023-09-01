@@ -4,7 +4,7 @@ namespace Digiti\FormBuilder\Builder\Fieldtypes;
 
 class Range extends Fieldtype
 {
-    protected string $view = 'framework.fieldtypes.range';
+    protected string $view = 'fb::livewire.fieldtypes.range';
     protected string $classes = 'range-fieldtype';
     protected int | null $min = 0;
     protected int | null $max = 100;

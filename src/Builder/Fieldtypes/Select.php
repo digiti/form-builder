@@ -10,6 +10,6 @@ class Select extends Fieldtype
     use HasOptions;
     use HasMultiple;
 
-    protected string $view = 'framework.fieldtypes.select';
+    protected string $view = 'fb::livewire.fieldtypes.select';
     protected string $classes = 'select-fieldtype';
 }

@@ -5,6 +5,10 @@
 
 TODO: write intro for the package
 
+installation
+composer require digiti/form-builder
+include css
+@import '/vendor/digiti/form-builder/dist/build/assets/main-a1ff20f8.css';
   
   
 

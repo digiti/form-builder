@@ -1,6 +1,6 @@
 <div class="conclusion">
-    <h2 class="title">{!! __('conclusion.title') !!}</h2>
-    <p class="description">{!! __('conclusion.description') !!}</p>
+    <h2 class="title">{!! __('fb::conclusion.title') !!}</h2>
+    <p class="description">{!! __('fb::conclusion.description') !!}</p>
 
     @if ($result)
         <div class="results">
@@ -16,7 +16,7 @@
             @endforeach
         </div>
     @else
-        <p>{!! __('conclusion.no_input') !!}</p>
+        <p>{!! __('fb::conclusion.no_input') !!}</p>
     @endif
 
 </div>

@@ -21,7 +21,7 @@ class Step implements Wireable
     use IsReactive;
     use EvaluatesClosures;
 
-    protected string $view = 'framework.layout.step';
+    protected string $view = 'fb::livewire.layout.step';
 
     public function __construct(array $schema)
     {

@@ -23,6 +23,6 @@ class Image extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.content.image');
+        return view('fb::components.content.image');
     }
 }

@@ -31,13 +31,13 @@
     @endif
 
     @if ($object->hasConclusion() && $currentStepInChapter == $this->getCountStepsInChapter())
-        <x-form-builder::conclusion :$result :parent="$this->getMeta()" />
+        <x-fb::conclusion :$result :parent="$this->getMeta()" />
 
         <button class="btn btn-primary" wire:click="previousStepInChapter" type="button">
-            {!! __('actions.previous_step') !!}
+            {!! __('fb::actions.previous_step') !!}
         </button>
         <button class="btn btn-primary" wire:click="$dispatch('chapter-complete')" type="button" @if(!empty($parent['form']['hasErrors'])) disabled @endif>
-            {!! __('actions.next_step') !!}
+            {!! __('fb::actions.next_step') !!}
         </button>
     @else
         @php($object = $this->filteredSchema()[$currentStepInChapter])
