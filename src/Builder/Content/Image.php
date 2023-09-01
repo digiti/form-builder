@@ -31,7 +31,7 @@ class Image implements Wireable
     public function __construct(string $name)
     {
         $this->name($name);
-        $this->classes = 'content-col col';
+        $this->classes = 'content-image';
         $this->setConstructAttributeKey('name');
     }
 
