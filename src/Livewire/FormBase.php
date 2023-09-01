@@ -7,14 +7,14 @@ use Livewire\Attributes\On;
 
 use Digiti\FormBuilder\Builder\Layout\Chapter;
 use Digiti\FormBuilder\Builder\Layout\Step;
-
 use Digiti\FormBuilder\Builder\Fieldtypes\Check;
 use Digiti\FormBuilder\Builder\Fieldtypes\Radio;
 use Digiti\FormBuilder\Builder\Fieldtypes\Range;
 use Digiti\FormBuilder\Builder\Fieldtypes\Select;
 use Digiti\FormBuilder\Builder\Fieldtypes\Text;
-
+use Digiti\FormBuilder\Events\OnChapterCompleted;
 use Digiti\FormBuilder\Events\OnFormSubmitted;
+use Digiti\FormBuilder\Events\OnStepCompleted;
 use Digiti\FormBuilder\Traits\Livewire\HasCookieStorage;
 
 class FormBase extends Component
@@ -131,6 +131,7 @@ class FormBase extends Component
     public function nextItem()
     {
         if(empty($this->hasErrors)){
+            OnStepCompleted::dispatch($this->result);
             $this->currentSchemaItem++;
         }
     }
@@ -145,6 +146,7 @@ class FormBase extends Component
     public function nextChapter()
     {
         if(empty($this->hasErrors)){
+            OnChapterCompleted::dispatch($this->result);
             $this->currentSchemaItem++;
         }
     }
