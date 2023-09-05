@@ -38,11 +38,20 @@ public string $name = 'FormExample';
 This is where you create the whole schema for your new form:
 
 ```
-public function schema()
+public function schema(): array
     {
         return [
             ...
         ];
+    }
+```
+
+With the submit method you do whatever with your data on a form submit
+
+```
+public function submit(): void
+    {
+        OnFormSubmitted::dispatch($this->result);
     }
 ```
 

@@ -7,7 +7,7 @@
     </div>
 
     <div class="form-wrapper">
-        <form class="form" wire:submit="saveForm">
+        <form class="form" wire:submit="submit">
             @if ($hasConclusion && $currentSchemaItem == $this->countSchemaItems())
                 <x-fb::conclusion :$result :parent="$this->getMeta()" />
             @else
