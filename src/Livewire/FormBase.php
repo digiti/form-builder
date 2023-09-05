@@ -87,11 +87,6 @@ class FormBase extends Component
         }));
     }
 
-    public function saveForm(): void
-    {
-        OnFormSubmitted::dispatch($this->result);
-    }
-
     public function render()
     {
         return view('fb::livewire.form-base');
@@ -128,15 +123,19 @@ class FormBase extends Component
         return $i;
     }
 
+    //TODO: Is this being used?
     #[On('next-step')]
     public function nextItem()
     {
-        if (empty($this->hasErrors)) {
+        $this->dispatch('validate-inputs');
+
+        if(empty($this->hasErrors)){
             OnStepCompleted::dispatch($this->result);
             $this->currentSchemaItem++;
         }
     }
 
+    //TODO: Is this being used?
     #[On('previous-step')]
     public function previousItem()
     {

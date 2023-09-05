@@ -1,0 +1,24 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use Digiti\FormBuilder\Livewire\FormBase;
+use Digiti\FormBuilder\Events\OnFormSubmitted;
+use Digiti\FormBuilder\Interfaces\FormInterface;
+
+class $CLASS_NAME$ extends FormBase implements FormInterface
+{
+    public string $name = '$CLASS_NAME$';
+
+    public function schema(): array
+    {
+        return [
+
+        ];
+    }
+
+    public function submit(): void
+    {
+        //OnFormSubmitted::dispatch($this->result);
+    }
+}
