@@ -31,6 +31,7 @@ class FormBase extends Component
 
     public bool $hasConclusion = true;
     public bool $hasStepCounters = false;
+    public bool $debug = false;
 
     public array $hasErrors = [];
 
@@ -130,7 +131,7 @@ class FormBase extends Component
     #[On('next-step')]
     public function nextItem()
     {
-        if(empty($this->hasErrors)){
+        if (empty($this->hasErrors)) {
             OnStepCompleted::dispatch($this->result);
             $this->currentSchemaItem++;
         }
@@ -145,7 +146,7 @@ class FormBase extends Component
     #[On('chapter-complete')]
     public function nextChapter()
     {
-        if(empty($this->hasErrors)){
+        if (empty($this->hasErrors)) {
             OnChapterCompleted::dispatch($this->result);
             $this->currentSchemaItem++;
         }

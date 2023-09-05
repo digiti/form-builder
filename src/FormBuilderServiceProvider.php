@@ -41,11 +41,11 @@ class FormBuilderServiceProvider extends ServiceProvider
 
 
         // Blade::directive('formBuilderStyles', function ($expression) {
-        //     return '<link rel="stylesheet" href="/vendor/digiti/form-builder/dist/build/assets/main-a1ff20f8.css">';
+        //     return '<link rel="stylesheet" href="/vendor/digiti/form-builder/dist/build/assets/main.css">';
         // });
 
         // Blade::directive('formBuilderScripts', function ($expression) {
-        //     return '<script src="/vendor/digiti/form-builder/dist/build/assets/main-4ed993c7.js"></script>';
+        //     return '<script src="/vendor/digiti/form-builder/dist/build/assets/main.js"></script>';
         // });
     }
 
