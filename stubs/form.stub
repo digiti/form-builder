@@ -1,0 +1,18 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use Digiti\FormBuilder\Interfaces\FormInterface;
+use Digiti\FormBuilder\Livewire\FormBase;
+
+class $CLASS_NAME$ extends FormBase implements FormInterface
+{
+    public string $name = '$CLASS_NAME$';
+
+    public function schema()
+    {
+        return [
+
+        ];
+    }
+}

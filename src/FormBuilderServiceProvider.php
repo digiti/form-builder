@@ -11,6 +11,13 @@ class FormBuilderServiceProvider extends ServiceProvider
     public function boot(): void
     {
         /**
+         * Register Commands
+         */
+        $this->commands([
+            \Digiti\FormBuilder\Commands\MakeFormCommand::class
+        ]);
+
+        /**
          * Registers all Blade and Livewire components
          */
         Blade::componentNamespace('Digiti\\FormBuilder\\Views\\Components', 'fb');

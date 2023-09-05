@@ -1,30 +1,57 @@
 # Form Builder
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/digiti/form-builder.svg?style=flat-square)](https://packagist.org/packages/digiti/form-builder)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/digiti/form-builder.svg?style=flat-square)](https://packagist.org/packages/digiti/form-builder) 
 [![Total Downloads](https://img.shields.io/packagist/dt/digiti/form-builder.svg?style=flat-square)](https://packagist.org/packages/digiti/form-builder)
-
 
 This is a minimalist form builder build on Livewire V3. This is mainly used to create multi-step forms with reactive fields and content.
 
 ## Installation
 In order for this package to work you need to have completed the [Livewire v3 installation guide](https://livewire.laravel.com/docs/installation). Once you have done that you include this package in your composer file.
 
-`composer require digiti/form-builder`
+```
+composer require digiti/form-builder
+```
 
 To include the basic styling you need to add the import below in the main css file of your project.
 
-`@import '/vendor/digiti/form-builder/dist/build/assets/main-a1ff20f8.css';`
+```
+@import '/vendor/digiti/form-builder/dist/build/assets/main-a1ff20f8.css';
+```
 
 # Forms
 
-This is where you create the whole schema for your new conversion tool.
-A form needs a name. This name will be used to link the results to the form. So it has to be unique.
-By default all results will be stored in the localStorage(encrypted).
+Once you completed the installation you can immediatly start creating forms with the handy command below:
 
-`public string $name = 'FormExample';`
+```
+php artisan make:form YourFormName
+```
+
+This will generate the base file structure which is needed to use the existing form component of this package.
+
+A form needs a name. This name will be used to link the results to the form. So it has to be unique.
+By default all results will be stored in as a cookie.
+
+```
+public string $name = 'FormExample';
+```
+
+This is where you create the whole schema for your new form:
+
+```
+public function schema()
+    {
+        return [
+            ...
+        ];
+    }
+```
 
 A form can show an overview/conclusion of all data related to the form.
-To activate this you can set `$hasConclusion` to true in the formBase.
+To activate this you have to provide the following public variable in your form class.
+
+```
+public bool $hasConclusion = true
+```
 
 When Submitted it fires a event `OnFormSubmitted` which can be used to hook on your custom logic for saving or sending the results somewhere.
 Other available events:
