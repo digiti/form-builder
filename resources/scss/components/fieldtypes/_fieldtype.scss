@@ -1,8 +1,7 @@
 .fieldtype {
     &.debug {
-        background-color: rgba($warning, .3) !important;
+        background-color: rgba(red, .3) !important;
         padding: .5rem;
-        border-radius: $border-radius;
     }
 
     label.required,
@@ -38,8 +37,6 @@
             [type=checkbox]:checked+.asset,
             [type=checkbox]:focus+.asset,
             [type=checkbox]:hover+.asset {
-                border-radius: $border-radius;
-                box-shadow: 0px 0px 10px 0px $primary;
                 transition: all .3s ease-in-out;
             }
 

@@ -1,8 +1,7 @@
 .chapter {
     &.debug {
-        background-color: rgba($primary, .2) !important;
+        background-color: rgba(yellow, .2) !important;
         padding: .5rem;
-        border-radius: $border-radius;
 
         position: relative;
 
