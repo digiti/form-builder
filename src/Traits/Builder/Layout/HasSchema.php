@@ -49,7 +49,7 @@ trait HasSchema
     public function validationSchema(): array
     {
         return array_values(array_filter($this->schema, function ($obj) {
-            if ($obj->hasValidation()) {
+            if (method_exists($obj, 'hasValidation') && $obj->hasValidation()) {
                 return $obj;
             }
         }));

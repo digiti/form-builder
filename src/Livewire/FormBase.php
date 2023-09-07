@@ -186,19 +186,31 @@ class FormBase extends Component
         return $i;
     }
 
+    public function getVisibleInputs()
+    {
+        $obj = $this->getCurrentSchemaObject();
+        return $this->isChapter($obj) ? $obj->filteredSchema()[$this->currentSubItem]->validationSchema() : $obj->validationSchema();;
+    }
+
     /**
      * Reset the progress counter each time validation is triggered
      */
     #[On('validate-inputs')]
     public function resetProgress(){
         $this->progress = 0;
+
+        //When no inputs are present you can immediatly go to the next step
+        if(empty($this->getVisibleInputs())){
+            $this->dispatch(
+                'next-item',
+                force: true
+            );
+        }
     }
 
     public function canProgress()
     {
-        $obj = $this->getCurrentSchemaObject();
-        //$inputs = $this->isChapter($obj) ? $obj->filteredSchema()[$this->currentSubItem]->validationSchema() : $obj->validationSchema();
-        $inputs = $this->isChapter($obj) ? $obj->filteredSchema()[$this->currentSubItem]->filteredSchema() : $obj->filteredSchema();
+        $inputs = $this->getVisibleInputs();
         $inputCount = count($inputs);
         $errorCount = count($this->hasErrors);
 
@@ -208,11 +220,11 @@ class FormBase extends Component
     }
 
     #[On('next-item')]
-    public function nextItem()
+    public function nextItem($force = false)
     {
         $this->progress++;
 
-        if($this->canProgress()){
+        if($this->canProgress() || $force){
             $obj = $this->getCurrentSchemaObject();
             if($this->isChapter($obj)){
                 /**
