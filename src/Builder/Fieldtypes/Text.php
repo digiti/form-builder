@@ -4,11 +4,13 @@ namespace Digiti\FormBuilder\Builder\Fieldtypes;
 
 use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasWireables;
 use Closure;
+use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasMinMax;
 use Livewire\Wireable;
 
 class Text extends Fieldtype
 {
-    //protected string $view = 'livewire.fieldtypes.text';
+    use HasMinMax;
+
     protected string $view = 'fb::livewire.fieldtypes.text';
     protected string $classes = 'text-fieldtype';
 

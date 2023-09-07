@@ -14,9 +14,7 @@ composer require digiti/form-builder
 
 To include the basic styling you need to add the import below in the main css file of your project.
 
-```
-@import '/vendor/digiti/form-builder/dist/build/assets/main-a1ff20f8.css';
-```
+`@import '/vendor/digiti/form-builder/dist/build/assets/main.css';`
 
 # Forms
 

@@ -33,6 +33,7 @@ class FormBase extends Component
 
     public bool $hasConclusion = true;
     public bool $hasStepCounters = false;
+    public bool $debug = false;
 
     public array $hasErrors = [];
 
