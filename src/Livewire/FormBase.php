@@ -16,6 +16,7 @@ use Digiti\FormBuilder\Events\OnChapterCompleted;
 use Digiti\FormBuilder\Events\OnFormSubmitted;
 use Digiti\FormBuilder\Events\OnStepCompleted;
 use Digiti\FormBuilder\Traits\Livewire\HasCookieStorage;
+use Illuminate\Support\Facades\Log;
 
 class FormBase extends Component
 {
@@ -25,9 +26,10 @@ class FormBase extends Component
     public string $name;
     public array $formKeys = [];
 
-    public int $currentStep;
-    public int $currentChapter;
-    public int $currentSchemaItem;
+    public int $currentItem;
+    public int $currentSubItem;
+    public string $currentSchemaItem;
+    public int $progress;
 
     public bool $hasConclusion = true;
     public bool $hasStepCounters = false;
@@ -38,9 +40,10 @@ class FormBase extends Component
     {
         $this->getDataFromCookieStorage();
 
-        $this->currentStep = 0;
-        $this->currentChapter = 0;
+        $this->currentItem = 0;
+        $this->currentSubItem = 0;
         $this->currentSchemaItem = 0;
+        $this->progress = 0;
     }
 
     public function getDataFromCookieStorage(): void
@@ -72,18 +75,64 @@ class FormBase extends Component
         return $this->formKeys;
     }
 
+    public function hasSteps(): bool
+    {
+        foreach($this->schema() as $item){
+            if ($item instanceof Step) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function hasChapters(): bool
+    {
+        foreach($this->schema() as $item){
+            if ($item instanceof Chapter) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function isChapter($obj): bool{
+        return $obj instanceof Chapter ?? false;
+    }
+
     /**
      * Returns a schema where chapters or steps will be added/removed depending the result of their reactive attribute
      */
     public function filteredSchema(): array
     {
         return array_values(array_filter($this->schema(), function ($obj) {
-            if ($obj instanceof Step || $obj instanceof Chapter) {
+            //if ($obj instanceof Step || $obj instanceof Chapter) {
                 if ($obj->getReactive() || !$obj->isReactive()) {
                     return $obj;
                 }
-            }
+            //}
         }));
+    }
+
+    public function getCurrentSchemaItem()
+    {
+        //When the user didn't work with chapters and steps wrap in step as fallback
+        if(!$this->hasChapters() && !$this->hasSteps()){
+            return Step::make($this->filteredSchema());
+        }
+
+        return $this->filteredSchema()[$this->currentItem];
+    }
+
+    public function getCurrentSchemaObject()
+    {
+        //When the user didn't work with chapters and steps wrap in step as fallback
+        if(!$this->hasChapters() && !$this->hasSteps()){
+            return Step::make($this->filteredSchema());
+        }
+
+        return $this->filteredSchema()[$this->currentItem];
     }
 
     public function render()
@@ -98,8 +147,11 @@ class FormBase extends Component
                 'hasConclusion' => $this->hasConclusion,
                 'hasErrors' => $this->hasErrors,
                 'hasStepCounters' => $this->hasStepCounters,
+                'currentItem' => $this->currentItem,
+                'currentSubItem' => $this->currentSubItem,
                 'currentSchemaItem' => $this->currentSchemaItem,
                 'countSchemaItems' => $this->countSchemaItems(),
+                'currentItemProgress' => '' //TODO
             ],
             'step' => [
                 'current' => $this->currentSchemaItem,
@@ -122,31 +174,79 @@ class FormBase extends Component
         return $i;
     }
 
-    //TODO: Is this being used?
-    #[On('next-step')]
+    /**
+     * Reset the progress counter each time validation is triggered
+     */
+    #[On('validate-inputs')]
+    public function resetProgress(){
+        $this->progress = 0;
+    }
+
+    public function canProgress()
+    {
+        $obj = $this->getCurrentSchemaObject();
+        //$inputs = $this->isChapter($obj) ? $obj->filteredSchema()[$this->currentSubItem]->validationSchema() : $obj->validationSchema();
+        $inputs = $this->isChapter($obj) ? $obj->filteredSchema()[$this->currentSubItem]->filteredSchema() : $obj->filteredSchema();
+        $inputCount = count($inputs);
+        $errorCount = count($this->hasErrors);
+
+        $this->progress = $this->progress - $errorCount;
+
+        return $this->progress == $inputCount;
+    }
+
+    #[On('next-item')]
     public function nextItem()
     {
-        $this->dispatch('validate-inputs');
+        $this->progress++;
 
-        if(empty($this->hasErrors)){
-            OnStepCompleted::dispatch($this->result);
-            $this->currentSchemaItem++;
+        if($this->canProgress()){
+            $obj = $this->getCurrentSchemaObject();
+            if($this->isChapter($obj)){
+                /**
+                 * Chapter
+                 */
+                //$currentSubObj = $obj->filteredSchema()[$this->currentSubItem];
+
+                if(array_key_last($obj->filteredSchema()) == $this->currentSubItem){
+                    $this->currentSubItem = 0;
+                    $this->currentItem++;
+                    OnChapterCompleted::dispatch($this->result);
+                }else{
+                    $this->currentSubItem++;
+                    OnStepCompleted::dispatch($this->result);
+                }
+            }else{
+                /**
+                 * Step
+                 */
+                $this->currentItem++;
+                OnStepCompleted::dispatch($this->result);
+            }
         }
     }
 
-    //TODO: Is this being used?
-    #[On('previous-step')]
+    #[On('previous-item')]
     public function previousItem()
     {
-        $this->currentSchemaItem--;
-    }
+        $this->resetProgress();
 
-    #[On('chapter-complete')]
-    public function nextChapter()
-    {
-        if(empty($this->hasErrors)){
-            OnChapterCompleted::dispatch($this->result);
-            $this->currentSchemaItem++;
+        $obj = $this->getCurrentSchemaObject();
+        if($this->isChapter($obj)){
+            /**
+             * Chapter
+             */
+            if($this->currentSubItem == 0){
+                $this->currentItem--;
+                $this->currentSubItem = array_key_last($this->filteredSchema()[$this->currentItem]);
+            }else{
+                $this->currentSubItem--;
+            }
+        }else{
+            /**
+             * Step
+             */
+            $this->currentItem--;
         }
     }
 

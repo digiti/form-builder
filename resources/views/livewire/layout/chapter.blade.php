@@ -8,7 +8,7 @@
     @if($object->hasDebug())
         <div class="bg-light p-3 rounded mb-3 debug">
             <p>Result: {{ var_dump($result) }}</p>
-            <p>Current step in chapter: {{ $currentStepInChapter }}</p>
+            <p>Current step in chapter: {{ $parent['form']['currentSubItem'] }}</p>
             <p>Count steps in chapter: {{ $this->getCountStepsInChapter() }}</p>
         </div>
     @endif
@@ -21,8 +21,8 @@
             <h3 class="mb-4">{!! $object->getTitle() !!}</h3>
         @endif
 
-        @if ($parent['form']['hasStepCounters'] && !($object->hasConclusion() && $currentStepInChapter == $this->getCountStepsInChapter()))
-            <p class="counter">{{ $currentStepInChapter + 1 }}/{{ $this->getCountStepsInChapter() }}</p>
+        @if ($parent['form']['hasStepCounters'] && !($object->hasConclusion() && $parent['form']['currentSubItem'] == $this->getCountStepsInChapter()))
+            <p class="counter">{{ $parent['form']['currentSubItem'] + 1 }}/{{ $this->getCountStepsInChapter() }}</p>
         @endif
     </div>
 
@@ -30,17 +30,17 @@
         <p>{!! $this->object->getDescription() !!}</p>
     @endif
 
-    @if ($object->hasConclusion() && $currentStepInChapter == $this->getCountStepsInChapter())
+    @if ($object->hasConclusion() && $parent['form']['currentSubItem'] == $this->getCountStepsInChapter())
         <x-fb::conclusion :$result :parent="$this->getMeta()" />
 
-        <button class="btn btn-primary" wire:click="previousStepInChapter" type="button">
+        <button class="btn btn-primary" wire:click="previousStep" type="button">
             {!! __('fb::actions.previous_step') !!}
         </button>
-        <button class="btn btn-primary" wire:click="$dispatch('chapter-complete')" type="button" @if(!empty($parent['form']['hasErrors'])) disabled @endif>
+        <button class="btn btn-primary" wire:click="nextStep" type="button" @if(!empty($parent['form']['hasErrors'])) disabled @endif>
             {!! __('fb::actions.next_step') !!}
         </button>
     @else
-        @php($object = $this->filteredSchema()[$currentStepInChapter])
-        <livewire:is :component="$object->getView()" :$object :$result :parent="$this->getMeta()" :key="md5($currentStepInChapter)" />
+        @php($object = $this->filteredSchema()[$parent['form']['currentSubItem']])
+        <livewire:is :component="$object->getView()" :$object :$result :parent="$this->getMeta()" :key="md5($parent['form']['currentSubItem'])" />
     @endif
 </div>
