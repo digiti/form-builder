@@ -1,7 +1,8 @@
 <div
     @class([
         'form-base',
-        'debug' => $debug
+        'debug' => $debug,
+        'form-'.strtolower(preg_replace('/(?<!^)[A-Z]/', '-$0', $name))
     ])
 >
     @if ($debug)
