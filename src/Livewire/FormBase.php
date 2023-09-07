@@ -16,11 +16,13 @@ use Digiti\FormBuilder\Events\OnChapterCompleted;
 use Digiti\FormBuilder\Events\OnFormSubmitted;
 use Digiti\FormBuilder\Events\OnStepCompleted;
 use Digiti\FormBuilder\Traits\Livewire\HasCookieStorage;
+use Digiti\FormBuilder\Traits\Livewire\HasSessionStorage;
 use Illuminate\Support\Facades\Log;
 
 class FormBase extends Component
 {
-    use HasCookieStorage;
+    //use HasCookieStorage;
+    use HasSessionStorage;
 
     public $result;
     public string $name;
@@ -39,12 +41,21 @@ class FormBase extends Component
 
     public function mount()
     {
-        $this->getDataFromCookieStorage();
+        $this->getDataFromSessionStorage();
 
         $this->currentItem = 0;
         $this->currentSubItem = 0;
         $this->currentSchemaItem = 0;
         $this->progress = 0;
+    }
+
+    public function getDataFromSessionStorage(): void
+    {
+        $keys = $this->mapKeys($this->schema());
+
+        foreach ($keys as $key) {
+            $this->result[$key] = session()->get($key);
+        }
     }
 
     public function getDataFromCookieStorage(): void
@@ -255,7 +266,7 @@ class FormBase extends Component
     public function updateResults($name, $value)
     {
         $this->result[$name] = $value;
-        $this->storeCookie($name, $value);
+        $this->storeSession($name, $value);
     }
 
     #[On('input-errors')]
