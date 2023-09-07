@@ -49,7 +49,7 @@ With the submit method you do whatever with your data on a form submit
 ```
 public function submit(): void
     {
-        OnFormSubmitted::dispatch($this->result);
+        //OnFormSubmitted::dispatch($this->result);
     }
 ```
 

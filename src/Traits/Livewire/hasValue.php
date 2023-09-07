@@ -2,6 +2,7 @@
 
 namespace Digiti\FormBuilder\Traits\Livewire;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 trait HasValue
@@ -12,7 +13,6 @@ trait HasValue
     public function mount()
     {
         $this->value = $this->defaultValue[$this->object->name] ?? null;
-        //$this->validateValue(); // Does not work on initiation
     }
 
     public function updatedValue()
@@ -26,10 +26,10 @@ trait HasValue
         $this->validateValue();
     }
 
-    protected function validateValue()
+    protected function validateValue($progress = false)
     {
         $validation = Validator::make(['value' => $this->value], ['value' => $this->object->getRules()])->errors();
-        $errors = count($validation->messages()) > 0 ? $validation->messages() : null ;
+        $errors = count($validation->messages()) > 0 ? $validation->messages() : null;
 
         // Dispatches event to update error label
         $this->dispatch(
@@ -46,5 +46,12 @@ trait HasValue
             value: $this->value,
             errors: $errors
         );
+
+        if($progress){
+            $this->dispatch(
+                'next-item'
+            );
+            Log::debug('dispatched');
+        }
     }
 }

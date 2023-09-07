@@ -6,13 +6,14 @@ use Digiti\FormBuilder\Traits\Builder\HasName;
 
 trait HasValidation
 {
+    protected string $defaultRule = "";
     protected string $rawRule = "";
     protected bool $ruleOverwrite = false;
     protected string $errors;
 
     public function getRules(): string
     {
-        $rules = "";
+        $rules = $this->defaultRule;
 
         if($this->ruleOverwrite){
             return $this->rawRule;
@@ -45,5 +46,10 @@ trait HasValidation
         $this->rawRule = trim($rule, "|");
         $this->ruleOverwrite = $overwrite;
         return $this;
+    }
+
+    public function hasValidation()
+    {
+        return !empty($this->getRules());
     }
 }

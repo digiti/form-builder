@@ -13,8 +13,6 @@ class Chapter extends Component
 {
     use HasParent;
 
-    public int $currentStepInChapter;
-
     #[Reactive]
     public $result;
 
@@ -23,33 +21,29 @@ class Chapter extends Component
 
     public function mount()
     {
-        $this->currentStepInChapter = 0;
+
     }
 
     public function filteredSchema(): array
     {
-        $schema = array_values(array_filter($this->object->getSchema(), function ($obj) {
+        return array_values(array_filter($this->object->getSchema(), function ($obj) {
+            //Chapter scheme should only return Steps
             if ($obj instanceof Step) {
                 if ($obj->getReactive() || !$obj->isReactive()) {
                     return $obj;
                 }
             }
         }));
-
-        return $schema;
     }
 
     public function getCountStepsInChapter(): int
     {
-        $i = 0;
+        return count($this->filteredSchema());
+    }
 
-        foreach ($this->filteredSchema() as $obj) {
-            if ($obj instanceof Step) {
-                $i++;
-            }
-        }
-
-        return $i;
+    public function getCurrentSchemaObject()
+    {
+        return $this->filteredSchema()[$this->parent()['form']['currentSubItem']];
     }
 
     public function getMeta()
@@ -60,25 +54,21 @@ class Chapter extends Component
                 'hasConclusion' => $this->object->hasConclusion(),
             ],
             'step' => [
-                'current' => $this->currentStepInChapter,
+                'current' => $this->parent['form']['currentSubItem'],
                 'count' => $this->getCountStepsInChapter(),
                 'isStepInChapter' => true
             ],
         ];
     }
 
-    #[On('next-step-in-chapter')]
-    public function nextStepInChapter()
+    public function nextStep()
     {
-        if(empty($this->parent['form']['hasErrors'])){
-            $this->currentStepInChapter++;
-        }
+        $this->dispatch('validate-inputs', progress: true);
     }
 
-    #[On('previous-step-in-chapter')]
-    public function previousStepInChapter()
+    public function previousStep()
     {
-        $this->currentStepInChapter--;
+        $this->dispatch('previous-item');
     }
 
     public function render()
