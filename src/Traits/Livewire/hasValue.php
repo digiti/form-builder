@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 
 trait HasValue
 {
-    public mixed $value;
+    public mixed $value = "";
     public mixed $defaultValue;
 
     public function mount()
