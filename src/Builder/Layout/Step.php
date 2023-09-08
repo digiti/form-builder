@@ -8,6 +8,7 @@ use Digiti\FormBuilder\Traits\Builder\Layout\HasSchema;
 use Digiti\FormBuilder\Traits\Builder\Layout\HasDescription;
 use Digiti\FormBuilder\Traits\Builder\HasWireables;
 use Digiti\FormBuilder\Traits\Builder\Layout\HasTitle;
+use Digiti\FormBuilder\Traits\Builder\Layout\HasControls;
 use Digiti\FormBuilder\Traits\Builder\IsReactive;
 use Digiti\FormBuilder\Traits\EvaluatesClosures;
 
@@ -20,6 +21,7 @@ class Step implements Wireable
     use HasDescription;
     use IsReactive;
     use EvaluatesClosures;
+    use HasControls;
 
     protected string $view = 'fb::livewire.layout.step';
 

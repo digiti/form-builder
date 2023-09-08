@@ -1,4 +1,10 @@
-<div @class(['step', 'debug' => $object->hasDebug()])>
+<div @class([
+    'step',
+    'debug' => $object->hasDebug(),
+    'no-controls' => !$object->hasControls(),
+])>
+
+    @php($showControls = $object->hasControls())
 
     @if ($object->hasDebug())
         <div class="bg-light p-3 rounded mb-3 debug">
@@ -25,11 +31,14 @@
         <x-dynamic-component :component="$object->getView()" :key="md5($loop->index)" :$object :$result />
     @endforeach
 
-    @if ($this->getCurrentStep() > 0 || $this->getCurrentSchemaItem() > 0)
-        <button class="btn btn-primary" wire:click="previousStep" type="button">{!! __('fb::actions.previous_step') !!}</button>
-    @endif
+    @if ($showControls)
+        @if ($this->getCurrentStep() > 0 || $this->getCurrentSchemaItem() > 0)
+            <button class="btn btn-primary" wire:click="previousStep" type="button">{!! __('fb::actions.previous_step') !!}</button>
+        @endif
 
-    @if ($this->getCountSteps() > $this->getCurrentStep())
-        <button class="btn btn-primary" wire:click="nextStep" type="button" @if(!empty($parent['form']['hasErrors'])) disabled @endif>{!! __('fb::actions.next_step') !!}</button>
+        @if ($this->getCountSteps() > $this->getCurrentStep())
+            <button class="btn btn-primary" wire:click="nextStep" type="button"
+                @if (!empty($parent['form']['hasErrors'])) disabled @endif>{!! __('fb::actions.next_step') !!}</button>
+        @endif
     @endif
 </div>
