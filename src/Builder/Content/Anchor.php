@@ -65,7 +65,7 @@ class Anchor implements Wireable
         return $this->view;
     }
 
-    public function isDisptachable()
+    public function isDispatchable()
     {
         return str_contains($this->name, '$dispatch');
     }
