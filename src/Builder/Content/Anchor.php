@@ -2,7 +2,7 @@
 
 namespace Digiti\FormBuilder\Builder\Content;
 
-use App\Traits\Builder\Fieldtypes\HasLabel;
+use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasLabel;
 use Digiti\FormBuilder\Traits\Builder\HasClasses;
 use Digiti\FormBuilder\Traits\Builder\HasName;
 use Digiti\FormBuilder\Traits\Builder\HasWireables;
