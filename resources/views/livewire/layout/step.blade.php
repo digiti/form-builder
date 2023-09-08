@@ -2,7 +2,8 @@
     'step',
     'debug' => $object->hasDebug(),
     'no-controls' => !$object->hasControls(),
-])>
+]) x-data="{ show: false }" x-show="show" x-init="$nextTick(() => show = true)"
+    x-transition.opacity.duration.500ms.scale.99.scale.origin.top>
 
     @php($showControls = $object->hasControls())
 
