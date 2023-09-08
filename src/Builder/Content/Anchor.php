@@ -2,6 +2,7 @@
 
 namespace Digiti\FormBuilder\Builder\Content;
 
+use App\Traits\Builder\Fieldtypes\HasLabel;
 use Digiti\FormBuilder\Traits\Builder\HasClasses;
 use Digiti\FormBuilder\Traits\Builder\HasName;
 use Digiti\FormBuilder\Traits\Builder\HasWireables;
@@ -10,8 +11,9 @@ use Livewire\Wireable;
 
 class Anchor implements Wireable
 {
-    use HasClasses;
     use HasName;
+    use HasLabel;
+    use HasClasses;
     use HasWireables;
 
     protected string $view = 'fb::content.anchor';
@@ -20,17 +22,18 @@ class Anchor implements Wireable
 
     protected string $label;
 
-    public function label(string $label): static
+    public function __construct(string $name)
     {
-        $this->label = $label;
-
-        return $this;
+        $this->name($name);
+        $this->classes = 'content-button btn';
+        $this->setConstructAttributeKey('name');
     }
 
-    public function getLabel(): string {
-        return $this->label ?? $this->name;
+    public static function make(string $name)
+    {
+        $form = new static($name);
 
-        // Get translated string
+        return $form;
     }
 
     public function target(string $target): static
@@ -57,22 +60,13 @@ class Anchor implements Wireable
         return $this->rel ?? null;
     }
 
-    public function __construct(string $name)
-    {
-        $this->name($name);
-        $this->classes = 'content-button btn';
-        $this->setConstructAttributeKey('name');
-    }
-
-    public static function make(string $name)
-    {
-        $form = new static($name);
-
-        return $form;
-    }
-
     public function getView(): string
     {
         return $this->view;
+    }
+
+    public function isDisptachable()
+    {
+        return str_contains($this->name, '$dispatch');
     }
 }
