@@ -8,9 +8,9 @@ trait HasSessionStorage
 {
     public function storeSession($key, $value): void
     {
-        if(is_array($value)){
-            $value = json_encode($value);
-        }
+        // if(is_array($value)){
+        //     $value = json_encode($value);
+        // }
 
         session()->put($key, $value);
     }
@@ -18,9 +18,9 @@ trait HasSessionStorage
     public function getCookie($key): mixed
     {
         $result = session()->get($key);
-        if($this->isJson($result)){
-            $result = json_decode($result);
-        }
+        // if($this->isJson($result)){
+        //     $result = json_decode($result);
+        // }
 
         return $result;
     }
