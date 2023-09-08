@@ -34,14 +34,14 @@ trait HasSchema
     public function filteredSchema(): array
     {
         return array_values(array_filter($this->schema, function ($obj) {
-            if ($obj->getReactive() || !$obj->isReactive()) {
+            if (!method_exists($obj, 'getReactive') || $obj->getReactive() || !$obj->isReactive()) {
                 return $obj;
             }
         }));
     }
 
     /**
-     * Get all objects which has validation rules set
+     * Get all objects which has validation rules set and are visible
      * mainly used in chapter and step progression
      *
      * return array
@@ -49,7 +49,7 @@ trait HasSchema
     public function validationSchema(): array
     {
         return array_values(array_filter($this->schema, function ($obj) {
-            if (method_exists($obj, 'hasValidation') && $obj->hasValidation()) {
+            if (method_exists($obj, 'hasValidation') && $obj->hasValidation() && ($obj->getReactive() || !$obj->isReactive())) {
                 return $obj;
             }
         }));
