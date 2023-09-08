@@ -10,6 +10,7 @@ use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasValidation;
 use Digiti\FormBuilder\Traits\Builder\HasDebug;
 use Digiti\FormBuilder\Traits\Builder\IsReactive;
 use Digiti\FormBuilder\Traits\Builder\HasWireables;
+use Digiti\FormBuilder\Traits\Builder\HasClasses;
 use Livewire\Wireable;
 
 class Fieldtype implements Wireable
@@ -22,10 +23,10 @@ class Fieldtype implements Wireable
     use HasWireables;
     use HasValidation;
     use EvaluatesClosures;
+    use HasClasses;
 
     protected string $parentView = 'fb::fieldtype';
     protected string $view = '';
-    protected string $classes = 'field';
 
     public function __construct(string $name)
     {
@@ -52,6 +53,6 @@ class Fieldtype implements Wireable
 
     public function getClasses(): string
     {
-        return $this->classes;
+        return $this->classes ?? 'field';
     }
 }
