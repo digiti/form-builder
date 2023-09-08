@@ -189,22 +189,24 @@ class FormBase extends Component
     public function getVisibleInputs()
     {
         $obj = $this->getCurrentSchemaObject();
-        return $this->isChapter($obj) ? $obj->filteredSchema()[$this->currentSubItem]->validationSchema() : $obj->validationSchema();;
+        return $this->isChapter($obj) ? $obj->filteredSchema()[$this->currentSubItem]->validationSchema() : $obj->validationSchema();
     }
 
     /**
      * Reset the progress counter each time validation is triggered
      */
     #[On('validate-inputs')]
-    public function resetProgress(){
+    public function resetProgress($canProgress = true){
         $this->progress = 0;
 
-        //When no inputs are present you can immediatly go to the next step
-        if(empty($this->getVisibleInputs())){
-            $this->dispatch(
-                'next-item',
-                force: true
-            );
+        if($canProgress){
+            //When no inputs are present you can immediatly go to the next step
+            if(empty($this->getVisibleInputs())){
+                $this->dispatch(
+                    'next-item',
+                    force: true
+                );
+            }
         }
     }
 
@@ -253,16 +255,18 @@ class FormBase extends Component
     #[On('previous-item')]
     public function previousItem()
     {
-        $this->resetProgress();
+        $this->resetProgress(false);
 
         $obj = $this->getCurrentSchemaObject();
+        //dd($obj);
         if($this->isChapter($obj)){
             /**
              * Chapter
              */
             if($this->currentSubItem == 0){
                 $this->currentItem--;
-                $this->currentSubItem = array_key_last($this->filteredSchema()[$this->currentItem]);
+                $this->currentSubItem = array_key_last($this->filteredSchema()); //[$this->currentItem]
+
             }else{
                 $this->currentSubItem--;
             }
@@ -271,6 +275,12 @@ class FormBase extends Component
              * Step
              */
             $this->currentItem--;
+
+            // if new object is chapter get last key from chapter
+            $previousObject = $this->filteredSchema()[$this->currentItem];
+            if($this->isChapter($previousObject)){
+                $this->currentSubItem = array_key_last($previousObject->filteredSchema());
+            }
         }
     }
 

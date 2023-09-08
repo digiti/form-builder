@@ -25,7 +25,7 @@
         <x-dynamic-component :component="$object->getView()" :key="md5($loop->index)" :$object :$result />
     @endforeach
 
-    @if ($this->getCurrentStep() > 0 || $this->getCurrentSchemaItem() > 0)
+    @if ($this->parent['form']['currentItem'] > 0 || $this->parent['form']['currentSubItem'])
         <button class="btn btn-primary" wire:click="previousStep" type="button">{!! __('fb::actions.previous_step') !!}</button>
     @endif
 
