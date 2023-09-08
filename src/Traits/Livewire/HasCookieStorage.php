@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Cookie;
 
 trait HasCookieStorage
 {
-    public function storeCookie($key, $value): void
+    public function setStorage($key, $value): void
     {
         if(is_array($value)){
             $value = json_encode($value);
@@ -14,7 +14,7 @@ trait HasCookieStorage
         Cookie::queue(Cookie::make($key, $value));
     }
 
-    public function getCookie($key): mixed
+    public function getStorage($key): mixed
     {
         $cookie = Cookie::get($key);
         if($this->isJson($cookie)){

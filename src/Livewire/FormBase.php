@@ -41,7 +41,7 @@ class FormBase extends Component
 
     public function mount()
     {
-        $this->getDataFromSessionStorage();
+        $this->getDataFromStorage();
 
         $this->currentItem = 0;
         $this->currentSubItem = 0;
@@ -49,21 +49,12 @@ class FormBase extends Component
         $this->progress = 0;
     }
 
-    public function getDataFromSessionStorage(): void
+    public function getDataFromStorage(): void
     {
         $keys = $this->mapKeys($this->schema());
 
         foreach ($keys as $key) {
-            $this->result[$key] = session()->get($key);
-        }
-    }
-
-    public function getDataFromCookieStorage(): void
-    {
-        $keys = $this->mapKeys($this->schema());
-
-        foreach ($keys as $key) {
-            $this->result[$key] = $this->getCookie($key);
+            $this->result[$key] = $this->getStorage($key);
         }
     }
 
@@ -288,7 +279,7 @@ class FormBase extends Component
     public function updateResults($name, $value)
     {
         $this->result[$name] = $value;
-        $this->storeSession($name, $value);
+        $this->setStorage($name, $value);
     }
 
     #[On('input-errors')]
