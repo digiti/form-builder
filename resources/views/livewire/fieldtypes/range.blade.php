@@ -1,7 +1,5 @@
 <div>
     <div class="d-flex">
-        <p class="range-min">{{ $object->getMin() }}</p>
-
         <div class="w-100">
             <p class="range-value text-center font-weiht-bold">{{ $value }}</p>
             <input type="range" class="form-range" id="{{ $object->name }}" wire:model.live="value"
@@ -14,5 +12,4 @@
             </div>
         </div>
     </div>
-    <p class="range-value text-center">{{ $value }}</p>
 </div>
