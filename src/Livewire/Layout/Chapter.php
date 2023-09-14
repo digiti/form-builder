@@ -61,6 +61,14 @@ class Chapter extends Component
         ];
     }
 
+    public function showSubmit()
+    {
+        //if form hasConclusion take second to last item otherwise take last item
+        $count = $this->parent['form']['hasConclusion'] ? $this->parent['form']['countSchemaItems'] : $this->parent['form']['countSchemaItems'] - 1;
+
+        return $count == $this->parent['form']['currentItem'];
+    }
+
     public function nextStep()
     {
         $this->dispatch('validate-inputs', progress: true);

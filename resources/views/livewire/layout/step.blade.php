@@ -37,9 +37,10 @@
             <button class="btn btn-primary" wire:click="previousStep" type="button">{!! __('fb::actions.previous_step') !!}</button>
         @endif
 
-        @if ($this->getCountSteps() > $this->getCurrentStep())
+        {{-- @if ($this->getCountSteps() > $this->getCurrentStep()) --}}
             <button class="btn btn-primary" wire:click="nextStep" type="button"
-                @if (!empty($parent['form']['hasErrors'])) disabled @endif>{!! __('fb::actions.next_step') !!}</button>
-        @endif
+            @if (!empty($parent['form']['hasErrors'])) disabled @endif>@if($this->showSubmit()) {!! __('fb::actions.submit') !!} @else {!! __('fb::actions.next_step') !!} @endif</button>
+        {{-- @endif --}}
+
     @endif
 </div>

@@ -56,12 +56,19 @@ class Step extends Component
         $this->dispatch('previous-item');
     }
 
-    public function finish()
+    public function showSubmit()
     {
-        if ($this->parent['step']['isStepInChapter'] ?? false) {
-            $this->dispatch('chapter-complete');
-        } else {
-            $this->dispatch('form-complete');
+        $count = $this->parent['form']['countSchemaItems'];
+
+        //if form hasConclusion take second to last item otherwise take last item
+        if($this->parent['form']['hasConclusion']){
+            $count--;
+        }
+
+        if($this->parent['step']['isStepInChapter']){
+            return $count == $this->parent['form']['currentItem'] && $this->parent['form']['currentSubItem'] == ($this->parent['step']['count'] - 1);
+        }else{
+            return $count == $this->parent['form']['currentItem'];
         }
     }
 

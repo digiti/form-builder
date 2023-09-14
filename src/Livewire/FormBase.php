@@ -212,6 +212,18 @@ class FormBase extends Component
         return $this->progress == $inputCount;
     }
 
+    public function canSubmit(){
+        $obj = $this->getCurrentSchemaObject();
+        $count = $this->countSchemaItems() - 1;
+
+        if($this->isChapter($obj)){
+            return $count == $this->currentItem && array_key_last($obj->filteredSchema()) == $this->currentSubItem;
+        }else{
+            return $count == $this->currentItem;
+        }
+
+    }
+
     #[On('next-item')]
     public function nextItem($force = false)
     {
@@ -219,6 +231,20 @@ class FormBase extends Component
 
         if($this->canProgress() || $force){
             $obj = $this->getCurrentSchemaObject();
+
+            //Submit
+            if($this->canSubmit()){
+                $this->dispatch('submit');
+                OnFormSubmitted::dispatch($this->result);
+
+                if($this->hasConclusion){
+                    $this->currentSubItem = 0;
+                    $this->currentItem++;
+                }
+                return;
+            }
+
+            //Progress
             if($this->isChapter($obj)){
                 /**
                  * Chapter
@@ -226,6 +252,7 @@ class FormBase extends Component
                 //$currentSubObj = $obj->filteredSchema()[$this->currentSubItem];
 
                 if(array_key_last($obj->filteredSchema()) == $this->currentSubItem){
+                    // Progress
                     $this->currentSubItem = 0;
                     $this->currentItem++;
                     OnChapterCompleted::dispatch($this->result);

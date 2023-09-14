@@ -2,6 +2,7 @@
 
 namespace $NAMESPACE$;
 
+use Livewire\Attributes\On;
 use Digiti\FormBuilder\Livewire\FormBase;
 use Digiti\FormBuilder\Events\OnFormSubmitted;
 use Digiti\FormBuilder\Interfaces\FormInterface;
@@ -17,8 +18,9 @@ class $CLASS_NAME$ extends FormBase implements FormInterface
         ];
     }
 
+    #[On('submit')]
     public function submit(): void
     {
-        //OnFormSubmitted::dispatch($this->result);
+        //Example - Redirect to page: redirect('/path/to/thank-you');
     }
 }
