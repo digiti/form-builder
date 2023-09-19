@@ -168,7 +168,7 @@ class FormBase extends Component
     {
         $i = 0;
 
-        foreach ($this->schema() as $obj) {
+        foreach ($this->filteredSchema() as $obj) {
             if ($obj instanceof Step || $obj instanceof Chapter) {
                 $i++;
             }
@@ -217,8 +217,10 @@ class FormBase extends Component
         $count = $this->countSchemaItems() - 1;
 
         if($this->isChapter($obj)){
+            //dd( $this->currentItem );
             return $count == $this->currentItem && array_key_last($obj->filteredSchema()) == $this->currentSubItem;
         }else{
+            //dd( "sub:". $count );
             return $count == $this->currentItem;
         }
 
@@ -283,7 +285,8 @@ class FormBase extends Component
              */
             if($this->currentSubItem == 0){
                 $this->currentItem--;
-                $this->currentSubItem = array_key_last($this->filteredSchema()); //[$this->currentItem]
+                //dd($this->filteredSchema()[$this->currentItem]);
+                $this->currentSubItem = array_key_last($this->filteredSchema()[$this->currentItem]->filteredSchema()); //[$this->currentItem]
 
             }else{
                 $this->currentSubItem--;
