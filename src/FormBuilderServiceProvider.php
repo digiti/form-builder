@@ -42,9 +42,9 @@ class FormBuilderServiceProvider extends ServiceProvider
          * Registers and publishes views
          */
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'fb');
-        // $this->publishes([
-        //     __DIR__.'/../resources/views' => resource_path('views/vendor/form-builder'),
-        // ]);
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/form-builder'),
+        ], 'views');
 
 
         // Blade::directive('formBuilderStyles', function ($expression) {
