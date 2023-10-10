@@ -34,12 +34,12 @@
 
     @if ($showControls)
         @if ($this->parent['form']['currentItem'] > 0 || $this->parent['form']['currentSubItem'])
-            <button class="btn btn-primary" wire:click="previousStep" type="button">{!! __('fb::actions.previous_step') !!}</button>
+            <button class="btn btn-primary" wire:click="previousStep" type="button">{!! __('form-builder::actions.previous_step') !!}</button>
         @endif
 
         {{-- @if ($this->getCountSteps() > $this->getCurrentStep()) --}}
             <button class="btn btn-primary" wire:click="nextStep" type="button"
-            @if (!empty($parent['form']['hasErrors'])) disabled @endif>@if($this->showSubmit()) {!! __('fb::actions.submit') !!} @else {!! __('fb::actions.next_step') !!} @endif</button>
+            @if (!empty($parent['form']['hasErrors'])) disabled @endif>@if($this->showSubmit()) {!! __('form-builder::actions.submit') !!} @else {!! __('form-builder::actions.next_step') !!} @endif</button>
         {{-- @endif --}}
 
     @endif

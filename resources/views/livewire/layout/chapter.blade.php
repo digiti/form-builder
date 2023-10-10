@@ -31,14 +31,14 @@
     @endif
 
     @if ($object->hasConclusion() && $parent['form']['currentSubItem'] == $this->getCountStepsInChapter())
-        <x-fb::conclusion :$result :parent="$this->getMeta()" />
+        <x-form-builder::conclusion :$result :parent="$this->getMeta()" />
 
         <button class="btn btn-primary" wire:click="previousStep" type="button">
-            {!! __('fb::actions.previous_step') !!}
+            {!! __('form-builder::actions.previous_step') !!}
         </button>
 
         <button class="btn btn-primary" wire:click="nextStep" type="button" @if(!empty($parent['form']['hasErrors'])) disabled @endif>
-            @if($this->showSubmit()) {!! __('fb::actions.submit') !!} @else {!! __('fb::actions.next_step') !!} @endif
+            @if($this->showSubmit()) {!! __('form-builder::actions.submit') !!} @else {!! __('form-builder::actions.next_step') !!} @endif
         </button>
     @else
         @php($object = $this->filteredSchema()[$parent['form']['currentSubItem']])

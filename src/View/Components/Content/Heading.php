@@ -23,6 +23,6 @@ class Heading extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('fb::components.content.heading');
+        return view('form-builder::components.content.heading');
     }
 }

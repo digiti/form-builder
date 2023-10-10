@@ -9,7 +9,7 @@ class Range extends Fieldtype
     use HasMinMax;
 
     protected string $defaultRule = "numeric|";
-    protected string $view = 'fb::livewire.fieldtypes.range';
+    protected string $view = 'form-builder::livewire.fieldtypes.range';
     protected string $classes = 'range-fieldtype';
     protected int | null $step = null;
 

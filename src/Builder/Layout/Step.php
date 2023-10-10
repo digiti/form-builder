@@ -23,7 +23,7 @@ class Step implements Wireable
     use EvaluatesClosures;
     use HasControls;
 
-    protected string $view = 'fb::livewire.layout.step';
+    protected string $view = 'form-builder::livewire.layout.step';
 
     public function __construct(array $schema)
     {

@@ -26,6 +26,6 @@ class FieldtypeError extends Component
 
     public function render()
     {
-        return view('fb::livewire.layout.fieldtype-error');
+        return view('form-builder::livewire.layout.fieldtype-error');
     }
 }

@@ -14,7 +14,7 @@
 
             <livewire:is :component="$object->getView(true)" :$key :$object :defaultValue="$result"/>
 
-            <livewire:fb::livewire.layout.fieldtype-error :$object :key="md5($key)" />
+            <livewire:form-builder::livewire.layout.fieldtype-error :$object :key="md5($key)" />
         </div>
     </div>
 @endif

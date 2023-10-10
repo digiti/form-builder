@@ -23,6 +23,6 @@ class Html extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('fb::components.content.html');
+        return view('form-builder::components.content.html');
     }
 }

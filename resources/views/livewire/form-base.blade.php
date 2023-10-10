@@ -19,7 +19,7 @@
     <div class="form-wrapper">
         <form class="form" wire:submit="submit">
             @if ($hasConclusion && $currentItem == $this->countSchemaItems())
-                <x-fb::conclusion :$result :parent="$this->getMeta()" />
+                <x-form-builder::conclusion :$result :parent="$this->getMeta()" />
             @else
                 @if ($hasStepCounters)
                     <p>{{ $currentItem + 1 }}/{{ $this->countSchemaItems() }}</p>

@@ -74,6 +74,6 @@ class Step extends Component
 
     public function render()
     {
-        return view('fb::livewire.layout.step');
+        return view('form-builder::livewire.layout.step');
     }
 }

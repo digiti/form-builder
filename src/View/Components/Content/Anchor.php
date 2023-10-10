@@ -23,6 +23,6 @@ class Anchor extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('fb::components.content.anchor');
+        return view('form-builder::components.content.anchor');
     }
 }

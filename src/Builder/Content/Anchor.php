@@ -16,7 +16,7 @@ class Anchor implements Wireable
     use HasClasses;
     use HasWireables;
 
-    protected string $view = 'fb::content.anchor';
+    protected string $view = 'form-builder::content.anchor';
     protected string $target;
     protected string $rel;
 

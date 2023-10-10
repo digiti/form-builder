@@ -14,7 +14,7 @@ class Html implements Wireable
     use HasName;
     use HasWireables;
 
-    protected string $view = 'fb::content.html';
+    protected string $view = 'form-builder::content.html';
 
     public function __construct(string $name)
     {

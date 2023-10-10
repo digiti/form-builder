@@ -24,6 +24,6 @@ class Row extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('fb::components.content.row');
+        return view('form-builder::components.content.row');
     }
 }

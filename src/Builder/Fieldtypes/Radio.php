@@ -10,6 +10,6 @@ class Radio extends Fieldtype
     use HasOptions;
     use HasMultiple;
 
-    protected string $view = 'fb::livewire.fieldtypes.radio';
+    protected string $view = 'form-builder::livewire.fieldtypes.radio';
     protected string $classes = 'radio-fieldtype';
 }

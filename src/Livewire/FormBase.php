@@ -140,7 +140,7 @@ class FormBase extends Component
 
     public function render()
     {
-        return view('fb::livewire.form-base');
+        return view('form-builder::livewire.form-base');
     }
 
     public function getMeta()

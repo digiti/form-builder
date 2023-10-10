@@ -25,7 +25,7 @@ class Fieldtype implements Wireable
     use EvaluatesClosures;
     use HasClasses;
 
-    protected string $parentView = 'fb::fieldtype';
+    protected string $parentView = 'form-builder::fieldtype';
     protected string $view = '';
 
     public function __construct(string $name)

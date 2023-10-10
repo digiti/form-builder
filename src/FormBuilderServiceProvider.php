@@ -20,13 +20,13 @@ class FormBuilderServiceProvider extends ServiceProvider
         /**
          * Registers all Blade and Livewire components
          */
-        Blade::componentNamespace('Digiti\\FormBuilder\\Views\\Components', 'fb');
+        Blade::componentNamespace('Digiti\\FormBuilder\\Views\\Components', 'form-builder');
         $this->loadLivewireComponents();
 
         /**
          * Registers and publishes all language files
          */
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'fb');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'form-builder');
         $this->publishes([
             __DIR__.'/../resources/lang' => $this->app->langPath('vendor/form-builder'),
         ]);
@@ -41,7 +41,7 @@ class FormBuilderServiceProvider extends ServiceProvider
         /**
          * Registers and publishes views
          */
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'fb');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'form-builder');
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/form-builder'),
         ], 'views');
@@ -71,7 +71,7 @@ class FormBuilderServiceProvider extends ServiceProvider
         ];
 
         foreach($array as $k => $v) {
-            Livewire::component('fb::'.$k, $v);
+            Livewire::component('form-builder::'.$k, $v);
         }
     }
 

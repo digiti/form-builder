@@ -10,6 +10,6 @@ class Check extends Fieldtype
     use HasOptions;
     use HasMultiple;
 
-    protected string $view = 'fb::livewire.fieldtypes.check';
+    protected string $view = 'form-builder::livewire.fieldtypes.check';
     protected string $classes = 'check-fieldtype';
 }

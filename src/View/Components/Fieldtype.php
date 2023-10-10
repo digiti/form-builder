@@ -24,6 +24,6 @@ class Fieldtype extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('fb::components.fieldtype');
+        return view('form-builder::components.fieldtype');
     }
 }

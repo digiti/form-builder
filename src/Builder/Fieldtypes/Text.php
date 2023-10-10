@@ -11,7 +11,7 @@ class Text extends Fieldtype
 {
     use HasMinMax;
 
-    protected string $view = 'fb::livewire.fieldtypes.text';
+    protected string $view = 'form-builder::livewire.fieldtypes.text';
     protected string $classes = 'text-fieldtype';
 
     protected string | Closure | null $type = null;
