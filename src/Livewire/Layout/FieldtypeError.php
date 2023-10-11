@@ -16,7 +16,7 @@ class FieldtypeError extends Component
     public $message;
 
     protected function formatError($string){
-        return str_replace(" value ", " ".lcfirst($this->object->getLabel())." ", $string);
+        return str_replace("The value", "This", $string);
     }
 
     #[On('input-errors.{object.name}')]
