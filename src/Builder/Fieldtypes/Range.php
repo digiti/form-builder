@@ -3,10 +3,14 @@
 namespace Digiti\FormBuilder\Builder\Fieldtypes;
 
 use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasMinMax;
+use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasSuffix;
+use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasPrefix;
 
 class Range extends Fieldtype
 {
     use HasMinMax;
+    use HasSuffix;
+    use HasPrefix;
 
     protected string $defaultRule = "numeric|";
     protected string $view = 'form-builder::livewire.fieldtypes.range';

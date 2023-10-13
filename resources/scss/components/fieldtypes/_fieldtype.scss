@@ -38,6 +38,12 @@
             [type=checkbox]:focus+.asset,
             [type=checkbox]:hover+.asset {
                 transition: all .3s ease-in-out;
+                border: 2px solid blue;
+            }
+
+            [type=radio]:checked+.asset,
+            [type=checkbox]:checked+.asset {
+                border: 2px solid red;
             }
 
             .asset,
