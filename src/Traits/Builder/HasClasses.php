@@ -15,6 +15,6 @@ trait HasClasses
 
     public function getClasses(): string
     {
-        return $this->classes;
+        return $this->classes ?? '';
     }
 }

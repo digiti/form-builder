@@ -2,6 +2,7 @@
     'step',
     'debug' => $object->hasDebug(),
     'no-controls' => !$object->hasControls(),
+    $object->getClasses() ?? ''
 ]) x-data="{ show: false }" x-show="show" x-init="$nextTick(() => show = true)"
     x-transition.opacity.duration.500ms.scale.99.scale.origin.top>
 

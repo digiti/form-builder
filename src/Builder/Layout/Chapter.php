@@ -2,6 +2,7 @@
 
 namespace Digiti\FormBuilder\Builder\Layout;
 
+use Digiti\FormBuilder\Traits\Builder\HasClasses;
 use Digiti\FormBuilder\Traits\Builder\HasDebug;
 use Livewire\Wireable;
 use Digiti\FormBuilder\Traits\Builder\Layout\HasSchema;
@@ -20,6 +21,7 @@ class Chapter implements Wireable
     use HasDescription;
     use IsReactive;
     use EvaluatesClosures;
+    use HasClasses;
 
     protected string $view = 'form-builder::livewire.layout.chapter';
     protected bool $showConclusion = false;

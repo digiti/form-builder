@@ -1,7 +1,8 @@
 <div
     @class([
         'chapter',
-        'debug' => $object->hasDebug()
+        'debug' => $object->hasDebug(),
+        $object->getClasses() ?? ''
     ])
 >
 
