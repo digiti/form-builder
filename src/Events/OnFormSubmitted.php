@@ -20,7 +20,7 @@ class OnFormSubmitted
      */
     public function __construct($result)
     {
-        Log::info('Form submitted!', $result);
+        Log::info('Form submitted!');
     }
 
     /**

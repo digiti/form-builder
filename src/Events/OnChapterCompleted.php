@@ -20,7 +20,7 @@ class OnChapterCompleted
      */
     public function __construct($result)
     {
-        Log::info('Chapter complete!', $result);
+        Log::info('Chapter complete!');
     }
 
     /**

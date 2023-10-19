@@ -20,7 +20,7 @@ class OnStepCompleted
      */
     public function __construct($result)
     {
-        Log::info('Step complete!', $result);
+        Log::info('Step complete!');
     }
 
     /**
