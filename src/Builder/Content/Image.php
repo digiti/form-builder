@@ -15,6 +15,9 @@ class Image implements Wireable
 
     protected string $view = 'form-builder::content.image';
     protected string $alt = '';
+    protected bool $useGlide = false;
+    protected $width = null;
+    protected $height = null;
 
     public function alt(string $alt): static
     {
@@ -26,6 +29,42 @@ class Image implements Wireable
     public function getAlt()
     {
         return $this->alt;
+    }
+
+    public function useGlide(): static
+    {
+        $this->useGlide = true;
+
+        return $this;
+    }
+
+    public function getGlide()
+    {
+        return $this->useGlide;
+    }
+
+    public function width(int $width): static
+    {
+        $this->width = $width;
+
+        return $this;
+    }
+
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    public function height(int $height): static
+    {
+        $this->height = $height;
+
+        return $this;
+    }
+
+    public function getHeight()
+    {
+        return $this->height;
     }
 
     public function __construct(string $name)
