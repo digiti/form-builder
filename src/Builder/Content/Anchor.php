@@ -19,6 +19,7 @@ class Anchor implements Wireable
     protected string $view = 'form-builder::content.anchor';
     protected string $target;
     protected string $rel;
+    protected bool $dispatchable = false;
 
     protected string $label;
 
@@ -65,8 +66,15 @@ class Anchor implements Wireable
         return $this->view;
     }
 
+    public function dispatchable(): static
+    {
+        $this->dispatchable = true;
+
+        return $this;
+    }
+
     public function isDispatchable()
     {
-        return str_contains($this->name, '$dispatch');
+        return $this->dispatchable;
     }
 }
