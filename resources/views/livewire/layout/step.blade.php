@@ -2,7 +2,7 @@
     'step',
     'debug' => $object->hasDebug(),
     'no-controls' => !$object->hasControls(),
-    $object->getClasses() ?? ''
+    $object->getClasses() ?? '',
 ]) x-data="{ show: false }" x-show="show" x-init="$nextTick(() => show = true)"
     x-transition.opacity.duration.500ms.scale.99.scale.origin.top>
 
@@ -35,12 +35,36 @@
 
     @if ($showControls)
         @if ($this->parent['form']['currentItem'] > 0 || $this->parent['form']['currentSubItem'])
-            <button class="btn btn-primary" wire:click="previousStep" type="button">{!! __('form-builder::actions.previous_step') !!}</button>
+            <button class="btn btn-primary" wire:click="previousStep" type="button">
+                <div wire:loading.remove wire:target="previousStep">
+                    {!! __('form-builder::actions.previous_step') !!}
+                </div>
+
+                <div wire:loading wire:target="previousStep">
+                    <div class="spinner-border spinner-border-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </button>
         @endif
 
         {{-- @if ($this->getCountSteps() > $this->getCurrentStep()) --}}
-            <button class="btn btn-primary" wire:click="nextStep" type="button"
-            @if (!empty($parent['form']['hasErrors'])) disabled @endif>@if($this->showSubmit()) {!! __('form-builder::actions.submit') !!} @else {!! __('form-builder::actions.next_step') !!} @endif</button>
+        <button class="btn btn-primary" wire:click="nextStep" type="button"
+            @if (!empty($parent['form']['hasErrors'])) disabled @endif>
+            <div wire:loading.remove>
+                @if ($this->showSubmit())
+                    {!! __('form-builder::actions.submit') !!}
+                @else
+                    {!! __('form-builder::actions.next_step') !!}
+                @endif
+            </div>
+
+            <div wire:loading>
+                <div class="spinner-border spinner-border-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </button>
         {{-- @endif --}}
 
     @endif
