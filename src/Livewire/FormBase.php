@@ -193,10 +193,11 @@ class FormBase extends Component
         if($canProgress){
             //When no inputs are present you can immediatly go to the next step
             if(empty($this->getVisibleInputs())){
-                $this->dispatch(
-                    'next-item',
-                    force: true
-                );
+                // $this->dispatch(
+                //     'next-item',
+                //     force: true
+                // );
+                $this->nextItem(true);
             }
         }
     }

@@ -1,5 +1,5 @@
 <div @class([
-    'step',
+    'step position-relative',
     'debug' => $object->hasDebug(),
     'no-controls' => !$object->hasControls(),
     $object->getClasses() ?? '',
@@ -7,6 +7,14 @@
     x-transition.opacity.duration.500ms.scale.99.scale.origin.top>
 
     @php($showControls = $object->hasControls())
+
+    <div wire:loading.block>
+        <div class="loading">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
 
     @if ($object->hasDebug())
         <div class="bg-light p-3 rounded mb-3 debug">
@@ -36,34 +44,18 @@
     @if ($showControls)
         @if ($this->parent['form']['currentItem'] > 0 || $this->parent['form']['currentSubItem'])
             <button class="btn btn-primary" wire:click="previousStep" type="button">
-                <div wire:loading.remove wire:target="previousStep">
-                    {!! __('form-builder::actions.previous_step') !!}
-                </div>
-
-                <div wire:loading wire:target="previousStep">
-                    <div class="spinner-border spinner-border-sm" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </div>
+                {!! __('form-builder::actions.previous_step') !!}
             </button>
         @endif
 
         {{-- @if ($this->getCountSteps() > $this->getCurrentStep()) --}}
         <button class="btn btn-primary" wire:click="nextStep" type="button"
             @if (!empty($parent['form']['hasErrors'])) disabled @endif>
-            <div wire:loading.remove>
-                @if ($this->showSubmit())
-                    {!! __('form-builder::actions.submit') !!}
-                @else
-                    {!! __('form-builder::actions.next_step') !!}
-                @endif
-            </div>
-
-            <div wire:loading>
-                <div class="spinner-border spinner-border-sm" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-            </div>
+            @if ($this->showSubmit())
+                {!! __('form-builder::actions.submit') !!}
+            @else
+                {!! __('form-builder::actions.next_step') !!}
+            @endif
         </button>
         {{-- @endif --}}
 
