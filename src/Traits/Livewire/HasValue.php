@@ -28,7 +28,14 @@ trait HasValue
 
     protected function validateValue($progress = false)
     {
-        $validation = Validator::make(['value' => $this->value], ['value' => $this->object->getRules()])->errors();
+        $messages = __('form-builder::validation');
+
+        if(is_array($messages) && count($messages)) {
+            $validation = Validator::make(['value' => $this->value], ['value' => $this->object->getRules()], $messages)->errors();
+        } else {
+            $validation = Validator::make(['value' => $this->value], ['value' => $this->object->getRules()])->errors();
+        }
+
         $errors = count($validation->messages()) > 0 ? $validation->messages() : null;
 
         // Dispatches event to update error label
