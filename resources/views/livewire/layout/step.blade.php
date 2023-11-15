@@ -7,14 +7,6 @@
 
     @php($showControls = $object->hasControls())
 
-    <div wire:loading.block>
-        <div class="loading">
-            <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
-    </div>
-
     @if ($object->hasDebug())
         <div class="bg-light p-3 rounded mb-3 debug">
             <p>Parent data: {{ var_dump($parent) }}</p>
