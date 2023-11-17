@@ -1,7 +1,7 @@
 @if ($object->getReactive() || !$object->isReactive())
     <div class="fieldtype {{ $object->getClasses() }}">
 
-        @if($object->hasDebug())
+        @if ($object->hasDebug())
             <div class="bg-light p-3 rounded mb-3 debug">
                 Input name: {{ $object->name }}<br>
                 Input rules: {{ $object->getRules() }}<br>
@@ -9,10 +9,11 @@
             </div>
         @endif
         <div class="form-group">
-            <label for="{{ $object->name }}"
-                class="form-label  @if ($object->isRequired()) required @endif>">{{ $object->getLabel() }}</label>
-
-            <livewire:is :component="$object->getView(true)" :$key :$object :defaultValue="$result"/>
+            @if ($object->showLabel() ?? true)
+                <label for="{{ $object->name }}"
+                    class="form-label  @if ($object->isRequired()) required @endif>">{{ $object->getLabel() }}</label>
+            @endif
+            <livewire:is :component="$object->getView(true)" :$key :$object :defaultValue="$result" />
 
             <livewire:form-builder::livewire.layout.fieldtype-error :$object :key="md5($key)" />
         </div>

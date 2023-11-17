@@ -9,6 +9,7 @@ trait HasLabel
     use HasName;
 
     protected string $label;
+    protected bool $hideLabel = false;
 
     public function label(string $label): static
     {
@@ -21,5 +22,17 @@ trait HasLabel
         return $this->label ?? $this->getLabelFromName();
 
         // Get translated string
+    }
+
+    public function hideLabel(bool $hideLabel = true): static
+    {
+        $this->hideLabel = $hideLabel;
+
+        return $this;
+    }
+
+    public function showLabel()
+    {
+        return !$this->hideLabel;
     }
 }
