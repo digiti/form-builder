@@ -1,6 +1,5 @@
 @if ($object->isDispatchable())
-    <button class="{{ $object->getClasses() }}" wire:click="{{ $object->name }}" type="button"
-        {{-- @if (!empty($this->parent['form']['hasErrors'])) disabled @endif> --}}
+    <button class="{{ $object->getClasses() }}" wire:click="{{ $object->name }}" type="button">
         {{ $object->getLabel() }}
     </button>
 @else
