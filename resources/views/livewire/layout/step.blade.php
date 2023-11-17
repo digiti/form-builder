@@ -40,8 +40,8 @@
         @endif
 
         {{-- @if ($this->getCountSteps() > $this->getCurrentStep()) --}}
-        <button class="btn btn-primary" wire:click="nextStep" type="button"
-            @if (!empty($parent['form']['hasErrors'])) disabled @endif>
+        <button class="btn btn-primary" wire:click='$dispatch("validate-inputs", {progress:true})' type="button"
+            {{-- @if (!empty($parent['form']['hasErrors'])) disabled @endif> --}}
             @if ($this->showSubmit())
                 {!! __('form-builder::actions.submit') !!}
             @else

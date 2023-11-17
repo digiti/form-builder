@@ -6,7 +6,7 @@
                 <div class="form-check">
                     <label class="form-check-label @if ($value['asset'] ?? null) has-asset @endif"
                         for="{{ $key }}">
-                        <input class="form-check-input" type="checkbox" wire:model.live="value"
+                        <input class="form-check-input" type="checkbox" wire:model="value"
                             value="{{ $key }}" id="{{ $key }}">
                         @if ($value['asset'] ?? null)
                             <div class="asset">
@@ -21,7 +21,7 @@
         </div>
     @else
         {{-- Single checkbox --}}
-        <input class="form-check-input" type="checkbox" wire:model.live="value" id="{{ $object->name }}">
+        <input class="form-check-input" type="checkbox" wire:model="value" id="{{ $object->name }}">
         <label class="form-check-label" for="{{ $object->name }}">
             {{ $object->getLabel() }}
         </label>

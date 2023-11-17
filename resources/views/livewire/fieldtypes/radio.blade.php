@@ -4,7 +4,7 @@
             <div class="form-check">
                 <label class="form-check-label @if ($value['asset'] ?? null) has-asset @endif"
                     for="{{ $key }}">
-                    <input class="form-check-input" type="radio" wire:model.live="value"
+                    <input class="form-check-input" type="radio" wire:model="value"
                         value="{{ $key }}" id="{{ $key }}">
 
                     @if ($value['asset'] ?? null)
