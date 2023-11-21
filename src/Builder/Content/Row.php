@@ -5,6 +5,7 @@ namespace Digiti\FormBuilder\Builder\Content;
 use Digiti\FormBuilder\Traits\Builder\Layout\HasSchema;
 use Digiti\FormBuilder\Traits\Builder\HasWireables;
 use Digiti\FormBuilder\Traits\Builder\HasClasses;
+use Digiti\FormBuilder\Traits\Builder\HasId;
 use Digiti\FormBuilder\Traits\Builder\IsReactive;
 use Digiti\FormBuilder\Traits\EvaluatesClosures;
 use Digiti\FormBuilder\Traits\Builder\HasDebug;
@@ -17,6 +18,7 @@ class Row implements Wireable
     use HasSchema;
     use HasWireables;
     use HasClasses;
+    use HasId;
     use IsReactive;
     use EvaluatesClosures;
 

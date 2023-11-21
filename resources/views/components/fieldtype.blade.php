@@ -1,5 +1,6 @@
 @if ($object->getReactive() || !$object->isReactive())
-    <div class="fieldtype {{ $object->getClasses() }}">
+    <div class="fieldtype {{ $object->getClasses() }}"
+        @if ($object->getId() ?? null) id="{{ $object->getId() }}" @endif>
 
         @if ($object->hasDebug())
             <div class="bg-light p-3 rounded mb-3 debug">

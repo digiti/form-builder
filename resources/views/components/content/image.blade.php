@@ -1,4 +1,4 @@
-<div class="{{ $object->getClasses() }}">
+<div class="{{ $object->getClasses() }}" @if ($object->getId() ?? null) id="{{ $object->getId() }}" @endif>
     @if ($object->getGlide())
         @php($glideParams = ['src' => $object->name, 'format' => 'webp'])
 

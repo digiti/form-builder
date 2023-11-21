@@ -11,6 +11,7 @@ use Digiti\FormBuilder\Traits\Builder\HasDebug;
 use Digiti\FormBuilder\Traits\Builder\IsReactive;
 use Digiti\FormBuilder\Traits\Builder\HasWireables;
 use Digiti\FormBuilder\Traits\Builder\HasClasses;
+use Digiti\FormBuilder\Traits\Builder\HasId;
 use Livewire\Wireable;
 
 class Fieldtype implements Wireable
@@ -24,6 +25,7 @@ class Fieldtype implements Wireable
     use HasValidation;
     use EvaluatesClosures;
     use HasClasses;
+    use HasId;
 
     protected string $parentView = 'form-builder::fieldtype';
     protected string $view = '';

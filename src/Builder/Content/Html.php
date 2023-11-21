@@ -3,6 +3,7 @@
 namespace Digiti\FormBuilder\Builder\Content;
 
 use Digiti\FormBuilder\Traits\Builder\HasClasses;
+use Digiti\FormBuilder\Traits\Builder\HasId;
 use Digiti\FormBuilder\Traits\Builder\HasName;
 use Digiti\FormBuilder\Traits\Builder\HasWireables;
 
@@ -11,6 +12,7 @@ use Livewire\Wireable;
 class Html implements Wireable
 {
     use HasClasses;
+    use HasId;
     use HasName;
     use HasWireables;
 
