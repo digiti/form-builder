@@ -2,7 +2,13 @@
     <div class="d-flex">
         <div class="w-100">
             <p class="range-value text-center font-weiht-bold">
-                {!! $object->getPrefix() ?? null !!}{{ $value }}{!! $object->getSuffix() ?? null !!}</p>
+                @if ($value == $object->getMin())
+                    {!! $object->getPrefixForMin() ?? null !!}
+                @elseif($value == $object->getMax())
+                    {!! $object->getPrefixForMax() ?? null !!}
+                @endif
+                {!! $object->getPrefix() ?? null !!}{{ $value }}{!! $object->getSuffix() ?? null !!}
+            </p>
             <input type="range" class="form-range" id="{{ $object->name }}" wire:model.live="value"
                 min="{{ $object->getMin() }}" max="{{ $object->getMax() }}" step="{{ $object->getStep() }}"
                 @if ($object->isRequired()) required @endif>
