@@ -63,6 +63,7 @@ class FormBuilderServiceProvider extends ServiceProvider
             "livewire.layout.chapter" => \Digiti\FormBuilder\Livewire\Layout\Chapter::class,
             "livewire.layout.fieldtype-error" => \Digiti\FormBuilder\Livewire\Layout\FieldtypeError::class,
             "livewire.layout.step" => \Digiti\FormBuilder\Livewire\Layout\Step::class,
+            "livewire.layout.column" => \Digiti\FormBuilder\Livewire\Layout\Column::class,
             "livewire.fieldtypes.check" => \Digiti\FormBuilder\Livewire\Fieldtypes\Check::class,
             "livewire.fieldtypes.radio" => \Digiti\FormBuilder\Livewire\Fieldtypes\Radio::class,
             "livewire.fieldtypes.range" => \Digiti\FormBuilder\Livewire\Fieldtypes\Range::class,

@@ -2,14 +2,13 @@
 
 namespace Digiti\FormBuilder\Builder\Content;
 
+use Digiti\FormBuilder\Builder\BuilderCore;
 use Digiti\FormBuilder\Traits\Builder\HasClasses;
 use Digiti\FormBuilder\Traits\Builder\HasId;
 use Digiti\FormBuilder\Traits\Builder\HasName;
 use Digiti\FormBuilder\Traits\Builder\HasWireables;
 
-use Livewire\Wireable;
-
-class Heading implements Wireable
+class Heading extends BuilderCore
 {
     use HasClasses;
     use HasId;

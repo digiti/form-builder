@@ -2,15 +2,13 @@
 
 namespace Digiti\FormBuilder\Builder\Content;
 
+use Digiti\FormBuilder\Builder\BuilderCore;
 use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasLabel;
 use Digiti\FormBuilder\Traits\Builder\HasClasses;
 use Digiti\FormBuilder\Traits\Builder\HasId;
 use Digiti\FormBuilder\Traits\Builder\HasName;
 use Digiti\FormBuilder\Traits\Builder\HasWireables;
-
-use Livewire\Wireable;
-
-class Anchor implements Wireable
+class Anchor extends BuilderCore
 {
     use HasName;
     use HasLabel;

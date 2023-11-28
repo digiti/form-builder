@@ -2,6 +2,7 @@
 
 namespace Digiti\FormBuilder\Builder\Fieldtypes;
 
+use Digiti\FormBuilder\Builder\BuilderCore;
 use Digiti\FormBuilder\Traits\EvaluatesClosures;
 use Digiti\FormBuilder\Traits\Builder\HasName;
 use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasLabel;
@@ -12,9 +13,8 @@ use Digiti\FormBuilder\Traits\Builder\IsReactive;
 use Digiti\FormBuilder\Traits\Builder\HasWireables;
 use Digiti\FormBuilder\Traits\Builder\HasClasses;
 use Digiti\FormBuilder\Traits\Builder\HasId;
-use Livewire\Wireable;
 
-class Fieldtype implements Wireable
+class Fieldtype extends BuilderCore
 {
     use HasName;
     use HasLabel;
@@ -56,5 +56,10 @@ class Fieldtype implements Wireable
     public function getClasses(): string
     {
         return $this->classes ?? 'field';
+    }
+
+    public function isLivewire(): bool
+    {
+        return false;
     }
 }

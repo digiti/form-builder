@@ -2,6 +2,7 @@
 
 namespace Digiti\FormBuilder\Builder\Content;
 
+use Digiti\FormBuilder\Builder\BuilderCore;
 use Digiti\FormBuilder\Traits\Builder\Layout\HasSchema;
 use Digiti\FormBuilder\Traits\Builder\HasWireables;
 use Digiti\FormBuilder\Traits\Builder\HasClasses;
@@ -10,9 +11,7 @@ use Digiti\FormBuilder\Traits\Builder\IsReactive;
 use Digiti\FormBuilder\Traits\EvaluatesClosures;
 use Digiti\FormBuilder\Traits\Builder\HasDebug;
 
-use Livewire\Wireable;
-
-class Div implements Wireable
+class Div extends BuilderCore
 {
     use HasDebug;
     use HasSchema;

@@ -29,7 +29,11 @@
     @endif
 
     @foreach ($object->filteredSchema() as $object)
-        <x-dynamic-component :component="$object->getView()" :key="md5($loop->index)" :$object :$result />
+        @if($object->isLivewire())
+            <livewire:is :component="$object->getView()" :$object :$result :key="md5($loop->index)" :parent="[]" />
+        @else
+            <x-dynamic-component :component="$object->getView()" :key="md5($loop->index)" :$object :$result />
+        @endif
     @endforeach
 
     @if ($showControls)

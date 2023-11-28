@@ -12,6 +12,7 @@ use Digiti\FormBuilder\Builder\Fieldtypes\Radio;
 use Digiti\FormBuilder\Builder\Fieldtypes\Range;
 use Digiti\FormBuilder\Builder\Fieldtypes\Select;
 use Digiti\FormBuilder\Builder\Fieldtypes\Text;
+use Digiti\FormBuilder\Builder\Layout\Column;
 use Digiti\FormBuilder\Events\OnChapterCompleted;
 use Digiti\FormBuilder\Events\OnFormSubmitted;
 use Digiti\FormBuilder\Events\OnStepCompleted;
@@ -71,7 +72,7 @@ class FormBase extends Component
                 }
             }
 
-            if ($obj instanceof Step || $obj instanceof Chapter) {
+            if ($obj instanceof Step || $obj instanceof Chapter || $obj instanceof Column) {
                 $this->mapKeys($obj->getSchema());
             }
         }
