@@ -10,7 +10,6 @@ use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasRequired;
 use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasValidation;
 use Digiti\FormBuilder\Traits\Builder\HasDebug;
 use Digiti\FormBuilder\Traits\Builder\IsReactive;
-use Digiti\FormBuilder\Traits\Builder\HasWireables;
 use Digiti\FormBuilder\Traits\Builder\HasClasses;
 use Digiti\FormBuilder\Traits\Builder\HasId;
 
@@ -21,14 +20,12 @@ class Fieldtype extends BuilderCore
     use HasDebug;
     use IsReactive;
     use HasRequired;
-    use HasWireables;
     use HasValidation;
     use EvaluatesClosures;
     use HasClasses;
     use HasId;
 
     protected string $parentView = 'form-builder::fieldtype';
-    protected string $view = '';
 
     public function __construct(string $name)
     {
@@ -41,11 +38,6 @@ class Fieldtype extends BuilderCore
         $form = new static($name);
 
         return $form;
-    }
-
-    public function getParentView(): string
-    {
-        return $this->parentView;
     }
 
     public function getView($input = false): string

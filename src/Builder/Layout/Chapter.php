@@ -51,8 +51,5 @@ class Chapter extends BuilderCore
         return $form;
     }
 
-    public function getView(): string
-    {
-        return $this->view;
-    }
+
 }

@@ -7,14 +7,12 @@ use Digiti\FormBuilder\Traits\Builder\Fieldtypes\HasLabel;
 use Digiti\FormBuilder\Traits\Builder\HasClasses;
 use Digiti\FormBuilder\Traits\Builder\HasId;
 use Digiti\FormBuilder\Traits\Builder\HasName;
-use Digiti\FormBuilder\Traits\Builder\HasWireables;
 class Anchor extends BuilderCore
 {
     use HasName;
     use HasLabel;
     use HasClasses;
     use HasId;
-    use HasWireables;
 
     protected string $view = 'form-builder::content.anchor';
     protected string $target;
@@ -61,10 +59,7 @@ class Anchor extends BuilderCore
         return $this->rel ?? null;
     }
 
-    public function getView(): string
-    {
-        return $this->view;
-    }
+
 
     public function dispatchable(): static
     {

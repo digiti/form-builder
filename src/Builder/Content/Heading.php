@@ -6,14 +6,12 @@ use Digiti\FormBuilder\Builder\BuilderCore;
 use Digiti\FormBuilder\Traits\Builder\HasClasses;
 use Digiti\FormBuilder\Traits\Builder\HasId;
 use Digiti\FormBuilder\Traits\Builder\HasName;
-use Digiti\FormBuilder\Traits\Builder\HasWireables;
 
 class Heading extends BuilderCore
 {
     use HasClasses;
     use HasId;
     use HasName;
-    use HasWireables;
 
     protected string $view = 'form-builder::content.heading';
     protected int $level = 2;
@@ -45,8 +43,5 @@ class Heading extends BuilderCore
         return $form;
     }
 
-    public function getView(): string
-    {
-        return $this->view;
-    }
+
 }

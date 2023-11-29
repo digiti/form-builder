@@ -4,7 +4,6 @@ namespace Digiti\FormBuilder\Builder\Content;
 
 use Digiti\FormBuilder\Builder\BuilderCore;
 use Digiti\FormBuilder\Traits\Builder\Layout\HasSchema;
-use Digiti\FormBuilder\Traits\Builder\HasWireables;
 use Digiti\FormBuilder\Traits\Builder\HasClasses;
 use Digiti\FormBuilder\Traits\Builder\HasId;
 use Digiti\FormBuilder\Traits\Builder\IsReactive;
@@ -15,7 +14,6 @@ class Div extends BuilderCore
 {
     use HasDebug;
     use HasSchema;
-    use HasWireables;
     use HasClasses;
     use HasId;
     use IsReactive;
@@ -37,8 +35,5 @@ class Div extends BuilderCore
         return $form;
     }
 
-    public function getView(): string
-    {
-        return $this->view;
-    }
+
 }

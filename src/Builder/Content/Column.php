@@ -1,44 +1,46 @@
 <?php
 
-namespace Digiti\FormBuilder\Builder\Content;
+//TODO: This might be redundant and may be removed if tested
 
-use Digiti\FormBuilder\Builder\BuilderCore;
-use Digiti\FormBuilder\Traits\Builder\Layout\HasSchema;
-use Digiti\FormBuilder\Traits\Builder\HasWireables;
-use Digiti\FormBuilder\Traits\Builder\HasClasses;
-use Digiti\FormBuilder\Traits\Builder\HasId;
-use Digiti\FormBuilder\Traits\Builder\IsReactive;
-use Digiti\FormBuilder\Traits\EvaluatesClosures;
-use Digiti\FormBuilder\Traits\Builder\HasDebug;
+// namespace Digiti\FormBuilder\Builder\Content;
 
-class Column extends BuilderCore
-{
-    use HasDebug;
-    use HasSchema;
-    use HasWireables;
-    use HasClasses;
-    use HasId;
-    use IsReactive;
-    use EvaluatesClosures;
+// use Digiti\FormBuilder\Builder\BuilderCore;
+// use Digiti\FormBuilder\Traits\Builder\Layout\HasSchema;
+// use Digiti\FormBuilder\Traits\Builder\HasWireables;
+// use Digiti\FormBuilder\Traits\Builder\HasClasses;
+// use Digiti\FormBuilder\Traits\Builder\HasId;
+// use Digiti\FormBuilder\Traits\Builder\IsReactive;
+// use Digiti\FormBuilder\Traits\EvaluatesClosures;
+// use Digiti\FormBuilder\Traits\Builder\HasDebug;
 
-    protected string $view = 'form-builder::content.column';
+// class Column extends BuilderCore
+// {
+//     use HasDebug;
+//     use HasSchema;
+//     use HasWireables;
+//     use HasClasses;
+//     use HasId;
+//     use IsReactive;
+//     use EvaluatesClosures;
 
-    public function __construct(array $schema)
-    {
-        $this->classes = 'content-col col';
-        $this->schema($schema);
-        $this->setConstructAttributeKey('schema');
-    }
+//     protected string $view = 'form-builder::content.column';
 
-    public static function make(array $schema)
-    {
-        $form = new static($schema);
+//     public function __construct(array $schema)
+//     {
+//         $this->classes = 'content-col col';
+//         $this->schema($schema);
+//         $this->setConstructAttributeKey('schema');
+//     }
 
-        return $form;
-    }
+//     public static function make(array $schema)
+//     {
+//         $form = new static($schema);
 
-    public function getView(): string
-    {
-        return $this->view;
-    }
-}
+//         return $form;
+//     }
+
+//     public function getView(): string
+//     {
+//         return $this->view;
+//     }
+// }
