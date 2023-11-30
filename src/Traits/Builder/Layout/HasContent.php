@@ -4,7 +4,7 @@ namespace Digiti\FormBuilder\Traits\Builder\Layout;
 
 trait HasContent
 {
-    protected mixed $content;
+    protected array $content = [];
 
     public function content($content): static
     {
@@ -12,7 +12,7 @@ trait HasContent
         return $this;
     }
 
-    public function getContent(): mixed
+    public function getContent(): array
     {
         return $this->content;
     }
