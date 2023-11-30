@@ -14,7 +14,8 @@ class FormBuilderServiceProvider extends ServiceProvider
          * Register Commands
          */
         $this->commands([
-            \Digiti\FormBuilder\Commands\MakeFormCommand::class
+            \Digiti\FormBuilder\Commands\MakeFormCommand::class,
+            \Digiti\FormBuilder\Commands\MakeCustomComponentCommand::class
         ]);
 
         /**

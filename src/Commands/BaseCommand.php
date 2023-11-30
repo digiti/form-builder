@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Pluralizer;
 use Illuminate\Contracts\Console\PromptsForMissingInput;
+use Illuminate\Support\Str;
 
 
 class BaseCommand extends Command implements PromptsForMissingInput
@@ -32,19 +33,22 @@ class BaseCommand extends Command implements PromptsForMissingInput
      */
     public function handle()
     {
-        $path = $this->getSourceFilePath();
+        $i = 0;
+        $paths = $this->getSourceFilePaths();
+        $contents = $this->getSourceFiles();
 
-        $this->makeDirectory(dirname($path));
+        foreach($paths as $path)
+        {
+            $this->makeDirectory(dirname($path));
 
-        $contents = $this->getSourceFile();
-
-        if (!$this->files->exists($path)) {
-            $this->files->put($path, $contents);
-            $this->info("File : {$path} created");
-        } else {
-            $this->info("File : {$path} already exits");
+            if (!$this->files->exists($path)) {
+                $this->files->put($path, $contents[$i]);
+                $this->info("File : {$path} created");
+            } else {
+                $this->info("File : {$path} already exits");
+            }
+            $i++;
         }
-
     }
 
     /**
@@ -53,9 +57,13 @@ class BaseCommand extends Command implements PromptsForMissingInput
      * @return bool|mixed|string
      *
      */
-    public function getSourceFile()
+    public function getSourceFiles(): array
     {
-        return $this->getStubContents($this->getStubPath(), $this->getStubVariables());
+        foreach($this->getStubPaths() as $path){
+            $result[] = $this->getStubContents($path, $this->getStubVariables());
+        }
+
+        return $result;
     }
 
 
@@ -87,6 +95,11 @@ class BaseCommand extends Command implements PromptsForMissingInput
     public function getSingularClassName($name)
     {
         return ucwords(Pluralizer::singular($name));
+    }
+
+    public function getSingularViewName($name)
+    {
+        return Str::kebab($name);
     }
 
     /**

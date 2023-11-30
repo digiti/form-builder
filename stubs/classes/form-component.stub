@@ -1,0 +1,45 @@
+<?php
+
+namespace $CLASSES_NAMESPACE$;
+
+use Digiti\FormBuilder\Builder\BuilderCore;
+use Digiti\FormBuilder\Traits\Builder\Layout\HasSchema;
+use Digiti\FormBuilder\Traits\Builder\HasWireables;
+use Digiti\FormBuilder\Traits\Builder\HasClasses;
+use Digiti\FormBuilder\Traits\Builder\IsReactive;
+use Digiti\FormBuilder\Traits\EvaluatesClosures;
+use Digiti\FormBuilder\Traits\Builder\HasDebug;
+
+class $CLASS_NAME$ extends BuilderCore
+{
+    use HasDebug;
+    use HasSchema;
+    use HasClasses;
+    use IsReactive;
+    use HasWireables;
+    use EvaluatesClosures;
+
+
+    protected string $view = 'forms.components.$VIEW_NAME$';
+
+    public function __construct(array $schema)
+    {
+        $this->schema($schema);
+        $this->setConstructAttributeKey('schema');
+    }
+
+    public static function make(array $schema)
+    {
+        $form = new static($schema);
+
+        return $form;
+    }
+
+    public function isLivewire(){
+        return true;
+    }
+
+    /**
+     * Go ham and insert some custom logic here!
+     */
+}

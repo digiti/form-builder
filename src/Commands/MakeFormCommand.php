@@ -2,10 +2,6 @@
 
 namespace Digiti\FormBuilder\Commands;
 
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Pluralizer;
-
-
 class MakeFormCommand extends BaseCommand
 {
     /**
@@ -28,9 +24,11 @@ class MakeFormCommand extends BaseCommand
      * @return string
      *
      */
-    public function getStubPath()
+    public function getStubPaths(): array
     {
-        return __DIR__ . '/../../stubs/form.stub';
+        return [
+            __DIR__ . '/../../stubs/livewire/form.stub'
+        ];
     }
 
     /**
@@ -53,8 +51,10 @@ class MakeFormCommand extends BaseCommand
      *
      * @return string
      */
-    public function getSourceFilePath()
+    public function getSourceFilePaths(): array
     {
-        return base_path('app/Livewire/Forms') .'/' .$this->getSingularClassName($this->argument('name')) . '.php';
+        return [
+            base_path('app/Livewire/Forms') .'/' .$this->getSingularClassName($this->argument('name')) . '.php'
+        ];
     }
 }
