@@ -6,6 +6,14 @@
         {{ $content['title'] }}
     --}}
 
+    {{--
+       getSchemaItem() example:
+
+        {!! $object->getSchemaItem(0) !!}
+        or
+        {!! $object->getSchemaItem('input_name') !!}
+    --}}
+
     @foreach ($object->filteredSchema() as $object)
         <x-dynamic-component :component="$object->getView()" :key="md5($loop->index)" :$object :$result />
     @endforeach

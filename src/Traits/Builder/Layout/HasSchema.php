@@ -3,6 +3,7 @@
 namespace Digiti\FormBuilder\Traits\Builder\Layout;
 
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 
 trait HasSchema
@@ -38,6 +39,31 @@ trait HasSchema
                 return $obj;
             }
         }));
+    }
+
+    /**
+     * Get Specific schema item
+     *
+     * return mixed
+     */
+    public function getSchemaItem(int|string $id, $result = [])
+    {
+        if(is_string($id)){
+            $object = collect( $this->filteredSchema() )->where('name', $id)->first();
+        }else{
+            $object = $this->filteredSchema()[$id];
+        }
+
+        if($object){
+            return Blade::render('<x-dynamic-component :$key :$component :$object :$result />', [
+                'component' => $object->getView(),
+                'key' => md5($id),
+                'object' => $object,
+                'result' => $result
+            ]);
+        }
+
+        return;
     }
 
     // TODO: validationSchema() and fieldtypeSchema() might always generate the same results investigate if this behaviour is necessary?
