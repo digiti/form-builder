@@ -9,9 +9,9 @@
     {{--
        getSchemaItem() example:
 
-        {!! $object->getSchemaItem(0) !!}
+        {!! $object->getSchemaItem(0, $result) !!}
         or
-        {!! $object->getSchemaItem('input_name') !!}
+        {!! $object->getSchemaItem('input_name', $result) !!}
     --}}
 
     @foreach ($object->filteredSchema() as $object)

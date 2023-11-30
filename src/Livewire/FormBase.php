@@ -72,7 +72,7 @@ class FormBase extends Component
                 }
             }
 
-            if ($obj instanceof Step || $obj instanceof Chapter || $obj instanceof Column) {
+            if ($obj->constructorIsSchema()) {
                 $this->mapKeys($obj->getSchema());
             }
         }

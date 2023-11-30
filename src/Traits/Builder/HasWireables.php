@@ -20,6 +20,14 @@ trait HasWireables
     }
 
     /**
+     * Check if constructor method is schema
+     */
+    public function constructorIsSchema(): bool
+    {
+        return $this->constructAttributeKey == "schema";
+    }
+
+    /**
      * Generate a array of all attributes that exists in the object
      */
     protected function getObjectAttributes()
